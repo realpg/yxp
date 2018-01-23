@@ -1,0 +1,23 @@
+<!--pages/classList/classList.wxml-->
+<import src="../templates/travelListTpl/travelListTpl.wxml" />
+<view>
+  <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+    <view class="tab-item {{currentTab==0?'border-bottom':''}}" data-current="0" bindtap="swichNav">土猪</view>
+    <view class="tab-item {{currentTab==1?'border-bottom':''}}" data-current="1" bindtap="swichNav">土鸡蛋</view>
+    <view class="tab-item {{currentTab==2?'border-bottom':''}}" data-current="2" bindtap="swichNav">土鸡</view>
+    <view class="tab-item {{currentTab==3?'border-bottom':''}}" data-current="3" bindtap="swichNav">野鸡</view>
+    <view class="tab-item {{currentTab==4?'border-bottom':''}}" data-current="4" bindtap="swichNav">野鸡蛋</view>
+    <view class="tab-item {{currentTab==5?'border-bottom':''}}" data-current="5" bindtap="swichNav">马铃薯粉条</view>
+    <view class="tab-item {{currentTab==6?'border-bottom':''}}" data-current="6" bindtap="swichNav">黑美人土豆</view>
+  </scroll-view>
+  <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx">
+    <swiper-item wx:for="{{[0,1,2,3,4,5,6,7]}}">
+      <scroll-view scroll-y="true" class="scoll-h" bindtap='jumpTravelDetails'>
+        <view style='height:30rpx;'></view>
+        <!-- <block wx:for="{{travel}}">
+          <template is="traveListTpl" data="{{...item}}"></template>
+        </block> -->
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+</view>

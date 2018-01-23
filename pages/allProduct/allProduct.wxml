@@ -1,0 +1,15 @@
+<!--pages/allProduct/allProduct.wxml-->
+<view class="line-text font-size-14" style='line-height:30rpx;'>
+  热卖商品
+</view>
+<product pList="{{product}}"></product>
+<view class="line-text font-size-14" style='line-height:30rpx;'>
+  特卖商品
+</view>
+<product pList="{{product}}"></product>
+<view class="line-text font-size-14" style='line-height:30rpx;'>
+  商品列表
+</view>
+<product pList="{{product}}"></product>
+<product pList="{{product}}"></product>
+<product pList="{{product}}"></product>

@@ -1,0 +1,72 @@
+<!--index.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-search-bar">
+      <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+          <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm="complete" />
+        </view>
+        <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+          <icon class="weui-icon-search" type="search" size="14"></icon>
+          <view class="weui-search-bar__text">搜索旅行地/酒店/景点</view>
+        </label>
+      </view>
+      <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+    </view>
+  </view>
+</view>
+
+<swiper indicator-dots="true" indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#FFFFFF" autoplay="true" interval="4000" duration="600" style="height:184px">
+  <block wx:for="{{swipers}}">
+    <swiper-item>
+      <image src="{{item.img}}" class="slide-image" width="750rpx" />
+    </swiper-item>
+  </block>
+</swiper>
+
+
+<scroll-view class="recommend_scroll_x_box" scroll-x="true" style="">
+  <view style='max-width:750rpx;'>
+    <view class="recommend_hot_box" wx:for="{{menus}}" wx:key="*this">
+      <view style='position:relative;' bindtap='jumpclassList' data-scrollLeft='{{item.id}}'>
+        <image src="{{item.image}}" class="recommend_hot_image"></image>
+        <text class='recommend_absolute'>{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<view class='bar-30'></view>
+
+<view class="line-text font-size-14" style='line-height:30rpx;'>
+  农场实景
+</view>
+
+<swiper indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#FFFFFF" autoplay="true" interval="4000" duration="600" style="height:184px">
+  <block wx:for="{{swipers}}">
+    <swiper-item>
+      <image src="{{item.img}}" class="advertising-image" width="750rpx" />
+    </swiper-item>
+  </block>
+</swiper>
+
+<!-- <view style='height:20rpx;'></view> -->
+
+<view class='bar-30'></view>
+
+<view class="line-text font-size-14" style='line-height:30rpx;'>
+  今日推荐
+</view>
+<product pList="{{product}}"></product>
+<view class="line-text font-size-14" style='line-height:30rpx;'>
+  关于我们
+</view>
+
+<swiper indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#FFFFFF" autoplay="true" interval="4000" duration="600" style="height:184px">
+  <block wx:for="{{swipers}}">
+    <swiper-item>
+      <image src="{{item.img}}" class="slide-image" width="750rpx" />
+    </swiper-item>
+  </block>
+</swiper>

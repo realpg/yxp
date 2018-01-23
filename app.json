@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/goods-detail/goods-detail",
+    "pages/index/index/index",
+    "pages/shop-cart/shop-cart",
+    "pages/index/search/search",
+    "pages/classList/classList",
+    "pages/my/my/my",
+    "pages/allProduct/allProduct",
+    "pages/template/template-cart/template-cart"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "运鲜婆",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#333",
+    "selectedColor": "#ff0000",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index/index",
+        "text": "首页",
+        "iconPath": "/images/nav/home-off.png",
+        "selectedIconPath": "/images/nav/home-on.png"
+      },
+      {
+        "pagePath": "pages/allProduct/allProduct",
+        "iconPath": "/images/nav/search-off.png",
+        "selectedIconPath": "/images/nav/search-on.png",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/shop-cart/shop-cart",
+        "iconPath": "/images/nav/cart-off.png",
+        "selectedIconPath": "/images/nav/cart-on.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/my/my/my",
+        "iconPath": "/images/nav/my-off.png",
+        "selectedIconPath": "/images/nav/my-on.png",
+        "text": "我的"
+      }
+    ]
+  }
+}
