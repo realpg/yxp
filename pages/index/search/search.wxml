@@ -1,2 +1,2 @@
 <!--pages/index/search/search.wxml-->
-<text>pages/index/search/search.wxml</text>
+ <searchGoods pList="{{search}}"></searchGoods>

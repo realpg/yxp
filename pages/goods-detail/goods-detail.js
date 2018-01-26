@@ -36,6 +36,7 @@ Page({
     })
   },
   onLoad: function (e) {
+    // console.log("商品详情页id : " + JSON.stringify(options))
     if (e.inviter_id) {
       wx.setStorage({
         key: 'inviter_id_' + e.id,
@@ -56,9 +57,11 @@ Page({
     wx.request({
       url: app.globalData.baseUrl + '/shop/goods/detail',
       data: {
-        id: e.id
+        // id: e.id
+        id: 12316       
       },
       success: function (res) {
+        console.log("返回数据 ：" + JSON.stringify(res))
         var selectSizeTemp = "";
         if (res.data.data.properties) {
           for (var i = 0; i < res.data.data.properties.length; i++) {

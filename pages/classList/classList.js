@@ -7,43 +7,56 @@ Page({
   data: {
     winHeight: "",//窗口高度
     currentTab: 0, //预设当前项的值
-    scrollLeft: 0, //tab标题的滚动条位置
-    tour_category_id: '',//目录id
-    travel: [],//全部旅游数据
+    type_id: '',//类别id
+    goods: [],//全部旅游数据
+    class_list: [], //类别列表
+    class_length: ''//列表长度
   },
-  jumpTravelDetails: function (e) {
-    var travelid = e.currentTarget.dataset.travelid
-    console.log("jumpTravelDetails is : " + JSON.stringify(travelid))
-    wx.navigateTo({
-      url: '/pages/travelDetails/travelDetails?travelid=' + travelid,
+  onLoad: function (options) {
+    console.log("333333333" + JSON.stringify(options))
+    vm = this
+    var type_id = options.type_id// 类别id
+    var currentTab = options.pointer// 指针   
+    vm.setData({
+      type_id: type_id,
+      currentTab: currentTab
     })
+    console.log("加载 currentTab ：" + vm.data.currentTab)
+    var that = this;
+    //  高度自适应
+    wx.getSystemInfo({
+      success: function (res) {
+        // console.log("11111111111" + JSON.stringify(res))
+        var clientHeight = res.windowHeight,
+          clientWidth = res.windowWidth,
+          rpxR = 750 / clientWidth;
+        // var calc = clientHeight * rpxR - 180;
+        var calc = clientHeight * rpxR;
+        // console.log(calc)
+        that.setData({
+          winHeight: calc
+        });
+      }
+    });
+    vm.getList()
+    vm.getByGoodTypeId()
   },
   // 滚动切换标签样式
   switchTab: function (e) {
-    console.log(e.detail.current)
-    var tour_category_id = ''//目的地id
+    // console.log("滚动" + JSON.stringify(e))
     var currentTab = e.detail.current  //指针
-    if (currentTab == 1) {
-      tour_category_id = 2
-    } else if (currentTab == 2) {
-      tour_category_id = 3
-    } else if (currentTab == 3) {
-      tour_category_id = 4
-    } else if (currentTab == 0) {
-      tour_category_id = 0
-    } else if (currentTab == 4) {
-      tour_category_id = 5
-    }
+    var type_id = vm.data.class_list[currentTab].id//类别id
     vm.setData({
-      tour_category_id: tour_category_id,
-      currentTab: currentTab
+      currentTab: currentTab,
+      type_id: type_id
     })
-    // vm.getTourGoodsLists()
+    vm.getByGoodTypeId()
     this.checkCor();
   },
   // 点击标题切换当前页时改变样式
   swichNav: function (e) {
     var cur = e.target.dataset.current;
+    console.log("点击菜单" + curs)
     if (this.data.currentTaB == cur) { return false; }
     else {
       this.setData({
@@ -63,56 +76,37 @@ Page({
       })
     }
   },
-  onLoad: function (options) {
-    vm = this
-    var tour_category_id = options.scrollLeft//目的地id
-    var currentTab = ''  //指针
-    if (tour_category_id == 2) {
-      currentTab = 1
-    } else if (tour_category_id == 3) {
-      currentTab = 2
-    } else if (tour_category_id == 4) {
-      currentTab = 3
-    } else if (tour_category_id == 5) {
-      currentTab = 4
-    }
-    vm.setData({
-      tour_category_id: tour_category_id,
-      currentTab: currentTab
+  //获取商品类别
+  getList: function () {
+    util.getList({}, function (res) {
+      console.log("class_list : " + JSON.stringify(res.data.ret))
+      vm.setData({
+        class_list: res.data.ret,
+        class_length: res.data.ret.length
+      })
     })
-    console.log("分啊方法" + vm.data.currentTab)
-    var that = this;
-    //  高度自适应
-    wx.getSystemInfo({
-      success: function (res) {
-        console.log("11111111111" + JSON.stringify(res))
-        var clientHeight = res.windowHeight,
-          clientWidth = res.windowWidth,
-          rpxR = 750 / clientWidth;
-        // var calc = clientHeight * rpxR - 180;
-        var calc = clientHeight * rpxR;
-        console.log(calc)
-        that.setData({
-          winHeight: calc
-        });
-      }
-    });
-    // vm.getTourGoodsLists()
   },
-
-  getTourGoodsLists: function () {
+  //获取商品列表
+  getByGoodTypeId: function () {
+    // console.log("类别id" + JSON.stringify(vm.data.type_id))
     util.showLoading("加载列表")
     var param = {
-      offset: offset,//开始位置
-      page: 20,  //输出的条数
-      tour_category_id: vm.data.tour_category_id//目的地编号
+      type_id: vm.data.type_id// 类别id
     }
-    util.getTourGoodsLists(param, function (res) {
+    util.getByGoodTypeId(param, function (res) {
+      // console.log("商品列表" + JSON.stringify(res.data.ret))
       vm.setData({
-        travel: res.data.ret
+        goods: res.data.ret
       })
-      console.log("旅游数据" + JSON.stringify(vm.data.travel))
     })
   },
-  footerTap: app.footerTap,
+
+  jumpTravelDetails: function (e) {
+    var travelid = e.currentTarget.dataset.travelid
+    console.log("jumpTravelDetails is : " + JSON.stringify(travelid))
+    wx.navigateTo({
+      url: '/pages/travelDetails/travelDetails?travelid=' + travelid,
+    })
+  },
+
 })

@@ -1,4 +1,25 @@
 //app.js
+//  
+//                            _ooOoo_  
+//                           o8888888o  
+//                           88" . "88  
+//                           (| -_- |)  
+//                           O\  =  /O  
+//                        ____/`---'\____  
+//                      .'  \\|     |//  `.  
+//                     /  \\|||  :  |||//  \  
+//                    /  _||||| -:- |||||-  \  
+//                    |   | \\\  -  /// |   |  
+//                    | \_|  ''\---/''  |   |  
+//                    \  .-\__  `-`  ___/-. /  
+//                  ___`. .'  /--.--\  `. . __  
+//               ."" '<  `.___\_<|>_/___.'  >'"".  
+//              | | :  `- \`.;`\ _ /`;.`/ - ` : | |  
+//              \  \ `-.   \_ __\ /__ _/   .-` /  /  
+//         ======`-.____`-.___\_____/___.-`____.-'======  
+//                            `=---='  
+//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  
+//                      佛祖保佑       永无BUG  
 const util = require('./utils/util.js')
 var vm = null
 App({
@@ -25,17 +46,17 @@ App({
   login: function (callBack) {
     wx.login({
       success: function (res) {
-        console.log("wx.login:" + JSON.stringify(res))
+        console.log("wx.login:" + JSON.stringify(res.code))
         if (res.code) {
           util.getOpenId({ code: res.code }, function (ret) {
             console.log("getOpenId:" + JSON.stringify(ret))
             var openId = ret.data.ret.openid
             var param = {
               account_type: 'xcx',
-              xcx_openid: openId
+              xcx_openid: openId,
             }
-            //后端注册
             util.login(param, function (ret) {
+              console.log("login1111:" + JSON.stringify(param));
               console.log("login:" + JSON.stringify(ret));
               if (ret.data.code == "200") {
                 vm.storeUserInfo(ret.data.ret)
@@ -128,6 +149,7 @@ App({
   },
   //全局变量
   globalData: {
+    baseUrl: 'https://api.it120.cc/jy02149522',
     userInfo: null,
     systemInfo: null
   }

@@ -18,19 +18,18 @@
 </view>
 
 <swiper indicator-dots="true" indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#FFFFFF" autoplay="true" interval="4000" duration="600" style="height:184px">
-  <block wx:for="{{swipers}}">
+  <block wx:for="{{ads}}">
     <swiper-item>
-      <image src="{{item.img}}" class="slide-image" width="750rpx" />
+      <image src="{{item.image}}" class="slide-image" width="750rpx" />
     </swiper-item>
   </block>
 </swiper>
 
-
 <scroll-view class="recommend_scroll_x_box" scroll-x="true" style="">
   <view style='max-width:750rpx;'>
-    <view class="recommend_hot_box" wx:for="{{menus}}" wx:key="*this">
-      <view style='position:relative;' bindtap='jumpclassList' data-scrollLeft='{{item.id}}'>
-        <image src="{{item.image}}" class="recommend_hot_image"></image>
+    <view class="recommend_hot_box" wx:for="{{class_list}}" wx:key="*this">
+      <view style='position:relative;' bindtap='jumpclassList' data-type_id='{{item.id}}' data-pointer='{{index}}'>
+        <image src="{{image}}" class="recommend_hot_image"></image>
         <text class='recommend_absolute'>{{item.name}}</text>
       </view>
     </view>
@@ -44,29 +43,29 @@
 </view>
 
 <swiper indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#FFFFFF" autoplay="true" interval="4000" duration="600" style="height:184px">
-  <block wx:for="{{swipers}}">
+  <block wx:for="{{ads_farm}}">
     <swiper-item>
-      <image src="{{item.img}}" class="advertising-image" width="750rpx" />
+      <image src="{{item.image}}" class="advertising-image" width="750rpx" />
     </swiper-item>
   </block>
 </swiper>
-
 <!-- <view style='height:20rpx;'></view> -->
-
 <view class='bar-30'></view>
 
 <view class="line-text font-size-14" style='line-height:30rpx;'>
   今日推荐
 </view>
-<product pList="{{product}}"></product>
+<!-- <navigator url='/pages/goods-detail/goods-detail'> -->
+  <searchGoods pList="{{commendGoods}}"></searchGoods>
+<!-- </navigator> -->
 <view class="line-text font-size-14" style='line-height:30rpx;'>
   关于我们
 </view>
 
 <swiper indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#FFFFFF" autoplay="true" interval="4000" duration="600" style="height:184px">
-  <block wx:for="{{swipers}}">
+  <block wx:for="{{ads_farm}}">
     <swiper-item>
-      <image src="{{item.img}}" class="slide-image" width="750rpx" />
+      <image src="{{item.image}}" class="slide-image" width="750rpx" />
     </swiper-item>
   </block>
 </swiper>

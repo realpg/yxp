@@ -43,7 +43,8 @@
           客服
         </view>
         <view class="shop-cart-btn" bindtap="goShopCar">
-            <view class="shop-num">({{shopNum}})</view>
+            <!-- <view class="shop-num">({{shopNum}})</view> -->
+            <view class="shop-num">(1)</view>            
             购物车
         </view>
         <view class="join-shop-cart" bindtap="toAddShopCar">加入购物车</view>

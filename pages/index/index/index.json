@@ -1,6 +1,6 @@
 {
   "usingComponents": {
     "dialog": "/components/dialog/dialog",
-    "product": "/components/product/product"
+    "searchGoods": "/components/searchGoods/searchGoods"
   }
 }

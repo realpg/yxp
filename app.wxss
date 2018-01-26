@@ -1,6 +1,5 @@
 /**app.wxss**/
 @import './style/weui.wxss';
-@import './pages/template/template-cart/template-cart.wxss';
 image{vertical-align: middle;}
 .container {
   height: 100%;

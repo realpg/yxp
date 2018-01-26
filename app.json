@@ -1,12 +1,12 @@
 {
   "pages": [
-    "pages/goods-detail/goods-detail",
     "pages/index/index/index",
     "pages/shop-cart/shop-cart",
     "pages/index/search/search",
     "pages/classList/classList",
     "pages/my/my/my",
     "pages/allProduct/allProduct",
+    "pages/goods-detail/goods-detail",
     "pages/template/template-cart/template-cart"
   ],
   "window": {

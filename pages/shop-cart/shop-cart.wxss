@@ -1,1 +1,2 @@
 /* pages/shop-cart/shop-cart.wxss */
+@import '../../pages/template/template-cart/template-cart.wxss';
