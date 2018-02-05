@@ -46,7 +46,11 @@ Page({
   },
   //获取推荐商品
   getByFlag: function () {
-    util.getByFlag({}, function (res) {
+    var param = {
+      offset: 0,
+      page: 10
+    }
+    util.getByFlag(param, function (res) {
       console.log("commendGoods : " + JSON.stringify(res))
       vm.setData({
         commendGoods: res.data.ret

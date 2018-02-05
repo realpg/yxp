@@ -124,53 +124,69 @@ function test(param) {
   console.log(JSON.stringify("11"));
 }
 
-//localhost/yxpSrv/public/api/goodsInfo/getByGoodTypeId
+//http://localhost/yxpSrv/public/api/shoppingCart/deletedShoppingCart
 
+
+//根据商品id获取商品详情
+function getGoodsDetails(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/goodsInfo/getGoodsDetails', param, "GET", successCallback, errorCallback);
+}
+//下单支付-拆分子订单
+function payOrder(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/wechat/payOrder', param, "POST", successCallback, errorCallback);
+}
+//删除购物车商品
+function deletedShoppingCart(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/shoppingCart/deletedShoppingCart', param, "POST", successCallback, errorCallback);
+}
+//根据user_id查购物车信息
+function getShoppingCart(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/shoppingCart/getShoppingCart', param, "GET", successCallback, errorCallback);
+}
+//添加商品到购物车
+function addShoppingCart(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/shoppingCart/addShoppingCart', param, "POST", successCallback, errorCallback);
+}
+//根据id获取商品详情页——商品简介
+function getByGoodsId(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/goodsInfo/getById', param, "GET", successCallback, errorCallback);
+}
 //根据type_id获取商品信息
 function getByGoodTypeId(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/goodsInfo/getByGoodTypeId', param, "GET", successCallback, errorCallback);
 }
-
 //搜索生效商品接口
 function searchGoods(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/goodsInfo/searchGoods', param, "GET", successCallback, errorCallback);
 }
-
 //获取轮播图
 function getADs(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/ad/getADs', param, "GET", successCallback, errorCallback);
 }
-
 //获取推荐商品接口
 function getByFlag(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/goodsInfo/getByFlag', param, "GET", successCallback, errorCallback);
 }
-
 //获取商品分类列表
 function getList(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/goodType/getList', param, "GET", successCallback, errorCallback);
 }
-
 //根据id获取分类详情
 function getById(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/goodType/getById', param, "GET", successCallback, errorCallback);
 }
-
 //获取七牛Token
 function getQiniuToken(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/user/getQiniuToken', param, "GET", successCallback, errorCallback);
 }
-
 //根据code获取openid
 function getOpenId(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/user/getXCXOpenId', param, "GET", successCallback, errorCallback);
 }
-
 //小程序登录
 function login(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/user/login', param, "POST", successCallback, errorCallback);
 }
-
 //更新用户信息
 function updateUserInfo(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/user/updateById', param, "POST", successCallback, errorCallback);
@@ -353,6 +369,12 @@ module.exports = {
   getByFlag: getByFlag,//获取推荐商品接口
   searchGoods: searchGoods,//搜索生效商品接口
   getByGoodTypeId: getByGoodTypeId,//根据type_id获取商品信息
+  getByGoodsId: getByGoodsId, //根据id获取商品信息
+  payOrder: payOrder, //下单支付-拆分子订单
+  getGoodsDetails: getGoodsDetails,//获取商品详情
+  addShoppingCart: addShoppingCart,//添加商品到购物车
+  getShoppingCart: getShoppingCart,//根据user_id查购物车信息
+  deletedShoppingCart: deletedShoppingCart,//删除购物车商品
 
   formatTime: formatTime,//格式化时间
   showLoading: showLoading,

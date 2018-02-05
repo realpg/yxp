@@ -56,7 +56,7 @@ Page({
   // 点击标题切换当前页时改变样式
   swichNav: function (e) {
     var cur = e.target.dataset.current;
-    console.log("点击菜单" + curs)
+    console.log("点击菜单" + cur)
     if (this.data.currentTaB == cur) { return false; }
     else {
       this.setData({
