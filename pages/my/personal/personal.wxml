@@ -1,0 +1,48 @@
+<view class="page">
+    <view class="page__bd">
+   
+        <view class="weui-cells weui-cells_after-title"style='border-top:none'>
+         <view style="height:10rpx;background: #f8f8f8;width:100%;"></view>
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__hd">
+                    <image src="{{icon}}" style="margin-right: 5px;vertical-align: middle;width:80rpx; height: 80rpx;"></image>
+                </view>
+                <view class="weui-cell__bd"style='font-size:28rpx;'>姓名</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"style='font-size:28rpx;'>张无忌</view>
+            </navigator>
+            <view style="height:10rpx;background: #f8f8f8;width:100%;"></view>
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__hd">
+                    <image src="{{icon}}" style="margin-right: 5px;vertical-align: middle;width:80rpx; height: 80rpx;"></image>
+                </view>
+                <view class="weui-cell__bd"style='font-size:28rpx;'>性别</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"style='font-size:28rpx;'>男</view>
+            </navigator>
+            <view style="height:10rpx;background: #f8f8f8;width:100%;"></view>
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__hd">
+                    <image src="{{icon}}" style="margin-right: 5px;vertical-align: middle;width:80rpx; height: 80rpx;"></image>
+                </view>
+                <view class="weui-cell__bd"style='font-size:28rpx;'>身份证后6位</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"style='font-size:28rpx;'>199309</view>
+            </navigator>
+            <view style="height:10rpx;background: #f8f8f8;width:100%;"></view>
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__hd">
+                    <image src="{{icon}}" style="margin-right: 5px;vertical-align: middle;width:80rpx; height: 80rpx;"></image>
+                </view>
+                <view class="weui-cell__bd"style='font-size:28rpx;'>绑定手机</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"style='font-size:28rpx;'>1323232323</view>
+            </navigator>
+            <view style="height:10rpx;background: #f8f8f8;width:100%;"></view>
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__hd">
+                    <image src="{{icon}}" style="margin-right: 5px;vertical-align: middle;width:80rpx; height: 80rpx;"></image>
+                </view>
+                <view class="weui-cell__bd"style='font-size:28rpx;'>绑定邮箱</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"style='font-size:28rpx;'>1241557615@qq.com</view>
+            </navigator>
+            
+        </view>
+    </view>
+</view>

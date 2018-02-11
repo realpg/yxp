@@ -1,0 +1,51 @@
+<!-- <view class="page">
+  <view class="page__bd">
+    <view class="weui-article">
+      <view class="weui-article__h1">{{news.title}}</view>
+      <view class="weui-article__section">
+        <view class="weui-article__title">{{news.author}}</view>
+        <view class="weui-article__section">
+          <view class="weui-article__h3">{{news.created_at}}</view>
+          <view class="weui-article__p">
+           {{news.intro}} 
+          </view>
+          <view class="weui-article__p">
+            <image class="weui-article__img" src="{{news.img}}" mode="aspectFit" style="height: 360rpx;width:100%" />
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view> -->
+<view class="page white-bg">
+  <!--页头-->
+  <view class="page__hd"></view>
+  <!--主体-->
+  <view class="page__bd white-bg">
+    <view class="margin-left-12 margin-right-12">
+      <view class="font-size-16 padding-top-15" style="font-size:28rpx">
+        {{news.title}}
+      </view>
+      <view class="font-size-12 grey-font padding-top-15"style="font-size:24rpx">
+        <text>{{news.created_at}}</text>
+
+      </view>
+      <!--过程信息-->
+      <view style="height:10px;"></view>
+      <block>
+        <view class="margin-top-5" style="text-align:center;">
+          <image  src="{{news.img}}" style="width：400rpx"></image>
+        </view>
+        <view wx:if="{{news.intro.length>0}}" class="font-size-14 margin-top-10 margin-bottom-10 margin-left-20 margin-right-20" style="color:#AAA">
+          {{news.intro}} 
+        </view>
+      </block>
+      <!-- <view style="display:{{show ? 'flex' : 'none'}};flex-direction: column;align-items:center;">
+        <view style='height:50rpx'></view>
+        <image src='../../images/cry.png' style='width:150rpx;height:150rpx;'></image>
+        <view style='height:50rpx'></view>
+        <text style='font-size:25srpx'>未能搜索到内容</text>
+      </view> -->
+    </view>
+  </view>
+</view>

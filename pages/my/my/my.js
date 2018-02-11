@@ -37,7 +37,7 @@ Page({
   allOrder(e) {
     var _id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: "/pages/order-list/index?id=" + _id
+      url: "/pages/my/mymessage/mymessage?id=" + _id
     })
   },
   aboutUs: function () {

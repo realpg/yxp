@@ -7,7 +7,16 @@
     "pages/my/my/my",
     "pages/allProduct/allProduct",
     "pages/goods-detail/goods-detail",
-    "pages/template/template-cart/template-cart"
+    "pages/template/template-cart/template-cart",
+    "pages/searchbar/searchbar",
+    "pages/searchbar/article/article",
+    "pages/navbar/navbar",
+    "pages/about/about",
+    "pages/my/mymessage/mymessage",
+    "pages/my/personal/personal",
+    "pages/my/message/message",
+    "pages/my/address/address",
+    "pages/my/card/card"
   ],
   "window": {
     "backgroundTextStyle": "light",

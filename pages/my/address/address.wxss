@@ -1,0 +1,43 @@
+.weui-form-preview{
+    margin-bottom: 25px;
+}
+.aaa{
+  float:right;
+padding-left:20rpx;
+padding-top:4%;
+
+
+}
+.weui-form-preview__ft {
+
+line-height:35px;
+
+}
+ .is_checked{  
+border: none;  
+  color: #FE0002 ;  
+  background: #fff;  
+}  
+ .normal{  
+  border: none;  
+  color: #333;  
+  background: #fff;  
+}  
+.weui-form-preview__label{
+  font-size:28rpx;
+  color: black;
+}
+.weui-form-preview__value{
+  font-size:28rpx;
+   color: black;
+}
+.weui-form-preview:before {
+
+border-top:none;
+}
+.weui-form-preview:after {
+
+border-bottom:none;
+
+
+}

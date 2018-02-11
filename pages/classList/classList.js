@@ -91,10 +91,12 @@ Page({
     // console.log("类别id" + JSON.stringify(vm.data.type_id))
     util.showLoading("加载列表")
     var param = {
-      type_id: vm.data.type_id// 类别id
+      type_id: vm.data.type_id, // 类别id
+      offset:0,
+      page:10
     }
     util.getByGoodTypeId(param, function (res) {
-      // console.log("商品列表" + JSON.stringify(res.data.ret))
+      console.log("商品列表" + JSON.stringify(res))
       vm.setData({
         goods: res.data.ret
       })

@@ -1,0 +1,7 @@
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-form-preview"  wx:for="{{product}}">
+     <image src="{{item.pic}}" style="width:100%; border-radius:20rpx;"></image>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,41 @@
+page,
+.page,
+.page__bd{
+    height: 100%;
+}
+.page__bd{
+    padding-bottom: 0;
+}
+.weui-tab__content{
+    padding-top: 60px;
+    /* text-align: center; */
+    /* float:left; */
+}
+.weui-navbar__item {
+padding:26rpx 20rpx;
+
+
+}
+.weui-navbar__title {
+
+padding-top:4rpx;
+
+}
+ /* 三级联动选择器 */
+.tui-picker-content{
+  padding: 30rpx;
+  text-align: center;
+}
+.tui-picker-name{
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.tui-picker-detail{
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #fff;
+  font-size: 35rpx;
+  padding: 0 10px;
+  overflow: hidden;
+}
+

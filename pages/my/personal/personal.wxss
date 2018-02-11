@@ -1,0 +1,18 @@
+
+.weui-cells:before {
+  border-top:none;
+
+}
+.weui-cells:after{
+  border-bottom:none;
+}
+.weui-cell:before{
+  border-top:none;
+}
+.weui-cell{
+  padding:15px 15px;
+}
+.weui-cell__bd {
+padding-left:20rpx;
+
+}

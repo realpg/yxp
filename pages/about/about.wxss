@@ -1,0 +1,22 @@
+/* pages/activity/activity.wxss */
+.placeholder{
+    margin: 5px;
+    padding: 0 3px;
+    text-align: center;
+    background-color: #EBEBEB;
+    height: 2.3em;
+    line-height: 2.3em;
+    color: #cfcfcf;
+}
+.indent-2-word {
+  margin-left:40rpx;
+  width:100%;
+}
+
+.weui-article__title {
+  font-size: 16px;
+  font-weight:500;
+}
+.weui-article__h3{
+  text-align: center;
+}

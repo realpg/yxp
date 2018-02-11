@@ -1,0 +1,22 @@
+<view class="page">
+
+  <view class="page__bd">
+    <view class="weui-form-preview">
+      <view class="weui-form-preview__hd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label" style="font-size:28rpx">验收提醒</view>
+        </view>
+      </view>
+      <view class="weui-form-preview__bd">
+        <view class="weui-article__p" style='font-size:28rpx;text-align:left'>
+          如果你无法简洁的表达你的想法，那只说明你还不够了解它阿尔伯特·爱因斯坦
+        </view>
+      </view>
+      <view class="weui-form-preview__ft">
+        <view style='margin-left:70%;margin-top:20rpx;margin-bottom:11px;'>
+          <button class="weui-btn mini-btn" type="warn" style="font-size:28rpx">确定</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

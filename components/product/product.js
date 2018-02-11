@@ -19,7 +19,7 @@ Component({
     product_detail: function (e) {
       var _id = e.currentTarget.dataset.id;
       wx.navigateTo({
-        url: "/pages/goods-details/index?id=" + e.currentTarget.dataset.id
+        url: "/pages/goods-detail/goods-detail?id=" + e.currentTarget.dataset.id
       })
     }
   }

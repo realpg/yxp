@@ -1,5 +1,10 @@
 /**index.wxss**/
+
 /* 搜索 */
+page{
+  background-color: white
+}
+
 .searchbar-result {
   margin-top: 0;
   font-size: 14px;
@@ -7,6 +12,11 @@
 
 .searchbar-result:before {
   display: none;
+}
+
+.no-data-image {
+  width: 50%;
+  /* height: 294rpx; */
 }
 
 .weui-cell {
@@ -20,14 +30,15 @@
   height: 100%;
 }
 
-.advertising-image{
-  width:90%;
-  height:100%;
+.advertising-image {
+  width: 90%;
+  height: 100%;
   border-radius: 20rpx;
   margin: 0 5%;
 }
 
 /* 今日推荐 */
+
 .line-text {
   font-size: 30rpx;
   border-left: 5px solid #e75110;
@@ -74,4 +85,77 @@
   transform: translate(-60%, -55%);
   color: white;
   font-size: 35rpx;
+}
+
+.icon-box__ctn {
+  flex-shrink: 100;
+}
+
+.icon-box__title {
+  font-size: 20px;
+}
+
+.icon-box__desc {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #888;
+}
+
+.bg-gray {
+  display: block;
+  height: 220rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  width: 580rpx;
+  background-color: #f9f9f9;
+  padding-left: 10rpx;
+}
+
+icon {
+  margin-right: 13px;
+}
+
+.page__bd {
+  padding-left: 40px;
+  padding-right: 40px;
+  text-align: left;
+}
+
+.icon-box {
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+}
+
+.icon-box__ctn {
+  flex-shrink: 100;
+}
+
+.icon-box__title {
+  font-size: 20px;
+}
+
+.icon-box__desc {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #888;
+}
+
+.icon_sp_area {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.weui-form-preview__label {
+  font-size: 28rpx;
+  color: black;
+}
+
+.weui-form-preview__value {
+  font-size: 28rpx;
+  color: black;
+}
+
+.weui-article__p {
+  word-wrap: break-word;
 }

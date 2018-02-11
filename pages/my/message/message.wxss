@@ -1,0 +1,29 @@
+.weui-form-preview{
+   margin:20px 10px;
+   border-radius:20rpx;
+
+}
+  
+.weui-form-preview:before {
+    border-top:none;
+}
+.weui-form-preview:after {
+
+border-bottom:none;
+}
+button {
+
+padding-left:20px;
+padding-right:20px;
+line-height:1.9555555600000004;
+}
+.weui-form-preview__hd:after {
+width:90%;
+
+}
+
+.weui-form-preview__ft:after {
+width:90%;
+margin:0 auto;
+
+}
