@@ -3,5 +3,6 @@
 <view class="container">
   <!-- <template is="{{goodsList.list.length > 0 ? 'cart-goods-list' : 'no-goods'}}" data="{{...goodsList}}"></template>  -->
   <!-- <template is="no-goods" data="{{...goodsList}}"></template> -->
-  <template is="cart-goods-list" data="{{...goodsList}}"></template>
+   <!-- <template is="cart-goods-list" data="{{...goodsList}}"></template>  -->
+   <template is="newShoppingCar" data="{{...goodsList}}"></template> 
 </view>

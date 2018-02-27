@@ -120,10 +120,32 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
   });
 }
 
-function test(param) {
-  console.log(JSON.stringify("11"));
+//http://localhost/yxpSrv/public/api/farm/getFarmList
+
+//获取所有生效的农场信息
+function getFarmList(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/farm/getFarmList', param, "GET", successCallback, errorCallback);
 }
-//
+
+//删除购物车商品
+function deletedShoppingCart(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/shoppingCart/deletedShoppingCart', param, "POST", successCallback, errorCallback);
+}
+
+//下单接口
+function payOrder(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/wechat/payOrder', param, "POST", successCallback, errorCallback);
+}
+
+//根据user_id查购物车信息
+function getShoppingCart(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/shoppingCart/getShoppingCart', param, "GET", successCallback, errorCallback);
+}
+//添加商品到购物车
+function addShoppingCart(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/shoppingCart/addShoppingCart', param, "POST", successCallback, errorCallback);
+}
+//根据id获取商品详情
 function getGoodsDetails(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/goodsInfo/getGoodsDetails', param, "GET", successCallback, errorCallback);
 }
@@ -135,7 +157,6 @@ function getNews(param, successCallback, errorCallback) {
 function getNewsByid(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/news/getNewsDetails', param, "GET", successCallback, errorCallback);
 }
-//localhost/yxpSrv/public/api/goodsInfo/getByGoodTypeId
 
 //根据type_id获取商品信息
 function getByGoodTypeId(param, successCallback, errorCallback) {
@@ -367,11 +388,16 @@ module.exports = {
   getByGoodTypeId: getByGoodTypeId,//根据type_id获取商品信息
   getNews: getNews,//获取新闻
   getNewsByid: getNewsByid,//根据新闻id获取详情页
-  updateUserInfo: updateUserInfo, // 更新用户信息
+  updateUserInfo: updateUserInfo,           // 更新用户信息
   
-  formatTime: formatTime,//格式化时间
+  formatTime: formatTime,                   //格式化时间
   showLoading: showLoading,
   getOpenId: getOpenId,
-  login: login, //登陆
-  judgeIsAnyNullStr: judgeIsAnyNullStr//判断是否有空字符串
+  login: login,                             //登陆
+  judgeIsAnyNullStr: judgeIsAnyNullStr,     //判断是否有空字符串
+  getShoppingCart: getShoppingCart,         //根据user_id查购物车信息
+  addShoppingCart: addShoppingCart,         //添加商品到购物车
+  deletedShoppingCart: deletedShoppingCart, //删除购物车商品
+  payOrder: payOrder,                       //下单接口
+  getFarmList: getFarmList,                 //获取所有生效的农场信息
 }

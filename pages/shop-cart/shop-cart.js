@@ -1,28 +1,30 @@
 // pages/shop-cart/shop-cart.js
 var app = getApp()
-var list = [
-  {
-    "goodsId": 12316,
-    "pic": "https://cdn.it120.cc/apifactory/2017/11/27/1a7732cbf3980876238753939fc35b33.jpg",
-    "name": "御泥坊男士黑茶清爽控油矿物泥浆面膜去黑头祛痘收缩毛孔补水新品",
-    "propertyChildIds": "",
-    "label": "",
-    "price": 2323,
-    "left": "",
-    "active": true,
-    "number": 1,
-    "logisticsType": 0,
-    "weight": 234
-  }
-]
+var util = require('../../utils/util.js')
+var vm = null
+// var list = [
+//   {
+//     "goodsId": 12316,
+//     "pic": "https://cdn.it120.cc/apifactory/2017/11/27/1a7732cbf3980876238753939fc35b33.jpg",
+//     "name": "御泥坊男士黑茶清爽控油矿物泥浆面膜去黑头祛痘收缩毛孔补水新品",
+//     "propertyChildIds": "",
+//     "label": "",
+//     "price": 2323,
+//     "left": "",
+//     "active": true,
+//     "number": 1,
+//     "logisticsType": 0,
+//     "weight": 234
+//   }
+// ]
 Page({
   data: {
     goodsList: {
-      saveHidden: true,
-      totalPrice: 0,
-      allSelect: true,
-      noSelect: false,
-      list: []
+      saveHidden: true,   //控制删除还是结算
+      totalPrice: 0,      //总价格
+      allSelect: true,    //是否全选
+      noSelect: false,    //是否显示底部框架
+      list: []            //购物车商品列表
     },
     delBtnWidth: 120,    //删除按钮宽度单位（rpx）
   },
@@ -47,22 +49,42 @@ Page({
     });
   },
   onLoad: function () {
+    vm = this
     this.initEleWidth();
     this.onShow();
+    this.getShoppingCart();
   },
+
+  //根据id获取购物车数据
+  getShoppingCart: function () {
+    util.getShoppingCart({}, function (res) {
+      console.log("根据id获取购物车数据 ： " + JSON.stringify(res))
+      var goodsList = vm.data.goodsList
+      var shoppingCart = res.data.ret.shoppingCart
+      for (var i = 0; i < shoppingCart.length; i++) {
+        shoppingCart[i].active = false
+      }
+      vm.setData({
+        'goodsList.list': shoppingCart
+      })
+      // console.log("根据id获取购物车数据1 ： " + JSON.stringify(vm.data.goodsList.list))
+    })
+  },
+
   onShow: function () {
     var shopList = [];
     // 获取购物车数据
-    var shopCarInfoMem = wx.getStorageSync('shopCarInfo');
-    if (shopCarInfoMem && shopCarInfoMem.shopList) {
-      shopList = shopCarInfoMem.shopList
-      console.log("购物车数据" + JSON.stringify(shopList))
-    }
+    // var shopCarInfoMem = wx.getStorageSync('shopCarInfo');
+    // if (shopCarInfoMem && shopCarInfoMem.shopList) {
+    //   shopList = shopCarInfoMem.shopList
+    //   console.log("购物车数据" + JSON.stringify(shopList))
+    // }
     // this.data.goodsList.list = shopList;
-    this.data.goodsList.list = list;    
+    // this.data.goodsList.list = list;   用本地购物车数据
     // this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), shopList);
-    this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
+    this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), vm.data.goodsList.list);
   },
+  //购物城没数据时点击跳转
   toIndexPage: function () {
     wx.switchTab({
       url: "/pages/index/index/index"
@@ -116,12 +138,26 @@ Page({
       }
     }
   },
+  //删除一个商品
   delItem: function (e) {
+    console.log("删除 ： " + JSON.stringify(e))
+    var deleid = e.currentTarget.dataset.deleid;
+    console.log("1" + JSON.stringify(list))
+    var id = []
+    id.push(deleid)
+    var param = {
+      id: id
+    }
+    util.deletedShoppingCart(param, function (res) {
+      console.log("删除 ： " + JSON.stringify(res))
+    })
+
     var index = e.currentTarget.dataset.index;
     var list = this.data.goodsList.list;
     list.splice(index, 1);
     this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
   },
+  //点击一个商品
   selectTap: function (e) {
     var index = e.currentTarget.dataset.index;
     var list = this.data.goodsList.list;
@@ -130,18 +166,27 @@ Page({
       this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
     }
   },
+  //获取总价格
   totalPrice: function () {
     var list = this.data.goodsList.list;
     var total = 0;
+    console.log("list ： " + JSON.stringify(list));
     for (var i = 0; i < list.length; i++) {
       var curItem = list[i];
       if (curItem.active) {
-        total += parseFloat(curItem.price) * curItem.number;
+        if (curItem.number == null) {
+          total += parseFloat(curItem.goods_id.price);
+        } else {
+          total += parseFloat(curItem.goods_id.price) * curItem.number;
+        }
+        // console.log("总价格 ： " + curItem.goods_id.price)
+        console.log("总价格 ： " + total)
       }
     }
     total = parseFloat(total.toFixed(2));//js浮点计算bug，取两位小数精度
     return total;
   },
+  //点击全选按钮
   allSelect: function () {
     var list = this.data.goodsList.list;
     var allSelect = false;
@@ -156,6 +201,7 @@ Page({
     }
     return allSelect;
   },
+  //是否出现框架
   noSelect: function () {
     var list = this.data.goodsList.list;
     var noSelect = 0;
@@ -171,6 +217,7 @@ Page({
       return false;
     }
   },
+  //设置商品信息
   setGoodsList: function (saveHidden, total, allSelect, noSelect, list) {
     this.setData({
       goodsList: {
@@ -181,18 +228,19 @@ Page({
         list: list
       }
     });
-    var shopCarInfo = {};
-    var tempNumber = 0;
-    shopCarInfo.shopList = list;
-    for (var i = 0; i < list.length; i++) {
-      tempNumber = tempNumber + list[i].number
-    }
-    shopCarInfo.shopNum = tempNumber;
-    wx.setStorage({
-      key: "shopCarInfo",
-      data: shopCarInfo
-    })
+    // var shopCarInfo = {};
+    // var tempNumber = 0;
+    // shopCarInfo.shopList = list;
+    // for (var i = 0; i < list.length; i++) {
+    //   tempNumber = tempNumber + list[i].number
+    // }
+    // shopCarInfo.shopNum = tempNumber;
+    // wx.setStorage({
+    //   key: "shopCarInfo",
+    //   data: shopCarInfo
+    // })
   },
+  //点击全选
   bindAllSelect: function () {
     var currentAllSelect = this.data.goodsList.allSelect;
     var list = this.data.goodsList.list;
@@ -220,6 +268,7 @@ Page({
       }
     }
   },
+  //点击减号
   jianBtnTap: function (e) {
     var index = e.currentTarget.dataset.index;
     var list = this.data.goodsList.list;
@@ -230,6 +279,7 @@ Page({
       }
     }
   },
+  //点击编辑
   editTap: function () {
     var list = this.data.goodsList.list;
     for (var i = 0; i < list.length; i++) {
@@ -238,6 +288,7 @@ Page({
     }
     this.setGoodsList(!this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
   },
+  //点击完成
   saveTap: function () {
     var list = this.data.goodsList.list;
     for (var i = 0; i < list.length; i++) {
@@ -250,132 +301,69 @@ Page({
     var saveHidden = this.data.goodsList.saveHidden;
     return saveHidden;
   },
+  //点击删除
   deleteSelected: function () {
-    var list = this.data.goodsList.list;
-    /*
-     for(let i = 0 ; i < list.length ; i++){
-           let curItem = list[i];
-           if(curItem.active){
-             list.splice(i,1);
-           }
-     }
-     */
-    // above codes that remove elements in a for statement may change the length of list dynamically
+    var list = this.data.goodsList.list
+    console.log("1" + JSON.stringify(list))
+    var id = []
+    for (var i = 0; i < list.length; i++) {
+      console.log("2" + list[i].active)
+      if (list[i].active) {
+        id.push(list[i].id)
+      }
+    }
+    var param = {
+      id: id
+    }
+    util.deletedShoppingCart(param, function (res) {
+      console.log("删除 ： " + JSON.stringify(res))
+    })
+
+    // var list = this.data.goodsList.list;
     list = list.filter(function (curGoods) {
       return !curGoods.active;
     });
     this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
   },
+  //去结算
   toPayOrder: function () {
-    wx.showLoading();
-    var that = this;
-    if (this.data.goodsList.noSelect) {
-      wx.hideLoading();
-      return;
-    }
-    // 重新计算价格，判断库存
-    var shopList = [];
-    var shopCarInfoMem = wx.getStorageSync('shopCarInfo');
-    if (shopCarInfoMem && shopCarInfoMem.shopList) {
-      // shopList = shopCarInfoMem.shopList
-      shopList = shopCarInfoMem.shopList.filter(entity => {
-        return entity.active;
-      });
-    }
-    if (shopList.length == 0) {
-      wx.hideLoading();
-      return;
-    }
-    var isFail = false;
-    var doneNumber = 0;
-    var needDoneNUmber = shopList.length;
-    for (let i = 0; i < shopList.length; i++) {
-      if (isFail) {
-        wx.hideLoading();
-        return;
+    var goodsList = this.data.goodsList
+    var list = goodsList.list
+    var Alltotal_fee = goodsList.totalPrice //总金额  
+    var goods_list = [] //数组形式的商品列表
+    for (var i = 0; i < list.length; i++) {
+      var total_fee = 0
+      if (list[i].active) {
+        if (list.number == null) {
+          total_fee = parseFloat(list[i].goods_id.price);
+        } else {
+          total_fee = parseFloat(list[i].goods_id.price) * list[i].number;
+        }
+        var goods = {
+          goods_id: list[i].goods_id.id,
+          count: list[i].number,
+          total_fee: total_fee
+        }
+        goods_list.push(goods)
       }
-      let carShopBean = shopList[i];
-      // 获取价格和库存
-      if (!carShopBean.propertyChildIds || carShopBean.propertyChildIds == "") {
-        wx.request({
-          url: app.globalData.baseUrl + '/shop/goods/detail',
-          data: {
-            id: carShopBean.goodsId
-          },
-          success: function (res) {
-            doneNumber++;
-            if (res.data.data.properties) {
-              wx.showModal({
-                title: '提示',
-                content: res.data.data.basicInfo.name + ' 商品已失效，请重新购买',
-                showCancel: false
-              })
-              isFail = true;
-              wx.hideLoading();
-              return;
-            }
-            if (res.data.data.basicInfo.stores < carShopBean.number) {
-              wx.showModal({
-                title: '提示',
-                content: res.data.data.basicInfo.name + ' 库存不足，请重新购买',
-                showCancel: false
-              })
-              isFail = true;
-              wx.hideLoading();
-              return;
-            }
-            if (res.data.data.basicInfo.minPrice != carShopBean.price) {
-              wx.showModal({
-                title: '提示',
-                content: res.data.data.basicInfo.name + ' 价格有调整，请重新购买',
-                showCancel: false
-              })
-              isFail = true;
-              wx.hideLoading();
-              return;
-            }
-            if (needDoneNUmber == doneNumber) {
-              that.navigateToPayOrder();
-            }
-          }
-        })
-      } else {
-        wx.request({
-          url: app.globalData.baseUrl + '/shop/goods/price',
-          data: {
-            goodsId: carShopBean.goodsId,
-            propertyChildIds: carShopBean.propertyChildIds
-          },
-          success: function (res) {
-            doneNumber++;
-            if (res.data.data.stores < carShopBean.number) {
-              wx.showModal({
-                title: '提示',
-                content: carShopBean.name + ' 库存不足，请重新购买',
-                showCancel: false
-              })
-              isFail = true;
-              wx.hideLoading();
-              return;
-            }
-            if (res.data.data.price != carShopBean.price) {
-              wx.showModal({
-                title: '提示',
-                content: carShopBean.name + ' 价格有调整，请重新购买',
-                showCancel: false
-              })
-              isFail = true;
-              wx.hideLoading();
-              return;
-            }
-            if (needDoneNUmber == doneNumber) {
-              that.navigateToPayOrder();
-            }
-          }
-        })
-      }
+    }
 
+    var param = {
+      total_fee: Alltotal_fee,
+      address_id: 1,
+      invoice_id: 1,
+      goods: goods_list
     }
+    util.payOrder(param, function (res) {
+      console.log("支付成功回掉" + JSON.stringify(res))
+      wx.requestPayment({
+        timeStamp: res.data.ret.timeStamp,
+        nonceStr: res.data.ret.nonceStr,
+        package: res.data.ret.package,
+        signType: res.data.ret.signType,
+        paySign: res.data.ret.paySign,
+      })
+    })
   },
   navigateToPayOrder: function () {
     wx.hideLoading();

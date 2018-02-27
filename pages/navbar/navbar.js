@@ -1,8 +1,8 @@
 var sliderWidth = 96; // 需要设置slider的宽度，用于计算中间位置
-
+var util = require('../../utils/util.js')
+var vm = null
 Page({
   data: {
-
     // 三级联动
     // 普通选择器列表设置,及初始化
     countryList: ['中国', '美国', '英国', '日本', '韩国', '巴西', '德国'],
@@ -31,23 +31,34 @@ Page({
     sliderLeft: 0
   },
   onLoad: function () {
-    var that = this;
+    vm = this;
     wx.getSystemInfo({
       success: function (res) {
-        that.setData({
-          sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
-          sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
+        vm.setData({
+          sliderLeft: (res.windowWidth / vm.data.tabs.length - sliderWidth) / 2,
+          sliderOffset: res.windowWidth / vm.data.tabs.length * vm.data.activeIndex
         });
       }
     });
+    vm.getFarmList()
   },
+  //获取生效的农场信息
+  getFarmList: function () {
+    util.getFarmList({}, function (res) {
+      console.log("获取生效的农场信息 : " + JSON.stringify(res))
+      vm.setData({
+        farmList: res.data.ret
+      })
+    })
+  },
+
   tabClick: function (e) {
     this.setData({
       sliderOffset: e.currentTarget.offsetLeft,
       activeIndex: e.currentTarget.id
     });
   },
-   // 选择国家函数
+  // 选择国家函数
   changeCountry(e) {
     this.setData({ countryIndex: e.detail.value });
   },

@@ -338,7 +338,8 @@ Page({
   */
   addShopCar: function () {
     var param = {
-      good_id: vm.data.goods_details.id
+      good_id: vm.data.goods_details.id,
+      number: vm.data.buyNumber
     }
     util.addShoppingCart(param, function (res) {
       console.log("加入购物车 ： " + JSON.stringify(res))
