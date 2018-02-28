@@ -1,5 +1,6 @@
 /**app.wxss**/
 @import './style/weui.wxss';
+@import './bower_components/zanui-weapp/dist/index.wxss';
 image{vertical-align: middle;}
 .container {
   height: 100%;

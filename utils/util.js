@@ -120,7 +120,17 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
   });
 }
 
-//http://localhost/yxpSrv/public/api/farm/getFarmList
+//http://localhost/yxpSrv/public/api/goodsInfo/getGoods
+
+//获取热卖特卖商品
+function getGoods(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/goodsInfo/getGoods', param, "GET", successCallback, errorCallback);
+}
+
+//获取所有生效的农场信息
+function getFarmsDetails(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/farm/getFarmsDetails', param, "GET", successCallback, errorCallback);
+}
 
 //获取所有生效的农场信息
 function getFarmList(param, successCallback, errorCallback) {
@@ -400,4 +410,6 @@ module.exports = {
   deletedShoppingCart: deletedShoppingCart, //删除购物车商品
   payOrder: payOrder,                       //下单接口
   getFarmList: getFarmList,                 //获取所有生效的农场信息
+  getFarmsDetails: getFarmsDetails,         //根据农场id获取农场详情
+  getGoods: getGoods,                       //获取热卖特卖商品
 }

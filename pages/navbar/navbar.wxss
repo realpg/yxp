@@ -1,36 +1,38 @@
-page,
-.page,
-.page__bd{
-    height: 100%;
+page, .page, .page__bd {
+  height: 100%;
+  font-size: 28rpx;
 }
-.page__bd{
-    padding-bottom: 0;
+
+.page__bd {
+  padding-bottom: 0;
 }
-.weui-tab__content{
-    padding-top: 60px;
-    /* text-align: center; */
-    /* float:left; */
+
+.weui-tab__content {
+  padding-top: 60px;
+  /* text-align: center; *//* float:left; */
 }
+
 .weui-navbar__item {
-padding:26rpx 20rpx;
-
-
+  padding: 26rpx 20rpx;
 }
+
 .weui-navbar__title {
-
-padding-top:4rpx;
-
+  padding-top: 4rpx;
 }
- /* 三级联动选择器 */
-.tui-picker-content{
+
+/* 三级联动选择器 */
+
+.tui-picker-content {
   padding: 30rpx;
   text-align: center;
 }
-.tui-picker-name{
+
+.tui-picker-name {
   height: 80rpx;
   line-height: 80rpx;
 }
-.tui-picker-detail{
+
+.tui-picker-detail {
   height: 80rpx;
   line-height: 80rpx;
   background-color: #fff;
@@ -38,4 +40,14 @@ padding-top:4rpx;
   padding: 0 10px;
   overflow: hidden;
 }
+/* 选着农场样式 */
+.zan-icon {
+  font-size: 24px;
+  margin: 5px;
+}
 
+
+.image{
+  width:94%;
+  height: 400rpx;
+}
