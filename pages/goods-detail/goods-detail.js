@@ -357,34 +357,46 @@ Page({
 	  * 立即购买
 	  */
   buyNow: function () {
-    var num = vm.data.buyNumber // 数量
-    var total_fee = vm.data.goods_details.price * num //总金额
     var goods_list = [] //数组形式的商品列表
+    var total_fee = vm.data.goods_details.price * vm.data.buyNumber//总金额
     var goods = {
-      goods_id: vm.data.goods_details.id,
-      count: num,
-      total_fee: total_fee
+      goods_id: vm.data.goods_details.id,   //商品id
+      count: vm.data.buyNumber,             //商品数量
+      total_fee: total_fee                  //当前商品价格
     }
-    goods_list.push(goods)
-
-    var param = {
+    // goods_list.push(goods)
+    var to_pay_order = {
       total_fee: total_fee,
-      address_id: 1,
-      invoice_id: 1,
-      goods: goods_list
+      goods: goods
     }
-    util.payOrder(param, function (res) {
-      console.log("支付成功回掉" + JSON.stringify(res))
-      wx.requestPayment({
-        timeStamp: res.data.ret.timeStamp,
-        nonceStr: res.data.ret.nonceStr,
-        package: res.data.ret.package,
-        signType: res.data.ret.signType,
-        paySign: res.data.ret.paySign,
-      })
+    wx.setStorage({
+      key: 'to_pay_order',
+      data: to_pay_order,
     })
-    // wx.navigateTo({
-    //   url: "/pages/to-pay-order/index?orderType=buyNow"
+    wx.setStorage({
+      key: 'goods_details',
+      data: vm.data.goods_details,
+    })
+
+    wx.navigateTo({
+      url: '/pages/to-pay-order/index',
+    })
+
+    // var param = {
+    //   total_fee: total_fee,
+    //   address_id: 1,
+    //   invoice_id: 1,
+    //   goods: goods_list
+    // }
+    // util.payOrder(param, function (res) {
+    //   console.log("支付成功回掉" + JSON.stringify(res))
+    //   wx.requestPayment({
+    //     timeStamp: res.data.ret.timeStamp,
+    //     nonceStr: res.data.ret.nonceStr,
+    //     package: res.data.ret.package,
+    //     signType: res.data.ret.signType,
+    //     paySign: res.data.ret.paySign,
+    //   })
     // })
   },
   /**

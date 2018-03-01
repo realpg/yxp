@@ -1,0 +1,79 @@
+<view class="container">
+  <form bindsubmit="createOrder" report-submit="true">
+    <view class="address-box">
+      <view class="add-address" hidden="{{curAddressData}}">
+        <view class="title" bindtap="selectAddress">{{showAdds}}</view>
+      </view>
+      <view class="show-address" hidden="{{!curAddressData}}" bindtap="selectAddress">
+        <!-- <view class="show-address" bindtap="selectAddress"> -->
+        <view class="name-tel">1122{{curAddressData.linkMan}} {{curAddressData.mobile}}</view>
+        <view class="addr-text">1122{{curAddressData.address}}</view>
+      </view>
+    </view>
+    <view class="goods-list">
+      <view class="list-title">商品</view>
+      <!-- <view class="a-goods" wx:for-items="{{goodsList}}" wx:key="{{index}}"> -->
+      <view class="a-goods">
+        <view class="img-box">
+          <image src="{{goods_details.image}}" class="img" />
+        </view>
+        <view class="text-box">
+          <view class="arow arow01">
+            <view class="goods-name">{{goods_details.title}}</view>
+            <view class="goods-price">¥ {{goods_details.price}}</view>
+          </view>
+          <view class="arow">
+            <view class="goods-label">{{item.label}}</view>
+            <view class="goods-num">x {{to_pay_order.goods.count}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="peisong-way">
+      <!-- <view class="row-box" wx:if="{{isNeedLogistics > 0}}"> -->
+      <view class="row-box">
+        <view class="row-label">配送方式</view>
+        <view class="right-text" wx:if="{{yunPrice > 0}}">快递</view>
+        <view class="right-text" wx:if="{{yunPrice == 0}}">包邮</view>
+      </view>
+      <view class="row-box">
+        <view class="row-label">备注</view>
+        <view class="right-text">
+          <input name="remark" type="text" class="liuyan" placeholder="如需备注请输入" />
+        </view>
+      </view>
+    </view>
+    <!-- <view class="peisong-way">
+      <view class="row-box" style="border-bottom:none;">
+        <view class="row-label">选择使用优惠券</view>
+      </view>
+      <view class="row-box" style="border-bottom:none;">
+        <picker-view indicator-style="height: 50rpx;" style="width: 100%; height: 150rpx;" value="0" bindchange="bindChangeCoupon">
+          <picker-view-column>
+            <view style="line-height: 50px">不使用优惠券</view>
+            <view wx:for="{{coupons}}" wx:key="id" style="line-height: 50px">{{item.money}}元 {{item.name}}</view>
+          </picker-view-column>
+        </picker-view>
+      </view>
+    </view>  -->
+    <view class="goods-info">
+      <view class="row-box">
+        <view class="row-label">是否需要发票</view>
+        <switch bindchange="switch2Change" />
+      </view>
+    </view>
+    <view class="address-box">
+      <view class="add-address" hidden="{{showInvoice}}">
+        <view class="title" bindtap="selectInvoice">请填写发票信息</view>
+      </view>
+    </view>
+
+    <view class="jiesuan-box">
+      <view class="left-price">
+        <view class="total">合计：¥ {{to_pay_order.total_fee}}</view>
+      </view>
+      <button class="to-pay-btn" bindtap='order'>提交订单</button>
+    </view>
+
+  </form>
+</view>

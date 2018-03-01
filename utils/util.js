@@ -1,4 +1,4 @@
- var TESTMODE = false;
+var TESTMODE = false;
 
 //服务器地址
 var SERVER_URL = "https://yxp.isart.me/api";
@@ -120,12 +120,33 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
   });
 }
 
-//http://localhost/yxpSrv/public/api/goodsInfo/getGoods
+//http://localhost/yxpSrv/public/api/adds/setAddsDefFlag
+
+//删除地址
+function delAdds(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/adds/delAdds', param, "GET", successCallback, errorCallback);
+}
+
+//根据user_id查询收货地址
+function getAdds(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/adds/getAdds', param, "GET", successCallback, errorCallback);
+}
+
+//设置默认收货地址
+function setAddsDefFlag(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/adds/setAddsDefFlag', param, "GET", successCallback, errorCallback);
+}
+
+//添加地址信息
+function setAddress(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/adds/addAddress', param, "POST", successCallback, errorCallback);
+}
 
 //获取热卖特卖商品
 function getGoods(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/goodsInfo/getGoods', param, "GET", successCallback, errorCallback);
 }
+
 
 //获取所有生效的农场信息
 function getFarmsDetails(param, successCallback, errorCallback) {
@@ -224,6 +245,19 @@ function navigateBack(delta) {
     delta: delta
   })
 }
+
+//判断是否有空字符串
+function isNall() {
+  if (arguments.length > 0) {
+    for (var i = 0; i < arguments.length; i++) {
+      if (arguments[i] == null || arguments[i] == "" || arguments[i] == undefined || arguments[i] == "undefined" || arguments[i] == "未设置") {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 //判断是否有空字符串
 function judgeIsAnyNullStr() {
   if (arguments.length > 0) {
@@ -399,7 +433,7 @@ module.exports = {
   getNews: getNews,//获取新闻
   getNewsByid: getNewsByid,//根据新闻id获取详情页
   updateUserInfo: updateUserInfo,           // 更新用户信息
-  
+
   formatTime: formatTime,                   //格式化时间
   showLoading: showLoading,
   getOpenId: getOpenId,
@@ -412,4 +446,9 @@ module.exports = {
   getFarmList: getFarmList,                 //获取所有生效的农场信息
   getFarmsDetails: getFarmsDetails,         //根据农场id获取农场详情
   getGoods: getGoods,                       //获取热卖特卖商品
-}
+  setAddress: setAddress,                   //添加地址信息
+  getAdds: getAdds,                         //查询地址
+  setAddsDefFlag: setAddsDefFlag,           //设置默认收货地址
+  delAdds: delAdds,                         //删除地址
+  isNall: isNall,                           //判断是否为空
+}   

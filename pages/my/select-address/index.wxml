@@ -1,0 +1,32 @@
+<view class="page">
+
+  <view class="page__bd" wx:for-items="{{address}}" wx:key="{{index}}">
+    <view style="height:20rpx;background: #f8f8f8;width:100%;"></view>
+    <view class="weui-form-preview">
+      <view class="weui-form-preview__bd" bindtap='clickAdds' data-addsindex="{{index}}">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label"> {{item.rec_name}} </view>
+          <view class="weui-form-preview__value">{{item.rec_tel}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">{{item.province}}{{item.city}}</view>
+          <view class="weui-form-preview__value">和平区三好街93-8号4单元5楼3</view>
+        </view>
+      </view>
+      <view class="weui-form-preview__ft">
+        <view class="{{item.def_flag == 1?'is_checked':'normal'}}" bindtap='setAddsDefFlag' data-userId="{{item.id}}" style="float:left;margin-top:3%;margin-left:4%;">默认地址</view>
+        <view style='margin-left:60%;margin-top:20rpx;margin-bottom:11px;'>
+          <view style="float:left;">
+            <image src="../../../images/luxian.png" style="width:50rpx;height:50rpx"></image>
+            <view class="dele" type="default" size="mini" bindtap='delete' data-deleteId="{{item.id}}">删除</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+  <view class="bottom-box" style="background-color:white">
+    <view class="add-btn" bindtap="addAddess">新增收货地址</view>
+  </view>
+
+</view>

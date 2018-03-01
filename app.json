@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index/index",
+    "pages/to-pay-order/index",
     "pages/navbar/navbar",
     "pages/goods-detail/goods-detail",
     "pages/shop-cart/shop-cart",
@@ -16,6 +17,8 @@
     "pages/my/personal/personal",
     "pages/my/message/message",
     "pages/my/address/address",
+    "pages/my/select-address/index",
+    "pages/my/address-add/index",
     "pages/my/card/card"
   ],
   "window": {

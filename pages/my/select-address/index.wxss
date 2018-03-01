@@ -1,0 +1,64 @@
+.weui-form-preview {
+  margin-bottom: 25px;
+}
+
+.dele {
+  float: right;
+  padding-left: 20rpx;
+  padding-top: 4%;
+}
+
+.weui-form-preview__ft {
+  line-height: 35px;
+}
+
+.is_checked {
+  border: none;
+  color: #fe0002;
+  background: #fff;
+}
+
+.normal {
+  border: none;
+  color: #333;
+  background: #fff;
+}
+
+.weui-form-preview__label {
+  font-size: 28rpx;
+  color: black;
+}
+
+.weui-form-preview__value {
+  font-size: 28rpx;
+  color: black;
+}
+
+.weui-form-preview:before {
+  border-top: none;
+}
+
+.weui-form-preview:after {
+  border-bottom: none;
+}
+
+.bottom-box {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  font-size: 28rpx;
+  color: #000;
+  border-top: 1rpx solid #eee;
+  height: 100rpx;
+  line-height: 100rpx;
+  background-color: #fff;
+  background: url(https://cdn.it120.cc/images/weappshop/arrow-right.png) no-repeat 705rpx center;
+  background-size: 15rpx auto;
+}
+
+.bottom-box .add-btn {
+  margin-left: 30rpx;
+  padding-left: 70rpx;
+  background: url(https://cdn.it120.cc/images/weappshop/add-addr.png) no-repeat left center;
+  background-size: 40rpx auto;
+}

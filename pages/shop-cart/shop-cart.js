@@ -52,7 +52,6 @@ Page({
     vm = this
     this.initEleWidth();
     this.onShow();
-    this.getShoppingCart();
   },
 
   //根据id获取购物车数据
@@ -72,6 +71,7 @@ Page({
   },
 
   onShow: function () {
+    this.getShoppingCart();
     var shopList = [];
     // 获取购物车数据
     // var shopCarInfoMem = wx.getStorageSync('shopCarInfo');
@@ -140,7 +140,7 @@ Page({
   },
   //删除一个商品
   delItem: function (e) {
-    console.log("删除 ： " + JSON.stringify(e))
+    // console.log("删除 ： " + JSON.stringify(e))
     var deleid = e.currentTarget.dataset.deleid;
     console.log("1" + JSON.stringify(list))
     var id = []
