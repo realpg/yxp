@@ -120,7 +120,15 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
   });
 }
 
-//http://localhost/yxpSrv/public/api/adds/setAddsDefFlag
+//根据user_id获取会员信息
+function getMember(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/member/getMember', param, "GET", successCallback, errorCallback);
+}
+
+//根据user_id获取默认地址
+function defaultAdds(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/adds/defaultAdds', param, "GET", successCallback, errorCallback);
+}
 
 //删除地址
 function delAdds(param, successCallback, errorCallback) {
@@ -270,6 +278,36 @@ function judgeIsAnyNullStr() {
   return false;
 }
 
+//日期形式转换
+/*
+ * 将2017-11-08
+ *
+ * 根据type不同转换成不同形式
+ *
+ * type == 1:2017-10-30转换为10月30日
+ *
+ */
+function convertDateFormate(date_str, type) {
+  var date_arr = date_str.split('-');
+  switch (type) {
+    case 1:
+      return date_arr[1] + "月" + date_arr[2] + "日";
+    case 2:
+      return date_arr[0] + "年" + date_arr[1] + "月" + date_arr[2] + "日";
+  }
+  return date_str;
+}
+
+//日期时间转换
+/*
+ * 将2017-11-08 10:57:11转换为11月8日 10:57
+ *
+ */
+function convertDateFormateM(date_str) {
+  var date_arr = date_str.split(' ');
+  return convertDateFormate(date_arr[0], 1) + " " + date_arr[1].substring(0, 5);
+}
+
 //获取日期 2017-06-13
 function getDateStr(str) {
   if (judgeIsAnyNullStr(str)) {
@@ -362,6 +400,7 @@ function showLoading(msg) {
   if (!wx.canIUse('showLoading')) {
     return;
   }
+  console.log("---lodding---")
   wx.showLoading({
     title: msg,
   })
@@ -372,6 +411,7 @@ function hideLoading() {
   if (!wx.canIUse('hideLoading')) {
     return;
   }
+  console.log("---hideLoading---")  
   wx.hideLoading();
 }
 //优化字符串输出，如果str为空，则返回r_str
@@ -433,6 +473,9 @@ module.exports = {
   getNews: getNews,//获取新闻
   getNewsByid: getNewsByid,//根据新闻id获取详情页
   updateUserInfo: updateUserInfo,           // 更新用户信息
+  getMember: getMember,   //根据user_id获取会员信息
+  convertDateFormateM: convertDateFormateM,
+  convertDateFormate: convertDateFormate,
 
   formatTime: formatTime,                   //格式化时间
   showLoading: showLoading,
@@ -451,4 +494,5 @@ module.exports = {
   setAddsDefFlag: setAddsDefFlag,           //设置默认收货地址
   delAdds: delAdds,                         //删除地址
   isNall: isNall,                           //判断是否为空
+  defaultAdds: defaultAdds,                 //根据user_id获取默认地址
 }   

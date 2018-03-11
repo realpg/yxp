@@ -27,7 +27,7 @@ Page({
     ],
     commonProduct: [],  //普通商品列表
     hotProduct: [],     //热卖商品列表
-    specialProduct: [],     //特别商品列表
+    specialProduct: [], //特别商品列表
   },
 
   /**
@@ -41,6 +41,7 @@ Page({
   },
   //查询商品列表
   getGoods: function (sales_status, page) {
+    util.showLoading("加载中")
     var param = {
       sales_status: sales_status,
       offset: 0,

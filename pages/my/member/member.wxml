@@ -1,0 +1,17 @@
+<!--pages/my/member/member.wxml-->
+<view style='padding:20rpx 20rpx;'>
+  <view class='flex-row'>
+    <view>会员卡到期时间：</view>
+    <view>{{member.expiration_date}}</view>
+  </view>
+
+  <view class='flex-row'>
+    <view>会员卡编号：</view>
+    <view>{{member.id}}</view>
+  </view>
+
+  <view class='flex-row'>
+    <view>会员卡到期时间：</view>
+    <view>{{member.expiration_date}}</view>
+  </view>
+</view>

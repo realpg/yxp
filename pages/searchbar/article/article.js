@@ -2,15 +2,11 @@ var vm = null;
 var util = require('../../../utils/util.js')
 // pages/jkhkj.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    news: [],
-    id:'',
+    news: [],        //全部数据
+    id: '',
+    news_details: [],    //新闻图片 文字 视频详情数据
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -18,7 +14,7 @@ Page({
     console.log(options.id)
     vm = this
     var id = options.id
-    vm.setData({id:id})
+    vm.setData({ id: id })
     vm.getNewsByid()
   },
   // setTitle:function(){
@@ -30,13 +26,19 @@ Page({
   // },
   getNewsByid: function () {
     var param = {
-      id:vm.data.id
+      id: vm.data.id
     }
     util.getNewsByid(param, function (res) {
-      vm.setData({
-        news: res.data.ret
+      console.log("获取新闻详情 ：" + JSON.stringify(res))
+      var news = res.data.ret
+      wx.setNavigationBarTitle({
+        title: news.title
       })
-
+      news.created_at = util.convertDateFormateM(news.created_at);
+      vm.setData({
+        news: news,
+        news_details: news.news_details
+      })
     })
   },
 
@@ -46,6 +48,5 @@ Page({
   onReady: function () {
     // vm.setTitle()
   },
-
 
 })

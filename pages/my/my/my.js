@@ -1,5 +1,6 @@
 // pages/my/my/my.js
 const app = getApp()
+var util = require('../../../utils/util.js')
 
 Page({
   data: {
@@ -19,7 +20,16 @@ Page({
     this.getUserApiInfo();
     this.getUserAmount();
     this.checkScoreSign();
+    this.getMember();  //获取会员信息
   },
+
+  // 根据user_id获取会员信息
+  getMember: function () {
+    util.getMember({}, function (res) {
+      console.log("会员信息 ： " + JSON.stringify(res));
+    })
+  },
+
   getUserInfo: function (cb) {
     var that = this
     wx.login({
@@ -43,7 +53,7 @@ Page({
   aboutUs: function () {
     wx.showModal({
       title: '关于我们',
-      content: '本系统基于开源小程序商城系统 https://github.com/EastWorld/wechat-app-mall 搭建，祝大家使用愉快！',
+      content: '本系统由ISART艺术互联网公司设计制作，祝大家使用愉快！',
       showCancel: false
     })
   },

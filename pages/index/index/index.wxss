@@ -1,8 +1,9 @@
 /**index.wxss**/
 
 /* 搜索 */
-page{
-  background-color: white
+
+page {
+  background-color: white;
 }
 
 .searchbar-result {
@@ -33,7 +34,7 @@ page{
 .advertising-image {
   width: 90%;
   height: 100%;
-  border-radius: 20rpx;
+  border-radius: 10rpx;
   margin: 0 5%;
 }
 
@@ -158,4 +159,37 @@ icon {
 
 .weui-article__p {
   word-wrap: break-word;
+}
+
+.title-margin {
+  margin-left: 40rpx;
+}
+
+.farm-index {
+  position: absolute;
+  top: 40rpx;
+  right: 80rpx;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 25rpx;
+}
+
+.farm-image {
+  position: absolute;
+  bottom: 20rpx;
+  left: 80rpx;
+  text-align: center;
+}
+
+.zan-loadmore--nodata {
+  margin-top: 80rpx;
+}
+
+.zan-loadmore {
+  position: relative;
+  width: 65%;
+  margin: 0px auto;
+  line-height: 20px;
+  font-size: 14px;
+  text-align: center;
+  vertical-align: middle;
 }

@@ -1,7 +1,11 @@
 /**app.wxss**/
 @import './style/weui.wxss';
 @import './bower_components/zanui-weapp/dist/index.wxss';
-image{vertical-align: middle;}
+
+image {
+  vertical-align: middle;
+}
+
 .container {
   height: 100%;
   display: flex;
@@ -470,6 +474,10 @@ page {
 .center-style {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.align-items {
   align-items: center;
 }
 

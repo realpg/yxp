@@ -6,24 +6,35 @@ var vm = null
 var showInvoice = true
 Page({
   data: {
-    to_pay_order: {},    //获取本地缓存数据  订单数据
-    goods_details: {},   //商品详情
-    adds: { isNall: true },            //返回的地址
-    showAdds: '请选择收货地址',  //展示地址
-    showInvoice: true,     //展示发票
+    to_pay_order: {},          //获取本地缓存数据  订单数据
+    goods_details: {},         //商品详情
+    adds: { isNall: true },    //返回的地址
+    showAdds: '请选择收货地址', //展示地址
+    showInvoice: true,         //展示发票
+    defaultAdds: { isNall: true },           //默认地址
 
     goodsList: [],
-    isNeedLogistics: 0, // 是否需要物流信息
+    isNeedLogistics: 0,        // 是否需要物流信息
     allGoodsPrice: 0,
     yunPrice: 0,
     allGoodsAndYunPrice: 0,
     goodsJsonStr: "",
-    orderType: "", //订单类型，购物车下单或立即支付下单，默认是购物车，
+    orderType: "",    //订单类型，购物车下单或立即支付下单，默认是购物车，
 
     hasNoCoupons: true,
     coupons: [],
     youhuijine: 0, //优惠券金额
     curCoupon: null // 当前选择使用的优惠券
+  },
+  onLoad: function (e) {
+    vm = this;
+    //显示收货地址标识
+    vm.setData({
+      isNeedLogistics: 1,
+      orderType: e.orderType
+    });
+    vm.getStorage()
+    vm.getInvoice()
   },
   onShow: function () {
     var vm = this;
@@ -48,6 +59,20 @@ Page({
       goodsList: shopList,
     });
     // vm.initShippingAddress(); by Acker
+  },
+  //获取发票名头输入框的值
+  getInput:function(e){
+    console.log("发票名头" + JSON.stringify(e.detail.value))
+    // this.setData({
+    //   inputValue: e.detail.value
+    // })
+  },
+  //获取默认地址
+  getInvoice: function () {
+    util.defaultAdds({}, function (res) {
+      console.log("获取默认地址 : " + JSON.stringify(res))
+      vm.setData({ defaultAdds: res.data.ret })
+    })
   },
   //发票开关
   switch2Change: function (e) {
@@ -86,17 +111,7 @@ Page({
       })
     })
   },
-
-  onLoad: function (e) {
-    vm = this;
-    //显示收货地址标识
-    vm.setData({
-      isNeedLogistics: 1,
-      orderType: e.orderType
-    });
-    vm.getStorage()
-  },
-  // 设置地址 By Acker
+  //设置地址 By Acker
   setAdds: function (adds) {
     console.log("返回的地址 ：" + JSON.stringify(adds))
     vm.setData({ adds: adds, showAdds: adds.province })

@@ -195,8 +195,11 @@ Page({
     })
   },
   goShopCar: function () {
+    // wx.reLaunch({
+    //   url: "/pages/shop-cart/index"
+    // });
     wx.reLaunch({
-      url: "/pages/shop-cart/index"
+      url: "/pages/shop-cart/shop-cart"
     });
   },
   toAddShopCar: function () {
@@ -357,6 +360,15 @@ Page({
 	  * 立即购买
 	  */
   buyNow: function () {
+    if (vm.data.goods_details.count == 0) {
+      wx.showModal({
+        title: '库存不足',
+        content: '抱歉,剩余数量不足',
+        showCancel: false
+      })
+      return
+    }
+
     var goods_list = [] //数组形式的商品列表
     var total_fee = vm.data.goods_details.price * vm.data.buyNumber//总金额
     var goods = {
@@ -377,7 +389,6 @@ Page({
       key: 'goods_details',
       data: vm.data.goods_details,
     })
-
     wx.navigateTo({
       url: '/pages/to-pay-order/index',
     })

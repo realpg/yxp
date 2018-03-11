@@ -124,3 +124,7 @@ page{
   margin-top:-5rpx;
   margin-right:15rpx
 }
+
+.text-align{
+  text-align: center;
+}
