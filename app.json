@@ -1,22 +1,25 @@
 {
   "pages": [
     "pages/index/index/index",
+    "pages/my/logistics/logistics",
+    "pages/my/mymessage/mymessage",
+    "pages/order/order",
     "pages/my/member/member",
+    "pages/paySucceed/paySucceed",
     "pages/to-pay-order/index",
     "pages/navbar/navbar",
     "pages/goods-detail/goods-detail",
     "pages/shop-cart/shop-cart",
     "pages/index/search/search",
     "pages/classList/classList",
+    "pages/my/message/message",
     "pages/my/my/my",
     "pages/allProduct/allProduct",
     "pages/template/template-cart/template-cart",
     "pages/searchbar/searchbar",
     "pages/searchbar/article/article",
     "pages/about/about",
-    "pages/my/mymessage/mymessage",
     "pages/my/personal/personal",
-    "pages/my/message/message",
     "pages/my/address/address",
     "pages/my/select-address/index",
     "pages/my/address-add/index",
@@ -29,8 +32,8 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "color": "#333",
-    "selectedColor": "#ff0000",
+    "color": "#999",
+    "selectedColor": "#3eb382",
     "backgroundColor": "#fff",
     "borderStyle": "black",
     "position": "bottom",
@@ -38,25 +41,25 @@
       {
         "pagePath": "pages/index/index/index",
         "text": "首页",
-        "iconPath": "/images/nav/home-off.png",
-        "selectedIconPath": "/images/nav/home-on.png"
+        "iconPath": "/images/my-nav/home-off.png",
+        "selectedIconPath": "/images/my-nav/home-on.png"
       },
       {
         "pagePath": "pages/allProduct/allProduct",
-        "iconPath": "/images/nav/search-off.png",
-        "selectedIconPath": "/images/nav/search-on.png",
+        "iconPath": "/images/my-nav/search-off.png",
+        "selectedIconPath": "/images/my-nav/search-on.png",
         "text": "分类"
       },
       {
         "pagePath": "pages/shop-cart/shop-cart",
-        "iconPath": "/images/nav/cart-off.png",
-        "selectedIconPath": "/images/nav/cart-on.png",
+        "iconPath": "/images/my-nav/cart-off.png",
+        "selectedIconPath": "/images/my-nav/cart-on.png",
         "text": "购物车"
       },
       {
         "pagePath": "pages/my/my/my",
-        "iconPath": "/images/nav/my-off.png",
-        "selectedIconPath": "/images/nav/my-on.png",
+        "iconPath": "/images/my-nav/my-off.png",
+        "selectedIconPath": "/images/my-nav/my-on.png",
         "text": "我的"
       }
     ]

@@ -1,0 +1,9 @@
+<!--pages/my/logistics/logistics.wxml-->
+<view>
+  <block wx:if="{{showNan == true}}">
+    <wxc-abnor type="REQUEST_ERROR" image="{{image}}" title="{{title}}" tip="{{tip}}" button="{{button}}" bind:abnortap="onAbnorTap"></wxc-abnor>
+  </block>
+  <block wx:else>
+    <view>物流信息</view>
+  </block>
+</view>

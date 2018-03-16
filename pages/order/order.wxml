@@ -1,0 +1,4 @@
+<!--pages/order/order.wxml-->
+<import src="../../bower_components/zanui-weapp/dist/tab/index.wxml" />
+
+<!-- <template is="zan-tab" data="{{ ...tab, componentId: 'tab1' }}"></template> -->

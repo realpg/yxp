@@ -1,4 +1,5 @@
 /* pages/classList/classList.wxss */
+
 .line-text {
   font-size: 30rpx;
   border-left: 2px solid #e75110;
@@ -8,13 +9,14 @@
 }
 
 .tab-h {
-  height: 100rpx;
+  height: 78rpx;
   width: 100%;
   box-sizing: border-box;
   overflow: hidden;
-  line-height: 80rpx;
-  background: #f7f7f7;
-  font-size: 16px;
+  line-height: 65rpx;
+  /* background: #f7f7f7; */
+  background-color: #fff;
+  font-size: 15px;
   white-space: nowrap;
   position: fixed;
   top: 0;
@@ -33,9 +35,9 @@
   position: relative;
 }
 
-.tab-item.border-bottom{
-  border-bottom:8rpx solid #df9e2d;
-  color: #df9e2d;
+.tab-item.border-bottom {
+  border-bottom: 4rpx solid #59c836;
+  color: #59c836;
 }
 
 .tab-item.active:after {

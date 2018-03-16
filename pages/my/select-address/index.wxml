@@ -1,7 +1,9 @@
 <view class="page">
-
+  <view hidden='{{show}}' style='width:750rpx;text-align:center;height:50rpx;'>
+    <view style='line-height:50rpx;'>点击选择地址</view>
+  </view>
   <view class="page__bd" wx:for-items="{{address}}" wx:key="{{index}}">
-    <view style="height:20rpx;background: #f8f8f8;width:100%;"></view>
+    <!-- <view style="height:20rpx;background: #f8f8f8;width:100%;"></view> -->
     <view class="weui-form-preview">
       <view class="weui-form-preview__bd" bindtap='clickAdds' data-addsindex="{{index}}">
         <view class="weui-form-preview__item">

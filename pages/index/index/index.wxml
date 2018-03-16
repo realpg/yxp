@@ -34,7 +34,7 @@
         <image src="{{image}}" class="recommend_hot_image"></image>
         <text class='recommend_absolute'>{{item.name}}</text>
       </view>
-    </view>
+    </view>  
   </view>
 </scroll-view> -->
 
@@ -55,28 +55,28 @@
   <view class='zan-col zan-col-6'></view> -->
 </view>
 
-<view class='bar-30'></view>
+<view class='bar-20'></view>
 
 <!-- <view class="line-text font-size-14" style='line-height:30rpx;'>
   农场实景
 </view> -->
 
-<view class='title-margin' style='margin-top:20rpx;'>
+<view class='title-margin' style='margin-top:36rpx;'>
   <view class='zan-row'>
     <view class='zan-col zan-col-20'>
-      <view class='zan-font-16'>农场实景</view>
-      <view class='zan-font-14 zan-c-gray-dark'>原生态</view>
+      <view style='font-size:30rpx;color:#333333'>农场实景</view>
+      <view class='zan-font-12' style='color:#999999'>原生态</view>
     </view>
     <view class='zan-col zan-col-4'>
-      <view class='flex-row align-items' bindtap="farm">
-        <view class='zan-font-14 zan-c-green'>更多</view>
-        <image src='../../../images/right.png' style='width:30rpx;height:30rpx;'>更多</image>
+      <view class='flex-row align-items' style='height:70rpx;' bindtap="farm">
+        <view class='zan-font-14' style='color:#00b781'>更多</view>
+        <image src='../../../images/green-right.png' style='width:30rpx;height:30rpx;'></image>
       </view>
     </view>
   </view>
 </view>
 
-<view style='height:20rpx;'></view>
+<view style='height:36rpx;'></view>
 
 <swiper indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#FFFFFF" autoplay="true" interval="4000" duration="600" style="height:184px">
   <block wx:for="{{ads_farm}}">
@@ -92,49 +92,43 @@
   </block>
 </swiper>
 <view style='height:36rpx;'></view>
-<view class='bar-30'></view>
+<view class='bar-20'></view>
 
 <!-- <view class="line-text font-size-14" style='line-height:30rpx;'>
   今日推荐
 </view> -->
 
-<view class='title-margin' style='margin-top:20rpx;'>
+<view class='title-margin' style='margin-top:36rpx;'>
   <view class='zan-row'>
     <view class='zan-col zan-col-20'>
-      <view class='zan-font-16'>今日推荐</view>
-      <view class='zan-font-14 zan-c-gray-dark'>你的满意是我们最大的动力</view>
+      <view style='font-size:30rpx;color:#333333'>今日推荐</view>
+      <view class='zan-font-12' style='color:#999999'>你的满意是我们最大的动力</view>
     </view>
-    <view class='zan-col zan-col-4'>
-      <!-- <view class='flex-row align-items'>
-        <view class='zan-font-14 zan-c-green'>更多</view>
-        <image src='../../../images/right.png' style='width:30rpx;height:30rpx;'>更多</image>
-      </view> -->
-    </view>
+    <!-- <view class='zan-col zan-col-4'>
+    </view> -->
   </view>
 </view>
 
-<!-- <navigator url='/pages/goods-detail/goods-detail'> -->
-<searchGoods pList="{{commendGoods}}"></searchGoods>
-<!-- </navigator> -->
+<view style='height:18rpx;'></view>
+
+<view style='margin-left:20rpx;margin-right:20rpx;'>
+  <searchGoods pList="{{commendGoods}}"></searchGoods>
+</view>
+
 <view style="height:20rpx;background: #fff;width:100%;"></view>
 
-<view class='bar-30'></view>
+<view class='bar-20'></view>
 
-<!-- <view class="line-text font-size-14" style='line-height:30rpx;height:32rpx;'>
-  热点动态
-  <view class="weui-cell__ft weui-cell__ft_in-access" style='float:right;padding-top:28rpx;margin-right:40rpx;' bindtap='news'></view>
-</view> -->
-
-<view class='title-margin' style='margin-top:20rpx;'>
+<view class='title-margin' style='margin-top:36rpx;'>
   <view class='zan-row'>
     <view class='zan-col zan-col-20'>
-      <view class='zan-font-16'>热点动态</view>
-      <view class='zan-font-14 zan-c-gray-dark'>原生态hahah</view>
+      <view style='font-size:30rpx;color:#333333'>热点动态</view>
+      <view class='zan-font-12' style='color:#999999'>掌握最新资讯</view>
     </view>
     <view class='zan-col zan-col-4'>
-      <view class='flex-row align-items' bindtap='news'>
-        <view class='zan-font-14 zan-c-green'>更多</view>
-        <image src='../../../images/right.png' style='width:30rpx;height:30rpx;'>更多</image>
+      <view class='flex-row align-items' bindtap='news' style='height:70rpx;'>
+        <view class='zan-font-14' style='color:#00b781'>更多</view>
+        <image src='../../../images/green-right.png' style='width:30rpx;height:30rpx;'></image>
       </view>
     </view>
   </view>
@@ -150,7 +144,7 @@
             <view style='height:170rpx;'>
               <text style='margin:20rpx;height:130rpx;width:147px;  text-indent:30px;' class='text-threeline zan-font-14'>{{item.intro}}</text>
             </view>
-            <button class="zan-btn zan-btn--small zan-btn--primary" style='border-radius:10rpx;margin:30rpx;' bindtap="getNewsByid" data-newsId='{{item.id}}'>去看看</button>
+            <button class="zan-btn zan-btn--small zan-btn--primary" style='border-radius:6rpx;margin:30rpx;width:182rpx;' bindtap="getNewsByid" data-newsId='{{item.id}}'>去看看</button>
           </view>
           <view class='zan-col zan-col-12'>
             <image src='{{item.img}}' style='width:350rpx;height:310rpx;  border-radius: 20rpx;'></image>
@@ -162,11 +156,13 @@
   </block>
 </swiper>
 
+<view class='bar-20' style='margin-top:20rpx;'></view>
+
 <view class='title-margin' style='margin-top:20rpx;'>
   <view class='zan-row'>
     <view class='zan-col zan-col-20'>
       <view class='zan-font-16'>关于我们</view>
-      <view class='zan-font-14 zan-c-gray-dark'>原生态hahah</view>
+      <view class='zan-font-14 zan-c-gray-dark'>您的满意是我们最大的成功</view>
     </view>
   </view>
 </view>

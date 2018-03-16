@@ -1,7 +1,8 @@
+<import src="../../bower_components/zanui-weapp/dist/field/index.wxml" />
+
 <view class="container">
   <form bindsubmit="createOrder" report-submit="true">
     <view class="address-box">
-
 
       <view wx:if="{{!adds.isNall}}" class="show-address" bindtap="selectAddress">
         <!-- <view class="show-address" bindtap="selectAddress"> -->
@@ -18,7 +19,6 @@
       <view wx:else class="add-address" hidden="{{!defaultAdds.isNall}}">
         <view class="title" bindtap="selectAddress">{{showAdds}}</view>
       </view>
-
 
     </view>
     <view class="goods-list">
@@ -42,11 +42,11 @@
     </view>
     <view class="peisong-way">
       <!-- <view class="row-box" wx:if="{{isNeedLogistics > 0}}"> -->
-      <view class="row-box">
+      <!-- <view class="row-box">
         <view class="row-label">配送方式</view>
         <view class="right-text" wx:if="{{yunPrice > 0}}">快递</view>
         <view class="right-text" wx:if="{{yunPrice == 0}}">包邮</view>
-      </view>
+      </view> -->
       <view class="row-box">
         <view class="row-label">备注</view>
         <view class="right-text">
@@ -54,19 +54,7 @@
         </view>
       </view>
     </view>
-    <!-- <view class="peisong-way">
-      <view class="row-box" style="border-bottom:none;">
-        <view class="row-label">选择使用优惠券</view>
-      </view>
-      <view class="row-box" style="border-bottom:none;">
-        <picker-view indicator-style="height: 50rpx;" style="width: 100%; height: 150rpx;" value="0" bindchange="bindChangeCoupon">
-          <picker-view-column>
-            <view style="line-height: 50px">不使用优惠券</view>
-            <view wx:for="{{coupons}}" wx:key="id" style="line-height: 50px">{{item.money}}元 {{item.name}}</view>
-          </picker-view-column>
-        </picker-view>
-      </view>
-    </view>  -->
+
     <view class="goods-info">
       <view class="row-box">
         <view class="row-label">是否需要发票</view>
@@ -75,9 +63,11 @@
     </view>
 
     <view class="goods-info" hidden="{{showInvoice}}">
-      <view style='width:90%;padding:0 5%;'>
+      <!-- <view style='width:90%;padding:0 5%;'>
         <input placeholder="请填写发票信息" bindinput="getInput"></input>
-      </view>
+      </view> -->
+      <template is="zan-field" data="{{componentId:'name',type: 'input', placeholder: '请填写单位名称', value }}"></template>
+      <template is="zan-field" data="{{componentId:'num',type: 'input', placeholder: '请在此填写纳税人识别号', value }}"></template>
     </view>
 
     <!-- <view class="address-box">

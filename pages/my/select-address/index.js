@@ -5,10 +5,19 @@ var app = getApp()
 Page({
   data: {
     address: [],
+    show: true
   },
   onLoad: function (options) {
     vm = this
     vm.getAdds();   //根据user_id查询收货地址
+
+    var pages = getCurrentPages();
+    var prePage = pages[pages.length - 2]
+    // console.log("上一个页面PAGE : " + JSON.stringify(prePage))
+    if (prePage.__route__ == "pages/to-pay-order/index") {
+      vm.setData({ show: false })
+    }
+
   },
 
   //根据user_id查询收货地址
@@ -21,7 +30,7 @@ Page({
     })
   },
   clickAdds: function (e) {
-    var addsindex = e.currentTarget.dataset.addsindex   
+    var addsindex = e.currentTarget.dataset.addsindex
     var pages = getCurrentPages();
     var prePage = pages[pages.length - 2]
     // console.log("上一个页面PAGE : " + JSON.stringify(prePage))

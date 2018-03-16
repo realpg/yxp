@@ -193,3 +193,8 @@ icon {
   text-align: center;
   vertical-align: middle;
 }
+
+.zan-btn--primary {
+  color: #fff;
+  background-color: #00b781;
+}

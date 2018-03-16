@@ -1,17 +1,30 @@
 <!--pages/my/member/member.wxml-->
-<view style='padding:20rpx 20rpx;'>
-  <view class='flex-row'>
-    <view>会员卡到期时间：</view>
-    <view>{{member.expiration_date}}</view>
-  </view>
 
-  <view class='flex-row'>
-    <view>会员卡编号：</view>
-    <view>{{member.id}}</view>
-  </view>
+<block wx:for="{{member}}">
+  <view class='background'>
+    <view class='flex-row'>
+      <image src='{{item.goods.image}}' style='width:200rpx;height:200rpx;border-radius:20rpx;'></image>
+      <view style='margin-left:20rpx;'>
 
-  <view class='flex-row'>
-    <view>会员卡到期时间：</view>
-    <view>{{member.expiration_date}}</view>
+        <view class='flex-row'>
+          <view>会员卡到期时间：</view>
+          <view wx:if="{{item.expiration_date.isNall}}">无限期</view>
+          <view wx:else>{{item.expiration_date}}</view>
+        </view>
+
+        <view class='flex-row'>
+          <view>会员卡有效期：</view>
+          <view wx:if="{{item.goods_term == 0}}">无限期</view>
+          <view wx:if="{{item.goods_term == 1}}">半年</view>
+          <view wx:if="{{item.goods_term == 2}}">一年</view>
+        </view>
+
+        <view class='flex-row'>
+          <view>会员卡名字：</view>
+          <view>{{item.goods.title}}</view>
+        </view>
+
+      </view>
+    </view>
   </view>
-</view>
+</block>

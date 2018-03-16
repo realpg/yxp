@@ -1,19 +1,64 @@
 <!--pages/my/my/my.wxml-->
 <view class="container">
-  <!-- <view> -->
-  <view class="userinfo">
-    <image wx:if="{{userInfo && userInfo.avatarUrl}}" class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{ userInfo.nickName }}</text>
+  <view class='mypage-background'>
+    <view class='userinfo'>
+      <image wx:if="{{userInfo && userInfo.avatar}}" class="userinfo-avatar" src="{{ userInfo.avatar }}" style='margin-top:52rpx;z-index:300;' background-size="cover"></image>
+      <text class="userinfo-nickname" style='z-index:300;'>{{ userInfo.nick_name }}</text>
+      <view class='mask-div-black-d'></view>
+    </view>
+
+    <view style='width:80%;margin:20rpx 10%;'>
+      <view class='zan-row' style='color:white;'>
+        <view class='zan-col zan-col-8' style='text-align:center;z-index:300;'>
+          <view>{{member}}</view>
+          <view>会员等级</view>
+        </view>
+        <view class='zan-col zan-col-8' style='text-align:center;'>
+          <view>{{userInfo.score}}</view>
+          <view>积分</view>
+        </view>
+        <view class='zan-col zan-col-8' style='text-align:center;'>
+          <navigator url="/pages/my/personal/personal" hover-class="navigator-hover">
+            <view>我的</view>
+            <view>资料</view>
+          </navigator>
+        </view>
+      </view>
+    </view>
   </view>
 
-  <!-- <view class="my-item">
-    <view class="allOrder" bindtap="allOrder" data-id="0">
-      <text style="display:inline-block">我的订单</text>
-      <view>全部订单 <image src='../../../images/more.png'></image></view>
+  <view class="page">
+    <view class="page__bd">
+      <view class="weui-grids">
+        <block wx:for="{{grids}}" wx:key="*this">
+          <block wx:if="{{index == 4}}">
+            <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+              <button open-type="contact" hover-stay-time="600" hover-class="weui-grid_active" send-message-title="在线官方客服">
+                <image class="weui-grid__icon" src="{{item.img}}" />
+                <view class="weui-grid__label">{{item.text}}</view>
+              </button>
+            </navigator>
+          </block>
+
+          <block wx:elif="{{index == 5}}">
+            <navigator url="" class="weui-grid" hover-class="weui-grid_active" bindtap='aboutUs'>
+              <image class="weui-grid__icon" src="{{item.img}}" />
+              <view class="weui-grid__label">{{item.text}}</view>
+            </navigator>
+          </block>
+
+          <block wx:else>
+            <navigator url="{{item.navigator}}" class="weui-grid" hover-class="weui-grid_active">
+              <image class="weui-grid__icon" src="{{item.img}}" />
+              <view class="weui-grid__label">{{item.text}}</view>
+            </navigator>
+          </block>
+        </block>
+      </view>
     </view>
-  </view> -->
-  <!--订单状态-->
-  <view style="height:20rpx;background: #eee;width:100%;"></view>
+  </view>
+
+  <!-- <view style="height:20rpx;background: #eee;width:100%;"></view>
   <view class='zan-row zan-font-16' style='height:150rpx;width:100%;'>
     <view class='zan-col zan-col-8 text-align' style='padding-top:20rpx;'>
       <view>1级</view>
@@ -23,31 +68,16 @@
       <view>118</view>
       <view>我的积分</view>
     </view>
-    <view class='zan-col zan-col-8 text-align' style='padding-top:20rpx;'>
+    <view class='zan-col zan-col-8 text-align' style='padding-top:20rpx;' bindtap="allOrder" data-id='2'>
       <view>5</view>
       <view>我的订单</view>
     </view>
-  </view>
-  <!-- <view class="order-state">       
-    <view class="order-state-item" bindtap="allOrder" data-id='0'>
-      1级
-      <text>会员等级</text>
-    </view>
-    <view class="order-state-item" bindtap="allOrder" data-id='1'>
-      <view>118</view>
-      <text>我的积分</text>
-    </view>
-    <view class="order-state-item" bindtap="allOrder" data-id='2'>
-      5
-      <text>我的订单</text>
-    </view>
-   
   </view> -->
 
-  <view style="height:20rpx;background: #eee;width:100%;"></view>
+  <!-- <view style="height:20rpx;background: #eee;width:100%;"></view>
   <view class="my-item">
-    <navigator url="/pages/my/personal/personal" hover-class="navigator-hover">
-      <image src='../../../images/my-info/myquan.png'></image>个人资料</navigator>
+    <navigator url="/pages/my/mymessage/mymessage" hover-class="navigator-hover">
+      <image src='../../../images/my-info/myquan.png'></image>我的订单</navigator>
   </view>
   <view class="my-item">
     <navigator url="/pages/my/card/card" hover-class="navigator-hover">
@@ -69,12 +99,8 @@
     <button open-type="contact" send-message-title="在线官方客服" style="width:100%;height:100%;position:absolute;opacity:0"></button>
     <image src='../../../images/my-info/kefu.png'></image>官方客服
   </view>
-  <!-- <view class="my-item">
-    <navigator url="/pages/my-setUp/index" hover-class="navigator-hover">
-      <image src='../../../images/my-info/shezhi.png'></image>设置</navigator>
-  </view> -->
   <view class="about" bindtap="aboutUs">
     关于我们
   </view>
-  <view style="height:20rpx;background: #eee;width:100%;"></view>
+  <view style="height:20rpx;background: #eee;width:100%;"></view> -->
 </view>

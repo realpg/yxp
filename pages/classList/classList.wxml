@@ -10,10 +10,7 @@
   <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx">
     <swiper-item wx:for="{{class_length}}" wx:key="{{*this}}">
       <scroll-view scroll-y="true" class="scoll-h" bindtap='jumpTravelDetails'>
-        <view style='height:30rpx;'></view>
-        <!-- <block wx:for="{{travel}}">
-          <template is="traveListTpl" data="{{...item}}"></template>
-        </block>  -->
+        <view style='height:10rpx;'></view>
         <searchGoods pList="{{goods}}"></searchGoods>
       </scroll-view>
     </swiper-item>

@@ -1,10 +1,12 @@
 //index.js
 //获取应用实例
+const { Field, extend } = require('../../bower_components/zanui-weapp/dist/index');
+
 var app = getApp()
 var util = require('../../utils/util.js')
 var vm = null
 var showInvoice = true
-Page({
+Page(extend({}, Field, {
   data: {
     to_pay_order: {},          //获取本地缓存数据  订单数据
     goods_details: {},         //商品详情
@@ -26,6 +28,31 @@ Page({
     youhuijine: 0, //优惠券金额
     curCoupon: null // 当前选择使用的优惠券
   },
+
+  // 输入框内容更改时触发
+  handleZanFieldChange({ componentId, detail }) {
+    // console.log("11111" + JSON.stringify(detail.value))
+    if (componentId == 'name') {
+      vm.setData({ company: detail.value })
+      console.log("单位名字" + JSON.stringify(detail.value))
+    } else if (componentId == 'num') {
+      vm.setData({ num: detail.value })
+      console.log("纳税人识别号" + JSON.stringify(detail.value))
+    }
+    /*
+     * componentId 即为在模板中传入的 componentId
+     * 用于在一个页面上使用多个 tab 时，进行区分
+     * detail 即输入框中的内容
+     */
+    /*
+     * 处理函数可以直接 return 一个字符串，将替换输入框的内容。
+     */
+  },
+  // 输入框聚焦时触发
+  handleZanFieldFocus({ componentId, detail }) { },
+  // 输入框失焦时触发
+  handleZanFieldBlur({ componentId, detail }) { },
+
   onLoad: function (e) {
     vm = this;
     //显示收货地址标识
@@ -61,17 +88,27 @@ Page({
     // vm.initShippingAddress(); by Acker
   },
   //获取发票名头输入框的值
-  getInput:function(e){
+  getInput: function (e) {
     console.log("发票名头" + JSON.stringify(e.detail.value))
     // this.setData({
     //   inputValue: e.detail.value
     // })
   },
+  //添加发票信息
+  addInvoice: function (e) {
+    var param = {
+      type: 0,
+      cu_name: ""
+    }
+    util.addInvoice(param, function (res) {
+      console.log("添加发票" + JSON.stringify(res))
+    })
+  },
   //获取默认地址
   getInvoice: function () {
     util.defaultAdds({}, function (res) {
-      console.log("获取默认地址 : " + JSON.stringify(res))
-      vm.setData({ defaultAdds: res.data.ret })
+      console.log("获取默认地址 : " + JSON.stringify(res.data.ret))
+      vm.setData({ adds: res.data.ret })
     })
   },
   //发票开关
@@ -80,6 +117,7 @@ Page({
     // showInvoice = !showInvoice
     vm.setData({ showInvoice: showInvoice = !showInvoice })
   },
+
   order: function () {
     if (vm.data.adds.isNall) {
       console.log("2222")
@@ -90,6 +128,29 @@ Page({
       })
       return
     }
+    if (showInvoice == false) {
+      if (util.judgeIsAnyNullStr(vm.data.company) || util.judgeIsAnyNullStr(vm.data.num)) {
+        wx.showToast({
+          title: '发票信息不能为空',
+          icon: "none"
+        })
+        return
+      }
+      var param = {
+        // type:0,
+        cu_name: vm.data.company,
+        tax_code: vm.data.num
+      }
+      util.addInvoices(param, function (res) {
+        console.log("添加发票 ：" + JSON.stringify(res))
+        // vm.payOrder()
+      })
+      return
+    }
+    vm.payOrder()
+  },
+
+  payOrder: function () {
     var to_pay_order = vm.data.to_pay_order
     var goods_details = vm.data.goods_details
     var goods_list = []
@@ -108,9 +169,18 @@ Page({
         package: res.data.ret.package,
         signType: res.data.ret.signType,
         paySign: res.data.ret.paySign,
+        success: function (res) {
+          wx.navigateTo({
+            url: '/pages/paySucceed/paySucceed',
+          })
+        },
+        fail: function (res) {
+        }
       })
     })
+
   },
+
   //设置地址 By Acker
   setAdds: function (adds) {
     console.log("返回的地址 ：" + JSON.stringify(adds))
@@ -363,4 +433,4 @@ Page({
       curCoupon: this.data.coupons[selIndex]
     });
   }
-})
+}))

@@ -247,6 +247,43 @@ function updateUserInfo(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/user/updateById', param, "POST", successCallback, errorCallback);
 }
 
+//根据user_id获取订单信息
+function getOrdersByUserId(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/order/getOrdersByUserId', param, "GET", successCallback, errorCallback);
+}
+
+//根据user_id和订单状态获取订单信息  
+function getOrdersByUserIdAndOrderStatus(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/order/getOrdersByUserIdAndOrderStatus', param, "GET", successCallback, errorCallback);
+}
+
+//根据types获取商品信息
+function getGoodsInfoByTypes(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/goodsInfo/getGoodsInfoByTypes', param, "GET", successCallback, errorCallback);
+}
+
+//查询商品物流接口
+function getLogistics(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/logistics/getLogistics', param, "POST", successCallback, errorCallback);
+}
+
+//根据订单id获取订单详情
+function getOrders(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/order/getOrders', param, "GET", successCallback, errorCallback);
+}
+
+//添加发票信息
+function addInvoice(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/invoice/addInvoice', param, "POST", successCallback, errorCallback);
+}
+
+//添加发票信息(名头+纳税号)
+function addInvoices(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/invoice/addInvoices', param, "POST", successCallback, errorCallback);
+}
+
+//http://localhost/yxpSrv/public/api/invoice/addInvoice
+
 //返回
 function navigateBack(delta) {
   wx.navigateBack({
@@ -411,7 +448,7 @@ function hideLoading() {
   if (!wx.canIUse('hideLoading')) {
     return;
   }
-  console.log("---hideLoading---")  
+  console.log("---hideLoading---")
   wx.hideLoading();
 }
 //优化字符串输出，如果str为空，则返回r_str
@@ -462,6 +499,63 @@ function imageUtil(e) {
   return imageSize;
 }
 
+var Utils = {
+  /*
+      单位
+  */
+  units: '个十百千万@#%亿^&~',
+  /*
+      字符
+  */
+  chars: '零一二三四五六七八九',
+  /*
+      数字转中文
+      @number {Integer} 形如123的数字
+      @return {String} 返回转换成的形如 一百二十三 的字符串            
+  */
+  numberToChinese: function (number) {
+    var a = (number + '').split(''), s = [], t = this;
+    if (a.length > 12) {
+      throw new Error('too big');
+    } else {
+      for (var i = 0, j = a.length - 1; i <= j; i++) {
+        if (j == 1 || j == 5 || j == 9) {//两位数 处理特殊的 1*
+          if (i == 0) {
+            if (a[i] != '1') s.push(t.chars.charAt(a[i]));
+          } else {
+            s.push(t.chars.charAt(a[i]));
+          }
+        } else {
+          s.push(t.chars.charAt(a[i]));
+        }
+        if (i != j) {
+          s.push(t.units.charAt(j - i));
+        }
+      }
+    }
+    //return s;
+    return s.join('').replace(/零([十百千万亿@#%^&~])/g, function (m, d, b) {//优先处理 零百 零千 等
+      b = t.units.indexOf(d);
+      if (b != -1) {
+        if (d == '亿') return d;
+        if (d == '万') return d;
+        if (a[j - b] == '0') return '零'
+      }
+      return '';
+    }).replace(/零+/g, '零').replace(/零([万亿])/g, function (m, b) {// 零百 零千处理后 可能出现 零零相连的 再处理结尾为零的
+      return b;
+    }).replace(/亿[万千百]/g, '亿').replace(/[零]$/, '').replace(/[@#%^&~]/g, function (m) {
+      return { '@': '十', '#': '百', '%': '千', '^': '十', '&': '百', '~': '千' }[m];
+    }).replace(/([亿万])([一-九])/g, function (m, d, b, c) {
+      c = t.units.indexOf(d);
+      if (c != -1) {
+        if (a[j - c] == '0') return d + '零' + b
+      }
+      return m;
+    });
+  }
+};
+
 module.exports = {
   getADs: getADs,// 获取轮播图
   getList: getList, //获取商品分类列表
@@ -476,6 +570,14 @@ module.exports = {
   getMember: getMember,   //根据user_id获取会员信息
   convertDateFormateM: convertDateFormateM,
   convertDateFormate: convertDateFormate,
+  getOrdersByUserId: getOrdersByUserId,  //根据user_id获取订单信息
+  getOrdersByUserIdAndOrderStatus: getOrdersByUserIdAndOrderStatus, //根据user_id和订单状态获取订单信息  
+  getGoodsInfoByTypes: getGoodsInfoByTypes,   //根据types获取商品信息
+  getLogistics: getLogistics,    //查询商品物流接口
+  getOrders: getOrders,           //根据订单id获取订单详情
+  addInvoice: addInvoice,           //添加发票信息
+  addInvoices: addInvoices,           //名头+纳税识别号
+  Utils: Utils,                         //大写转小写
 
   formatTime: formatTime,                   //格式化时间
   showLoading: showLoading,

@@ -28,17 +28,35 @@ Page({
     commonProduct: [],  //普通商品列表
     hotProduct: [],     //热卖商品列表
     specialProduct: [], //特别商品列表
+    memberCard: [],     //会员卡商品
+    giftCard: [],       //礼品卡商品
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
     vm = this
     vm.getGoods(0, 20)
     vm.getGoods(1, 10)
     vm.getGoods(2, 10)
+    vm.getGoodsInfoByTypes(1)
+    vm.getGoodsInfoByTypes(2)
   },
+
+  getGoodsInfoByTypes: function (types) {
+    var param = {
+      types: types,
+      offset: 0,
+      page: 10
+    }
+    util.getGoodsInfoByTypes(param, function (res) {
+      console.log("会员卡礼品卡商品 ： " + JSON.stringify(res))
+      if (types == 1) {
+        vm.setData({ memberCard: res.data.ret })
+      } else {
+        vm.setData({ giftCard: res.data.ret })
+      }
+    })
+
+  },
+
   //查询商品列表
   getGoods: function (sales_status, page) {
     util.showLoading("加载中")

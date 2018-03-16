@@ -3,11 +3,8 @@ var util = require('../../../utils/util.js')
 var vm = null
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    member: []  //会员卡信息
   },
 
   /**
@@ -22,6 +19,13 @@ Page({
   getMember: function () {
     util.getMember({}, function (res) {
       console.log("会员信息 ： " + JSON.stringify(res));
+      var member = res.data.ret
+      for (var i = 0; i < member.length; i++) {
+        if (member[i].expiration_date == null) {
+          member[i].expiration_date = "无限期"
+        }
+        console.log("到期时间 ：" + JSON.stringify(member[i]))
+      }
       vm.setData({ member: res.data.ret })
     })
   },

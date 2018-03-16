@@ -1,13 +1,38 @@
 <!--pages/allProduct/allProduct.wxml-->
 <view class="line-text font-size-14" style='line-height:30rpx;'>
+  会员卡商品
+</view>
+<view style='margin-left:20rpx;margin-right:20rpx;'>
+  <searchGoods pList="{{memberCard}}"></searchGoods>
+</view>
+
+<view class="line-text font-size-14" style='line-height:30rpx;'>
+  礼品卡商品
+</view>
+<view style='margin-left:20rpx;margin-right:20rpx;'>
+  <searchGoods pList="{{giftCard}}"></searchGoods>
+</view>
+
+<view class="line-text font-size-14" style='line-height:30rpx;'>
   热卖商品
 </view>
-<searchGoods pList="{{hotProduct}}"></searchGoods>
+
+<view style='margin-left:20rpx;margin-right:20rpx;'>
+  <searchGoods pList="{{hotProduct}}"></searchGoods>
+</view>
+
 <view class="line-text font-size-14" style='line-height:30rpx;'>
   特卖商品
 </view>
-<searchGoods pList="{{specialProduct}}"></searchGoods>
+
+<view style='margin-left:20rpx;margin-right:20rpx;'>
+  <searchGoods pList="{{specialProduct}}"></searchGoods>
+</view>
+
 <view class="line-text font-size-14" style='line-height:30rpx;'>
   商品列表
 </view>
-<searchGoods pList="{{commonProduct}}"></searchGoods>
+
+<view style='margin-left:20rpx;margin-right:20rpx;'>
+  <searchGoods pList="{{commonProduct}}"></searchGoods>
+</view>

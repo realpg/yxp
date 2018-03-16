@@ -25,11 +25,11 @@ Page({
     vm.getById()
   },
 
-  getById:function(){
+  getById: function () {
     var param = {
-      id:1
+      id: 1
     }
-    util.getById(param,function(res){
+    util.getById(param, function (res) {
       console.log("555" + JSON.stringify(res))
     })
   },

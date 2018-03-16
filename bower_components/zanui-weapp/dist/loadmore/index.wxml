@@ -10,7 +10,7 @@
 
   <block wx:elif="{{nodata}}">
     <view class="zan-loadmore zan-loadmore--nodata">
-      <view class="zan-loadmore__tips">{{ nodata_str || '亲,到底啰' }}</view>
+      <view class="zan-loadmore__tips" style='background:white;'>{{ nodata_str || '亲,到底啰' }}</view>
     </view>
   </block>
 

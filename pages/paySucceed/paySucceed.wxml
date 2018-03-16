@@ -1,0 +1,10 @@
+<!--pages/paySucceed/paySucceed.wxml-->
+<view style='width:750rpx;text-align:center;margin-top:200rpx;'>
+  <icon type="success" size="100"></icon>
+  <view style='height:100rpx;'></view>
+  <view class='zan-font-24 zan-c-gray-dark'>支付成功</view>
+  <view class="zan-btns">
+    <button class="zan-btn zan-btn--primary" bindtap='backPage'>返回上一页</button>
+    <button class="zan-btn zan-btn--warn" bindtap='lookOrder'>查看订单</button>
+  </view>
+</view>

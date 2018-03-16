@@ -1,1 +1,16 @@
 /* pages/my/member/member.wxss */
+
+.mypage-background {
+  background-image: url("http://art.isart.me/tw_pbg.png?imageView2/2/w/600/q/75/interlace/1");
+  background-repeat: none;
+  background-size: 100% 100%;
+  z-index: 100;
+}
+
+.background {
+  background-color: #ececec;
+  width: 94%;
+  height: 200rpx;
+  margin: 20rpx 3%;
+  border-radius: 20rpx;
+}
