@@ -40,6 +40,7 @@ Page({
       width: 30,
       height: 30
     }],
+    
     controls: [{
       id: 1,
       iconPath: '../../images/me.png',

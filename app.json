@@ -1,10 +1,10 @@
 {
   "pages": [
     "pages/index/index/index",
-    "pages/my/logistics/logistics",
-    "pages/my/mymessage/mymessage",
-    "pages/order/order",
     "pages/my/member/member",
+    "pages/my/mymessage/mymessage",
+    "pages/my/logistics/logistics",
+    "pages/order/order",
     "pages/paySucceed/paySucceed",
     "pages/to-pay-order/index",
     "pages/navbar/navbar",

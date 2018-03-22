@@ -1,30 +1,42 @@
 <!--pages/my/member/member.wxml-->
+<block wx:if="{{isNall}}">
+  <wxc-abnor type="REQUEST_ERROR" image="{{image}}" title="{{title}}" tip="{{tip}}" button="{{button}}" bind:abnortap="onAbnorTap"></wxc-abnor>
+</block>
 
-<block wx:for="{{member}}">
-  <view class='background'>
-    <view class='flex-row'>
-      <image src='{{item.goods.image}}' style='width:200rpx;height:200rpx;border-radius:20rpx;'></image>
-      <view style='margin-left:20rpx;'>
+<block wx:if="{{!isNall}}">
+  <block wx:for="{{member}}">
+    <view class='background'>
+      <view class='flex-row'>
+        <image src='{{item.goods.image}}' style='margin:20rpx 20rpx;width:200rpx;height:200rpx;border-radius:20rpx;'></image>
+        <view style='margin:40rpx 30rpx;'>
 
-        <view class='flex-row'>
-          <view>会员卡到期时间：</view>
-          <view wx:if="{{item.expiration_date.isNall}}">无限期</view>
-          <view wx:else>{{item.expiration_date}}</view>
+          <view class='flex-row'>
+            <!-- <view>会员卡名字：</view> -->
+            <view class='zan-font-16 zan-font-bold'>{{item.goods.title}}</view>
+          </view>
+
+          <view style='height:15rpx;'></view>
+
+          <view class='flex-row'>
+            <view>会员卡到期时间：</view>
+            <view wx:if="{{item.expiration_date.isNall}}">无限期</view>
+            <view wx:else>{{item.expiration_date}}</view>
+          </view>
+
+          <view style='height:15rpx;'></view>
+
+          <view class='flex-row'>
+            <!-- <view>会员卡有效期：</view> -->
+            <view style='width:250rpx;'>
+              <view wx:if="{{item.goods_term == 0}}">无限期</view>
+              <view wx:if="{{item.goods_term == 1}}">半年</view>
+              <view wx:if="{{item.goods_term == 2}}">一年</view>
+            </view>
+            <button style='line-height:19px;font-size:25rpx;border-radius:26rpx;border:2rpx solid #eb6100;color:#eb6100;' bindtap='getToIndex' type="primary" plain="true">去使用</button>
+          </view>
+
         </view>
-
-        <view class='flex-row'>
-          <view>会员卡有效期：</view>
-          <view wx:if="{{item.goods_term == 0}}">无限期</view>
-          <view wx:if="{{item.goods_term == 1}}">半年</view>
-          <view wx:if="{{item.goods_term == 2}}">一年</view>
-        </view>
-
-        <view class='flex-row'>
-          <view>会员卡名字：</view>
-          <view>{{item.goods.title}}</view>
-        </view>
-
       </view>
     </view>
-  </view>
+  </block>
 </block>

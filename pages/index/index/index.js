@@ -16,9 +16,9 @@ Page({
 
   onLoad: function (options) {
     vm = this
+    vm.getADs("0")
     vm.getADs("1")
     vm.getADs("2")
-    vm.getADs("3")
     vm.getList()
     vm.getByFlag()
     vm.getNews()    //获取生效的新闻
@@ -64,17 +64,17 @@ Page({
       position: e
     }
     util.getADs(param, function (res) {
-      if (e === "1") {
+      if (e === "0") {
         console.log("getAds head : " + JSON.stringify(res))
         vm.setData({
           ads: res.data.ret
         })
-      } else if (e === "2") {
+      } else if (e === "1") {
         console.log("getAds farm : " + JSON.stringify(res))
         vm.setData({
           ads_farm: res.data.ret
         })
-      } else if (e === "3") {
+      } else if (e === "2") {
         console.log("getAds us : " + JSON.stringify(res))
         vm.setData({
           ads_us: res.data.ret

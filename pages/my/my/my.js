@@ -12,11 +12,11 @@ Page({
         img: "../../../images/my/orders.png",
         text: "我的订单"
       }, {
-        navigator: '/pages/my/member/member',
+        navigator: '/pages/my/member/member?id=1',
         img: "../../../images/my/gift.png",
         text: "礼品卡"
       }, {
-        navigator: '/pages/my/member/member',
+        navigator: '/pages/my/member/member?id=2',
         img: "../../../images/my/member.png",
         text: "会员卡"
       }, {
@@ -68,7 +68,7 @@ Page({
       } else {
         var grade = parseInt(score / 100) + 1
         grade = util.Utils.numberToChinese(grade)
-        console.log(grade + "级")
+        grade = grade + "级"
         vm.setData({ member: grade })
       }
     }

@@ -282,7 +282,12 @@ function addInvoices(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/invoice/addInvoices', param, "POST", successCallback, errorCallback);
 }
 
-//http://localhost/yxpSrv/public/api/invoice/addInvoice
+//根据user_id获取礼品卡信息
+function getGiftCard(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/giftCard/getGiftCard', param, "GET", successCallback, errorCallback);
+}
+
+//http://localhost/yxpSrv/public/api/giftCard/getGiftCard
 
 //返回
 function navigateBack(delta) {
@@ -578,6 +583,7 @@ module.exports = {
   addInvoice: addInvoice,           //添加发票信息
   addInvoices: addInvoices,           //名头+纳税识别号
   Utils: Utils,                         //大写转小写
+  getGiftCard: getGiftCard,             //根据user_id获取礼品卡信息
 
   formatTime: formatTime,                   //格式化时间
   showLoading: showLoading,

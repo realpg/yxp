@@ -7,10 +7,14 @@
   z-index: 100;
 }
 
-.background {
+page{
   background-color: #ececec;
+}
+
+.background {
+  background-color: #fff;
   width: 94%;
-  height: 200rpx;
+  height: 240rpx;
   margin: 20rpx 3%;
   border-radius: 20rpx;
 }

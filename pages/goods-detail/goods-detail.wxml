@@ -15,7 +15,7 @@
   </view>
   <!-- <view wx:if="{{hasMoreSelect}}" class="row-arrow" bindtap="bindGuiGeTap">
       {{selectSize}}
-   </view> 
+   </view>
    <view wx:if="{{hasCoupons}}" class="row-arrow" bindtap='bindCouponTap'>
     商品优惠券
    </view> -->
@@ -31,9 +31,9 @@
         </block>
       </block>
     </view>
-    <view class="goods-text">
+    <!-- <view class="goods-text">
       <template is="wxParse" data="{{wxParseData:datail.nodes}}" />
-    </view>
+    </view> -->
   </view>
   <!-- <view class="goods-des-info" style="margin-top:35rpx;" wx:if="{{reputation}}">
     <view class="label-title" style="border-bottom:1px solid #eee;">商品评价
