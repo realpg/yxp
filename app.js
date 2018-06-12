@@ -32,7 +32,10 @@ App({
     //如果没有缓存
     if (userInfo == null || userInfo == undefined || userInfo == "") {
       //调用登录接口
-      vm.login(null);
+      wx.reLaunch({
+        url: '/pages/getUserInfoPage/getUserInfoPage',
+      })
+      // vm.login(null);
     } else {
       vm.globalData.userInfo = wx.getStorageSync("userInfo");
       console.log("vm.globalData.userInfo:" + JSON.stringify(vm.globalData.userInfo));
@@ -40,6 +43,7 @@ App({
   },
   //监听小程序打开
   onShow: function () {
+
   },
 
   //用户登录
@@ -60,6 +64,10 @@ App({
               console.log("login:" + JSON.stringify(ret));
               if (ret.data.code == "200") {
                 vm.storeUserInfo(ret.data.ret)
+
+                wx.reLaunch({
+                  url: '/pages/index/index/index',
+                })
                 if (util.judgeIsAnyNullStr(ret.data.ret.nick_name)) {
                   vm.updateUserInfo(function (ret) { })
                 }
@@ -68,7 +76,6 @@ App({
           }, null);
         }
       }
-
     })
   },
 
