@@ -4,8 +4,8 @@
   <block wx:for="{{allOrders}}">
     <view style='margin-left:24rpx;'>
       <view class='zan-row' style='color:#999999;height:74rpx;'>
-        <view class='zan-col zan-col-12 zan-font-12' style='line-height:74rpx;'>订单编号：{{item.trade_no}}</view>
-        <view class='zan-col zan-col-12 zan-font-12' style='line-height:74rpx;'>{{item.created_at}}</view>
+        <view class='zan-col zan-col-12' style='line-height:74rpx;font-size:24rpx;'>订单编号：{{item.trade_no}}</view>
+        <view class='zan-col zan-col-12' style='line-height:74rpx;font-size:24rpx;text-align:right;padding-right:24rpx;'>{{item.created_at}}</view>
       </view>
 
       <view style='background-color:#f9f9f9;width:750rpx;height:170rpx;margin-left:-24rpx;'>
@@ -15,9 +15,9 @@
           </view>
           <view class='zan-col zan-col-14'>
             <view style='height:24rpx;'></view>
-            <view class='zan-font-14 zan-font-bold'>{{item.goods.title}}</view>
-            <view class='zan-font-12 zan-c-gray-dark'>数量 X{{item.count}}</view>
-            <view class='zan-font-14 zan-font-bold'>￥{{item.goods.price}}</view>
+            <view class='zan-font-bold' style='font-size:28rpx;'>{{item.goods.title}}</view>
+            <view class='zan-c-gray-dark' style='font-size:24rpx;'>数量 X{{item.count}}</view>
+            <view class='zan-font-bold' style='font-size:28rpx;'>￥{{item.goods.price}}</view>
           </view>
           <view class='zan-col zan-col-4'>
             <view style='margin-top:40rpx;' class='zan-c-gray-dark'>待发货</view>

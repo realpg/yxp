@@ -10,10 +10,17 @@ Page({
     // 省市区三级联动初始化
     region: ["四川省", "广元市", "苍溪县"],
     // 多列选择器(二级联动)列表设置,及初始化
-    multiArray: [[1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9]],
+    multiArray: [
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    ],
     multiIndex: [3, 5],
     // 多列选择器(三级联动)列表设置,及初始化
-    multiArray3: [[1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9]],
+    multiArray3: [
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    ],
     multiIndex3: [3, 5, 4],
     // tabs: [
     //   {
@@ -40,7 +47,7 @@ Page({
       width: 30,
       height: 30
     }],
-    
+
     controls: [{
       id: 1,
       iconPath: '../../images/me.png',
@@ -59,10 +66,10 @@ Page({
     sliderOffset: 0,
     sliderLeft: 0,
 
-    array: [],         //单列选择器
-    index: 0,          //索引值
-    farmList: [],      //农场数据
-    FarmsDetails: {}   //农场详情
+    array: [], //单列选择器
+    index: 0, //索引值
+    farmList: [], //农场数据
+    FarmsDetails: {} //农场详情
   },
   // 地图
   regionchange(e) {
@@ -75,12 +82,12 @@ Page({
     console.log(e.controlId)
   },
   //根据id获取农场详情
-  getFarmsDetails: function () {
+  getFarmsDetails: function() {
     console.log("11111" + vm.data.farmList)
     var param = {
       id: vm.data.farmList[vm.data.index].id
     }
-    util.getFarmsDetails(param, function (res) {
+    util.getFarmsDetails(param, function(res) {
       console.log("根据id获取农场信息 :" + JSON.stringify(res.data.ret))
       var markers = vm.data.markers
       markers.latitude = res.data.ret.lat
@@ -93,10 +100,10 @@ Page({
     })
   },
 
-  onLoad: function () {
+  onLoad: function() {
     vm = this;
     wx.getSystemInfo({
-      success: function (res) {
+      success: function(res) {
         vm.setData({
           sliderLeft: (res.windowWidth / vm.data.tabs.length - sliderWidth) / 2,
           sliderOffset: res.windowWidth / vm.data.tabs.length * vm.data.activeIndex
@@ -106,8 +113,8 @@ Page({
     vm.getFarmList()
   },
   //获取生效的农场信息
-  getFarmList: function () {
-    util.getFarmList({}, function (res) {
+  getFarmList: function() {
+    util.getFarmList({}, function(res) {
       console.log("获取生效的农场列表 : " + JSON.stringify(res))
       var farmList = res.data.ret
       var array = []
@@ -123,7 +130,7 @@ Page({
     })
   },
   //
-  bindPickerChange: function (e) {
+  bindPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       index: e.detail.value
@@ -131,7 +138,7 @@ Page({
     vm.getFarmsDetails()
   },
 
-  tabClick: function (e) {
+  tabClick: function(e) {
     this.setData({
       sliderOffset: e.currentTarget.offsetLeft,
       activeIndex: e.currentTarget.id
@@ -139,20 +146,27 @@ Page({
   },
   // 选择国家函数
   changeCountry(e) {
-    this.setData({ countryIndex: e.detail.value });
+    this.setData({
+      countryIndex: e.detail.value
+    });
   },
   // 选择省市区函数
   changeRegin(e) {
-    this.setData({ region: e.detail.value });
+    this.setData({
+      region: e.detail.value
+    });
   },
   // 选择二级联动
   changeMultiPicker(e) {
-    this.setData({ multiIndex: e.detail.value })
+    this.setData({
+      multiIndex: e.detail.value
+    })
   },
   // 选择三级联动
   changeMultiPicker3(e) {
-    this.setData({ multiIndex3: e.detail.value })
+    this.setData({
+      multiIndex3: e.detail.value
+    })
   },
-  onShow: function () {
-  }
+  onShow: function() {}
 });

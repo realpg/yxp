@@ -1,7 +1,7 @@
 <view class="page">
   <view class="page__bd">
     <view class="weui-panel weui-panel_access">
-      <view class="weui-panel__hd">新闻</view>
+      <view class="weui-panel__hd">热点动态</view>
       <view class="weui-panel__bd">
         <view class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" bindtap='getNewsByid' data-newsId='{{item.id}}' wx:for="{{news}}" wx:key="*this">
           <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">

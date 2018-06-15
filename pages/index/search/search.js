@@ -42,7 +42,9 @@ Page({
 
   searchGoods: function (e) {
     var param = {
-      search_word: e
+      search_word: e,
+      offset: 0,
+      page: 10,
     }
     util.searchGoods(param, function (res) {
       console.log("search : " + JSON.stringify(res.data.ret))

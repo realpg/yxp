@@ -6,10 +6,10 @@ Page({
   data: {
     userInfo: [],
   },
-  open: function () {
+  open: function() {
     wx.showActionSheet({
       itemList: ['男', '女'],
-      success: function (res) {
+      success: function(res) {
         // console.log("11111" + JSON.stringify(res))
         if (!res.cancel) {
           console.log(res.tapIndex)
@@ -22,9 +22,9 @@ Page({
     });
   },
 
-  onLoad: function (options) {
+  onLoad: function(options) {
     vm = this
-    app.login()
+    // app.login()
     var userInfo = app.globalData.userInfo
     console.log('userInfo' + JSON.stringify(userInfo))
     vm.setData({
@@ -32,30 +32,30 @@ Page({
     })
   },
 
-  card_id: function (e) {
+  card_id: function(e) {
     vm.setData({
       'userInfo.card_id': e.detail.value
     })
   },
-  nick_name: function (e) {
+  nick_name: function(e) {
     vm.setData({
       'userInfo.nick_name': e.detail.value
     })
     console.log("1111" + vm.data.userInfo.telephone)
   },
-  email: function (e) {
+  email: function(e) {
     vm.setData({
       'userInfo.email': e.detail.value
     })
   },
-  saveUserInfo: function () {
+  saveUserInfo: function() {
     var param = {
-      gender: vm.data.userInfo.gender,//性别
-      nick_name: vm.data.userInfo.nick_name,//电话
-      card_id: vm.data.userInfo.id_card,//身份证号
-      email: vm.data.userInfo.email,//电子邮箱
+      gender: vm.data.userInfo.gender, //性别
+      nick_name: vm.data.userInfo.nick_name, //电话
+      card_id: vm.data.userInfo.id_card, //身份证号
+      email: vm.data.userInfo.email, //电子邮箱
     }
-    util.updateUserInfo(param, function (res) {
+    util.updateUserInfo(param, function(res) {
       console.log("更新用户信息：" + JSON.stringify(res))
       getApp().login()
       // wx.setStorage({
@@ -68,7 +68,7 @@ Page({
         content: '资料修改成功',
         confirmColor: "#DF9E2D",
         showCancel: false,
-        success: function (res) {
+        success: function(res) {
           if (res.confirm) {
             console.log('用户点击确定')
           } else if (res.cancel) {
@@ -82,13 +82,13 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     var vm = this
     var userInfo = app.globalData.userInfo
     console.log("userInfo" + JSON.stringify(userInfo))
