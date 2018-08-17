@@ -1,7 +1,7 @@
 var TESTMODE = false;
 
 //服务器地址
-var SERVER_URL = "https://yxp.isart.me/api";
+var SERVER_URL = "https://testyxp.isart.me/api";
 var DEBUG_URL = "http://localhost/DSYYServer";
 var SERVER_URL = (TESTMODE) ? DEBUG_URL : SERVER_URL;
 
@@ -26,23 +26,23 @@ function qiniuUrlTool(img_url, type) {
   }
   var qn_img_url;
   switch (type) {
-    case "top_ad":      //广告图片
+    case "top_ad": //广告图片
       qn_img_url = img_url + "?imageView2/2/w/640/h/330/interlace/1";
       break;
-    case "folder_index":        //首页图片
+    case "folder_index": //首页图片
       qn_img_url = img_url + "?imageView2/2/w/450/q/75/interlace/1";
       break;
-    case "message_hi":        //首页图片
+    case "message_hi": //首页图片
       qn_img_url = img_url + "?imageView2/2/w/710/h/360/interlace/1";
       break;
-    case "work_step":           //编辑的画夹步骤
+    case "work_step": //编辑的画夹步骤
       qn_img_url = img_url + "?imageView2/2/w/750/interlace/1";
       break;
-    case "user_hi":  //头像
+    case "user_hi": //头像
       qn_img_url = img_url + "?imageView2/1/w/200/h/200/interlac12e/1";
-    case "bar_detail":  //书吧详情页
+    case "bar_detail": //书吧详情页
       qn_img_url = img_url + "?imageView2/1/w/750/h/384/interlace/1";
-    case "user_bg":  //我的背景
+    case "user_bg": //我的背景
       qn_img_url = img_url + "?imageView2/1/w/750/interlace/1";
       break;
   }
@@ -108,11 +108,11 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
       "Content-Type": "application/json"
     },
     method: method,
-    success: function (res) {
+    success: function(res) {
       successCallback(res)
       hideLoading()
     },
-    fail: function () {
+    fail: function() {
       console.log("wxRequest fail:" + JSON.stringify())
       // errorCallback(err)
       hideLoading()
@@ -412,7 +412,7 @@ function showModal(title, content) {
     content: content,
     showCancel: false,
     confirmColor: "#ffcc00",
-    success: function (res) {
+    success: function(res) {
       if (res.confirm) {
         console.log('用户点击确定')
         // confirmCallBack(res)
@@ -428,7 +428,7 @@ function showErrorModal(msg) {
   wx.showModal({
     title: '调用失败',
     content: msg,
-    success: function (res) {
+    success: function(res) {
       if (res.confirm) {
         console.log('用户点击确定')
       } else if (res.cancel) {
@@ -481,17 +481,17 @@ function judgeIsAnyNullStrImp(obj) {
 //util.js
 function imageUtil(e) {
   var imageSize = {};
-  var originalWidth = e.detail.width;//图片原始宽
-  var originalHeight = e.detail.height;//图片原始高
-  var originalScale = originalHeight / originalWidth;//图片高宽比
+  var originalWidth = e.detail.width; //图片原始宽
+  var originalHeight = e.detail.height; //图片原始高
+  var originalScale = originalHeight / originalWidth; //图片高宽比
   console.log('originalWidth: ' + originalWidth)
   console.log('originalHeight: ' + originalHeight)
   //获取屏幕宽高
   wx.getSystemInfo({
-    success: function (res) {
+    success: function(res) {
       var windowWidth = res.windowWidth;
       var windowHeight = res.windowHeight;
-      var windowscale = windowHeight / windowWidth;//屏幕高宽比
+      var windowscale = windowHeight / windowWidth; //屏幕高宽比
       console.log('windowWidth: ' + windowWidth)
       console.log('windowHeight: ' + windowHeight)
       //图片缩放后的宽为屏幕宽
@@ -518,13 +518,15 @@ var Utils = {
       @number {Integer} 形如123的数字
       @return {String} 返回转换成的形如 一百二十三 的字符串            
   */
-  numberToChinese: function (number) {
-    var a = (number + '').split(''), s = [], t = this;
+  numberToChinese: function(number) {
+    var a = (number + '').split(''),
+      s = [],
+      t = this;
     if (a.length > 12) {
       throw new Error('too big');
     } else {
       for (var i = 0, j = a.length - 1; i <= j; i++) {
-        if (j == 1 || j == 5 || j == 9) {//两位数 处理特殊的 1*
+        if (j == 1 || j == 5 || j == 9) { //两位数 处理特殊的 1*
           if (i == 0) {
             if (a[i] != '1') s.push(t.chars.charAt(a[i]));
           } else {
@@ -539,7 +541,7 @@ var Utils = {
       }
     }
     //return s;
-    return s.join('').replace(/零([十百千万亿@#%^&~])/g, function (m, d, b) {//优先处理 零百 零千 等
+    return s.join('').replace(/零([十百千万亿@#%^&~])/g, function(m, d, b) { //优先处理 零百 零千 等
       b = t.units.indexOf(d);
       if (b != -1) {
         if (d == '亿') return d;
@@ -547,11 +549,18 @@ var Utils = {
         if (a[j - b] == '0') return '零'
       }
       return '';
-    }).replace(/零+/g, '零').replace(/零([万亿])/g, function (m, b) {// 零百 零千处理后 可能出现 零零相连的 再处理结尾为零的
+    }).replace(/零+/g, '零').replace(/零([万亿])/g, function(m, b) { // 零百 零千处理后 可能出现 零零相连的 再处理结尾为零的
       return b;
-    }).replace(/亿[万千百]/g, '亿').replace(/[零]$/, '').replace(/[@#%^&~]/g, function (m) {
-      return { '@': '十', '#': '百', '%': '千', '^': '十', '&': '百', '~': '千' }[m];
-    }).replace(/([亿万])([一-九])/g, function (m, d, b, c) {
+    }).replace(/亿[万千百]/g, '亿').replace(/[零]$/, '').replace(/[@#%^&~]/g, function(m) {
+      return {
+        '@': '十',
+        '#': '百',
+        '%': '千',
+        '^': '十',
+        '&': '百',
+        '~': '千'
+      }[m];
+    }).replace(/([亿万])([一-九])/g, function(m, d, b, c) {
       c = t.units.indexOf(d);
       if (c != -1) {
         if (a[j - c] == '0') return d + '零' + b
@@ -562,45 +571,45 @@ var Utils = {
 };
 
 module.exports = {
-  getADs: getADs,// 获取轮播图
+  getADs: getADs, // 获取轮播图
   getList: getList, //获取商品分类列表
   getById: getById, //根据id获取分类详情
-  getGoodsDetails: getGoodsDetails,//根据id获取商品详情
-  getByFlag: getByFlag,//获取推荐商品接口
-  searchGoods: searchGoods,//搜索生效商品接口
-  getByGoodTypeId: getByGoodTypeId,//根据type_id获取商品信息
-  getNews: getNews,//获取新闻
-  getNewsByid: getNewsByid,//根据新闻id获取详情页
-  updateUserInfo: updateUserInfo,           // 更新用户信息
-  getMember: getMember,   //根据user_id获取会员信息
+  getGoodsDetails: getGoodsDetails, //根据id获取商品详情
+  getByFlag: getByFlag, //获取推荐商品接口
+  searchGoods: searchGoods, //搜索生效商品接口
+  getByGoodTypeId: getByGoodTypeId, //根据type_id获取商品信息
+  getNews: getNews, //获取新闻
+  getNewsByid: getNewsByid, //根据新闻id获取详情页
+  updateUserInfo: updateUserInfo, // 更新用户信息
+  getMember: getMember, //根据user_id获取会员信息
   convertDateFormateM: convertDateFormateM,
   convertDateFormate: convertDateFormate,
-  getOrdersByUserId: getOrdersByUserId,  //根据user_id获取订单信息
+  getOrdersByUserId: getOrdersByUserId, //根据user_id获取订单信息
   getOrdersByUserIdAndOrderStatus: getOrdersByUserIdAndOrderStatus, //根据user_id和订单状态获取订单信息  
-  getGoodsInfoByTypes: getGoodsInfoByTypes,   //根据types获取商品信息
-  getLogistics: getLogistics,    //查询商品物流接口
-  getOrders: getOrders,           //根据订单id获取订单详情
-  addInvoice: addInvoice,           //添加发票信息
-  addInvoices: addInvoices,           //名头+纳税识别号
-  Utils: Utils,                         //大写转小写
-  getGiftCard: getGiftCard,             //根据user_id获取礼品卡信息
+  getGoodsInfoByTypes: getGoodsInfoByTypes, //根据types获取商品信息
+  getLogistics: getLogistics, //查询商品物流接口
+  getOrders: getOrders, //根据订单id获取订单详情
+  addInvoice: addInvoice, //添加发票信息
+  addInvoices: addInvoices, //名头+纳税识别号
+  Utils: Utils, //大写转小写
+  getGiftCard: getGiftCard, //根据user_id获取礼品卡信息
 
-  formatTime: formatTime,                   //格式化时间
+  formatTime: formatTime, //格式化时间
   showLoading: showLoading,
   getOpenId: getOpenId,
-  login: login,                             //登陆
-  judgeIsAnyNullStr: judgeIsAnyNullStr,     //判断是否有空字符串
-  getShoppingCart: getShoppingCart,         //根据user_id查购物车信息
-  addShoppingCart: addShoppingCart,         //添加商品到购物车
+  login: login, //登陆
+  judgeIsAnyNullStr: judgeIsAnyNullStr, //判断是否有空字符串
+  getShoppingCart: getShoppingCart, //根据user_id查购物车信息
+  addShoppingCart: addShoppingCart, //添加商品到购物车
   deletedShoppingCart: deletedShoppingCart, //删除购物车商品
-  payOrder: payOrder,                       //下单接口
-  getFarmList: getFarmList,                 //获取所有生效的农场信息
-  getFarmsDetails: getFarmsDetails,         //根据农场id获取农场详情
-  getGoods: getGoods,                       //获取热卖特卖商品
-  setAddress: setAddress,                   //添加地址信息
-  getAdds: getAdds,                         //查询地址
-  setAddsDefFlag: setAddsDefFlag,           //设置默认收货地址
-  delAdds: delAdds,                         //删除地址
-  isNall: isNall,                           //判断是否为空
-  defaultAdds: defaultAdds,                 //根据user_id获取默认地址
-}   
+  payOrder: payOrder, //下单接口
+  getFarmList: getFarmList, //获取所有生效的农场信息
+  getFarmsDetails: getFarmsDetails, //根据农场id获取农场详情
+  getGoods: getGoods, //获取热卖特卖商品
+  setAddress: setAddress, //添加地址信息
+  getAdds: getAdds, //查询地址
+  setAddsDefFlag: setAddsDefFlag, //设置默认收货地址
+  delAdds: delAdds, //删除地址
+  isNall: isNall, //判断是否为空
+  defaultAdds: defaultAdds, //根据user_id获取默认地址
+}

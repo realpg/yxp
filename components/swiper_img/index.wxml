@@ -1,7 +1,7 @@
-<swiper indicator-dots="true" autoplay="true" interval="5000" duration="1000" style="height:{{sHeight}};">    
-  <block wx:for="{{imgList}}" wx:key="key">    
-    <swiper-item>    
-      <image src="{{item[url]}}" class="slide-image" mode="aspectFill"/>    
-    </swiper-item>    
-  </block>    
-</swiper> 
+<swiper indicator-dots="true" autoplay="true" interval="5000" duration="1000" style="height:{{sHeight}};">
+  <block wx:for="{{imgList}}" wx:key="key">
+    <swiper-item>
+      <image src="{{item[url]}}?imageView2/1/w/750/h/750/interlac12e/1" class="slide-image" mode="aspectFill" />
+    </swiper-item>
+  </block>
+</swiper>
