@@ -7,29 +7,69 @@ Page({
     address: [],
     show: true
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     vm = this
-    vm.getAdds();   //根据user_id查询收货地址
+    vm.getAdds(); //根据user_id查询收货地址
 
     var pages = getCurrentPages();
     var prePage = pages[pages.length - 2]
     // console.log("上一个页面PAGE : " + JSON.stringify(prePage))
     if (prePage.__route__ == "pages/to-pay-order/index") {
-      vm.setData({ show: false })
+      vm.setData({
+        show: false
+      })
     }
 
-  },
+    vm.chooseAddress()
 
+  },
+ 
+
+  //用户选择收货地址
+  chooseAddress: function () {
+    var that = this;
+    if (wx.chooseAddress) {
+      wx.chooseAddress({
+        success: function (res) {
+          console.log(JSON.stringify(res));
+          console.log(res);
+          that.setData({
+            "add_userName": res.userName,
+            "add_telNumber": res.telNumber,
+            "add_provinceName": res.provinceName,
+            "add_cityName": res.cityName,
+            "add_countyName": res.countyName,
+            "add_detailInfo": res.detailInfo,
+            "add_postalCode": res.postalCode,
+            //具体收货地址显示
+            flag: false,
+
+          })
+        },
+        fail: function (err) {
+          console.log(JSON.stringify(err));
+          console.info("收货地址授权失败");
+          wx.showToast({
+            title: '授权失败，您将无法进行下单支付;重新授权请删除小程序后再次进入',
+            icon: 'success',
+            duration: 20000
+          })
+        }
+      })
+    } else {
+      console.log('当前微信版本不支持chooseAddress');
+    }
+  },
   //根据user_id查询收货地址
-  getAdds: function () {
-    util.getAdds({}, function (res) {
+  getAdds: function() {
+    util.getAdds({}, function(res) {
       console.log("获取收获地址 : " + JSON.stringify(res.data.ret.adds))
       vm.setData({
         address: res.data.ret.adds
       })
     })
   },
-  clickAdds: function (e) {
+  clickAdds: function(e) {
     var addsindex = e.currentTarget.dataset.addsindex
     var pages = getCurrentPages();
     var prePage = pages[pages.length - 2]
@@ -42,25 +82,25 @@ Page({
     }
   },
   //跳转到添加地址页
-  addAddess: function () {
+  addAddess: function() {
     wx.navigateTo({
       url: "/pages/my/address-add/index"
     })
   },
   //跳转到编辑地址页
-  editAddess: function (e) {
+  editAddess: function(e) {
     wx.navigateTo({
       url: "/pages/address-add/index?id=" + e.currentTarget.dataset.id
     })
   },
   //设置默认地址
-  setAddsDefFlag: function (e) {
+  setAddsDefFlag: function(e) {
     var param = {
       id: e.target.dataset.userid
     }
-    util.setAddsDefFlag(param, function (res) {
+    util.setAddsDefFlag(param, function(res) {
       console.log("设置默认地址 ： " + JSON.stringify(res))
-      util.getAdds({}, function (res) {
+      util.getAdds({}, function(res) {
         console.log("获取收获地址 : " + JSON.stringify(res.data.ret.adds))
         vm.setData({
           address: res.data.ret.adds
@@ -71,17 +111,17 @@ Page({
 
   },
   //删除地址
-  delete: function (e) {
+  delete: function(e) {
     wx.showModal({
       title: '删除',
       content: '您确定要删除吗？',
-      success: function (res) {
+      success: function(res) {
         if (res.confirm) {
           console.log('用户点击确定')
           var param = {
             id: e.target.dataset.deleteid
           }
-          util.delAdds(param, function (res) {
+          util.delAdds(param, function(res) {
             console.log("删除地址 : " + JSON.stringify(res))
             if (res.data.result) {
               vm.getAdds();

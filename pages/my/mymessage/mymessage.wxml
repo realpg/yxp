@@ -20,7 +20,7 @@
             <view class='zan-font-bold' style='font-size:28rpx;'>￥{{item.goods.price}}</view>
           </view>
           <view class='zan-col zan-col-4'>
-            <view style='margin-top:40rpx;' class='zan-c-gray-dark'>待发货</view>
+            <view style='margin-top:40rpx;' class='zan-c-gray-dark'>待支付</view>
           </view>
         </view>
       </view>

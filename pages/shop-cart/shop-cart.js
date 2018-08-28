@@ -22,7 +22,7 @@ Page({
     goodsList: {
       saveHidden: true,   //控制删除还是结算
       totalPrice: 0,      //总价格
-      allSelect: true,    //是否全选
+      allSelect: true,   //是否全选
       noSelect: false,    //是否显示底部框架
       list: []            //购物车商品列表
     },
@@ -61,7 +61,7 @@ Page({
       var goodsList = vm.data.goodsList
       var shoppingCart = res.data.ret.shoppingCart
       for (var i = 0; i < shoppingCart.length; i++) {
-        shoppingCart[i].active = false
+        shoppingCart[i].active = true
       }
       vm.setData({
         'goodsList.list': shoppingCart
@@ -189,7 +189,7 @@ Page({
   //点击全选按钮
   allSelect: function () {
     var list = this.data.goodsList.list;
-    var allSelect = false;
+    var allSelect = true;
     for (var i = 0; i < list.length; i++) {
       var curItem = list[i];
       if (curItem.active) {

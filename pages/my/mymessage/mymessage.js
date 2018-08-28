@@ -12,7 +12,7 @@ Page(extend({}, Tab, {
       },
       {
         id: 'tosend',
-        title: '待发货'
+        title: '待支付'
       }, {
         id: 'send',
         title: '待收货'
@@ -87,10 +87,10 @@ Page(extend({}, Tab, {
   },
 
   //根据user_id和订单状态获取订单信息
-  getGoodsInfoByTypes: function (wl_status) {
+  getGoodsInfoByTypes: function (wl_status, status) {
     var param = {
       wl_status: wl_status,
-      status: 1,
+      status: status,
     }
     util.getOrdersByUserIdAndOrderStatus(param, function (res) {
       console.log("根据状态查询接口 : " + JSON.stringify(res))
@@ -110,11 +110,11 @@ Page(extend({}, Tab, {
     if (selectedId == "all") {
       vm.getOrdersByUserId()
     } else if (selectedId == "tosend") {
-      vm.getGoodsInfoByTypes(0)
+      vm.getGoodsInfoByTypes(0,0)
     } else if (selectedId == "send") {
-      vm.getGoodsInfoByTypes(1)
+      vm.getGoodsInfoByTypes(1,1)
     } else if (selectedId == "sign") {
-      vm.getGoodsInfoByTypes(2)
+      vm.getGoodsInfoByTypes(2,2)
     }
 
   },
