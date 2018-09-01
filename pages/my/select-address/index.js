@@ -3,6 +3,7 @@ var vm = null
 //获取应用实例
 var app = getApp()
 Page({
+
   data: {
     address: [],
     show: true
@@ -20,17 +21,16 @@ Page({
       })
     }
 
-    vm.chooseAddress()
 
   },
- 
+
 
   //用户选择收货地址
-  chooseAddress: function () {
+  chooseAddress: function() {
     var that = this;
     if (wx.chooseAddress) {
       wx.chooseAddress({
-        success: function (res) {
+        success: function(res) {
           console.log(JSON.stringify(res));
           console.log(res);
           that.setData({
@@ -43,14 +43,27 @@ Page({
             "add_postalCode": res.postalCode,
             //具体收货地址显示
             flag: false,
-
           })
+
+          var param = {
+            rec_name: res.userName,
+            rec_tel: res.telNumber,
+            province: res.provinceName,
+            city: res.cityName,
+            detail: res.detailInfo,
+            zip_code: res.postalCode
+          }
+
+          util.setAddress(param,function(res) {
+            console.log("查看收货地址" + JSON.stringify(res))
+          })
+
         },
-        fail: function (err) {
+        fail: function(err) {
           console.log(JSON.stringify(err));
           console.info("收货地址授权失败");
           wx.showToast({
-            title: '授权失败，您将无法进行下单支付;重新授权请删除小程序后再次进入',
+            title: '授权失败',
             icon: 'success',
             duration: 20000
           })
@@ -60,6 +73,8 @@ Page({
       console.log('当前微信版本不支持chooseAddress');
     }
   },
+
+
   //根据user_id查询收货地址
   getAdds: function() {
     util.getAdds({}, function(res) {
@@ -81,18 +96,20 @@ Page({
       })
     }
   },
-  //跳转到添加地址页
+  //跳转到微信地址页
   addAddess: function() {
     wx.navigateTo({
-      url: "/pages/my/address-add/index"
+      url: ""
+      // url: "/pages/my/address-add/index"
     })
+    vm.chooseAddress()
   },
-  //跳转到编辑地址页
-  editAddess: function(e) {
-    wx.navigateTo({
-      url: "/pages/address-add/index?id=" + e.currentTarget.dataset.id
-    })
-  },
+  // //跳转到编辑地址页
+  // editAddess: function(e) {
+  //   wx.navigateTo({
+  //     url: "/pages/address-add/index?id=" + e.currentTarget.dataset.id
+  //   })
+  // },
   //设置默认地址
   setAddsDefFlag: function(e) {
     var param = {

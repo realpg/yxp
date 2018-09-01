@@ -70,7 +70,7 @@
     <view class="popup-contents" style="height:auto">
       <view class="pop-goods-info">
         <view class="pop-img-box">
-          <!-- <image src="{{goodsDetail.basicInfo.pic}}" class="goods-thumbnail" /> -->
+          <!-- <image src="{{goodsDetail.basicInfo.pic}}" class="goods-thumbnail" />  -->
           <image src="https://cdn.it120.cc/apifactory/2017/11/27/1a7732cbf3980876238753939fc35b33.jpg" class="goods-thumbnail" />
         </view>
         <view class="pop-goods-des">

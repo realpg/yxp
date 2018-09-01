@@ -28,7 +28,7 @@
 
   </view>
   <view class="bottom-box" style="background-color:white">
-    <view class="add-btn" bindtap="addAddess">新增收货地址</view>
+    <view class="add-btn" bindtap="addAddess">获取微信收货地址</view>
   </view>
 
 </view>
