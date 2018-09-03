@@ -66,7 +66,7 @@ Page({
       })
     })
   },
-  
+
   //获取新闻列表
   getNews: function() {
     util.getNews({}, function(res) {

@@ -393,7 +393,7 @@ function showToast(msg, img) {
   if (judgeIsAnyNullStr(img)) {
     wx.showToast({
       title: msg,
-      icon: 'success',
+      icon: "none",
       duration: 1500,
     })
   } else {
@@ -612,4 +612,5 @@ module.exports = {
   delAdds: delAdds, //删除地址
   isNall: isNall, //判断是否为空
   defaultAdds: defaultAdds, //根据user_id获取默认地址
+  showToast: showToast, //弹出toast
 }

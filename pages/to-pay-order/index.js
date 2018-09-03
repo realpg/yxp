@@ -1,6 +1,9 @@
 //index.js
 //获取应用实例
-const { Field, extend } = require('../../bower_components/zanui-weapp/dist/index');
+const {
+  Field,
+  extend
+} = require('../../bower_components/zanui-weapp/dist/index');
 
 var app = getApp()
 var util = require('../../utils/util.js')
@@ -8,20 +11,24 @@ var vm = null
 var showInvoice = true
 Page(extend({}, Field, {
   data: {
-    to_pay_order: {},          //获取本地缓存数据  订单数据
-    goods_details: {},         //商品详情
-    adds: { isNall: true },    //返回的地址
+    to_pay_order: {}, //获取本地缓存数据  订单数据
+    goods_details: {}, //商品详情
+    adds: {
+      isNall: true
+    }, //返回的地址
     showAdds: '请选择收货地址', //展示地址
-    showInvoice: true,         //展示发票
-    defaultAdds: { isNall: true },           //默认地址
+    showInvoice: true, //展示发票
+    defaultAdds: {
+      isNall: true
+    }, //默认地址
 
     goodsList: [],
-    isNeedLogistics: 0,        // 是否需要物流信息
+    isNeedLogistics: 0, // 是否需要物流信息
     allGoodsPrice: 0,
     yunPrice: 0,
     allGoodsAndYunPrice: 0,
     goodsJsonStr: "",
-    orderType: "",    //订单类型，购物车下单或立即支付下单，默认是购物车，
+    orderType: "", //订单类型，购物车下单或立即支付下单，默认是购物车，
 
     hasNoCoupons: true,
     coupons: [],
@@ -30,13 +37,20 @@ Page(extend({}, Field, {
   },
 
   // 输入框内容更改时触发
-  handleZanFieldChange({ componentId, detail }) {
+  handleZanFieldChange({
+    componentId,
+    detail
+  }) {
     // console.log("11111" + JSON.stringify(detail.value))
     if (componentId == 'name') {
-      vm.setData({ company: detail.value })
+      vm.setData({
+        company: detail.value
+      })
       console.log("单位名字" + JSON.stringify(detail.value))
     } else if (componentId == 'num') {
-      vm.setData({ num: detail.value })
+      vm.setData({
+        num: detail.value
+      })
       console.log("纳税人识别号" + JSON.stringify(detail.value))
     }
     /*
@@ -49,21 +63,56 @@ Page(extend({}, Field, {
      */
   },
   // 输入框聚焦时触发
-  handleZanFieldFocus({ componentId, detail }) { },
+  handleZanFieldFocus({
+    componentId,
+    detail
+  }) {},
   // 输入框失焦时触发
-  handleZanFieldBlur({ componentId, detail }) { },
+  handleZanFieldBlur({
+    componentId,
+    detail
+  }) {},
 
-  onLoad: function (e) {
+  onLoad: function(e) {
     vm = this;
+    var orderType = e.orderType
     //显示收货地址标识
     vm.setData({
       isNeedLogistics: 1,
-      orderType: e.orderType
+      orderType: orderType
     });
+    // if (orderType == "buyNow") {
     vm.getStorage()
     vm.getInvoice()
+    // } else if (orderType == "shopCar") {
+    // }
   },
-  onShow: function () {
+  //获取缓存数据  By Acker
+  getStorage: function() {
+    wx.getStorage({
+      key: 'to_pay_order',
+      success: function(res) {
+        console.log("11" + JSON.stringify(res))
+        vm.setData({
+          to_pay_order: res.data
+        })
+      }
+    })
+    wx.getStorage({
+      key: 'goods_details',
+      success: function(res) {
+        console.log("11" + JSON.stringify(res))
+        vm.setData({
+          goods_details: res.data
+        })
+
+        console.log("商品数据：" + JSON.stringify(res.data))
+
+      }
+    })
+  },
+
+  onShow: function() {
     var vm = this;
     var shopList = [];
     //立即购买下单
@@ -76,7 +125,6 @@ Page(extend({}, Field, {
       //购物车下单
       var shopCarInfoMem = wx.getStorageSync('shopCarInfo');
       if (shopCarInfoMem && shopCarInfoMem.shopList) {
-        // shopList = shopCarInfoMem.shopList
         shopList = shopCarInfoMem.shopList.filter(entity => {
           return entity.active;
         });
@@ -88,37 +136,47 @@ Page(extend({}, Field, {
     // vm.initShippingAddress(); by Acker
   },
   //获取发票名头输入框的值
-  getInput: function (e) {
+  getInput: function(e) {
     console.log("发票名头" + JSON.stringify(e.detail.value))
     // this.setData({
     //   inputValue: e.detail.value
     // })
   },
   //添加发票信息
-  addInvoice: function (e) {
+  addInvoice: function(e) {
     var param = {
       type: 0,
       cu_name: ""
     }
-    util.addInvoice(param, function (res) {
+    util.addInvoice(param, function(res) {
       console.log("添加发票" + JSON.stringify(res))
     })
   },
   //获取默认地址
-  getInvoice: function () {
-    util.defaultAdds({}, function (res) {
+  getInvoice: function() {
+    util.defaultAdds({}, function(res) {
       console.log("获取默认地址 : " + JSON.stringify(res.data.ret))
-      vm.setData({ adds: res.data.ret })
+      vm.setData({
+        adds: res.data.ret
+      })
     })
   },
   //发票开关
-  switch2Change: function (e) {
+  switch2Change: function(e) {
     console.log('switch2 发生 change 事件，携带值为', e.detail.value)
     // showInvoice = !showInvoice
-    vm.setData({ showInvoice: showInvoice = !showInvoice })
+    if (!e.detail.value) {
+      vm.setData({
+        company: '',
+        num: ''
+      })
+    }
+    vm.setData({
+      showInvoice: showInvoice = !showInvoice,
+    })
   },
 
-  order: function () {
+  order: function() {
     if (vm.data.adds.isNall) {
       console.log("2222")
       wx.showModal({
@@ -141,7 +199,7 @@ Page(extend({}, Field, {
         cu_name: vm.data.company,
         tax_code: vm.data.num
       }
-      util.addInvoices(param, function (res) {
+      util.addInvoices(param, function(res) {
         console.log("添加发票 ：" + JSON.stringify(res))
         // vm.payOrder()
       })
@@ -150,65 +208,101 @@ Page(extend({}, Field, {
     vm.payOrder()
   },
 
-  payOrder: function () {
+  //支付
+  payOrder: function() {
     var to_pay_order = vm.data.to_pay_order
-    var goods_details = vm.data.goods_details
-    var goods_list = []
-    goods_list.push(to_pay_order.goods)
-    var param = {
-      total_fee: to_pay_order.total_fee,
-      address_id: vm.data.adds.id,
-      invoice_id: 6,
-      goods: goods_list
-    }
-    util.payOrder(param, function (res) {
-      console.log("支付成功回掉" + JSON.stringify(res))
-      wx.requestPayment({
-        timeStamp: res.data.ret.timeStamp,
-        nonceStr: res.data.ret.nonceStr,
-        package: res.data.ret.package,
-        signType: res.data.ret.signType,
-        paySign: res.data.ret.paySign,
-        success: function (res) {
-          wx.navigateTo({
-            url: '/pages/paySucceed/paySucceed',
-          })
-        },
-        fail: function (res) {
+    var param = {}
+    if (vm.data.orderType == "shopCar") {
+
+      var goods = []
+      //如果在购物车中下单
+      for (var i = 0; i < to_pay_order.goods.length; i++) {
+        var paramIndex = {
+          goods_id: to_pay_order.goods[i].goods_id.id,
+          count: to_pay_order.goods[i].count,
+          total_fee: to_pay_order.goods[i].total_fee,
         }
-      })
+        goods.push(paramIndex)
+      }
+
+      param = {
+        total_fee: to_pay_order.total_fee,
+        address_id: vm.data.adds.id,
+        invoice_id: "",
+        goods: goods
+      }
+
+      //如果立即购买
+    } else {
+      var goods_details = vm.data.goods_details
+      // var goods_list = []
+      // goods_list.push(to_pay_order.goods)
+      param = {
+        total_fee: to_pay_order.total_fee,
+        address_id: vm.data.adds.id,
+        invoice_id: "",
+        goods: to_pay_order.goods
+      }
+    }
+
+    console.log("支付参数" + JSON.stringify(param))
+
+    util.payOrder(param, function(res) {
+      if (res.data.result) {
+
+        console.log("支付成功回掉" + JSON.stringify(res))
+        wx.requestPayment({
+          timeStamp: res.data.ret.timeStamp,
+          nonceStr: res.data.ret.nonceStr,
+          package: res.data.ret.package,
+          signType: res.data.ret.signType,
+          paySign: res.data.ret.paySign,
+          success: function(res) {
+            wx.navigateTo({
+              url: '/pages/paySucceed/paySucceed',
+            })
+          },
+          fail: function(res) {}
+        })
+      } else {
+        util.showToast("支付错误 请联系管理员")
+        console.log("支付错误" + JSON.stringify(res.data))
+      }
+
     })
+
+
+    //   if (res.data.result) {
+    //     console.log("支付成功回掉" + JSON.stringify(res))
+    //     wx.requestPayment({
+    //       timeStamp: res.data.ret.timeStamp,
+    //       nonceStr: res.data.ret.nonceStr,
+    //       package: res.data.ret.package,
+    //       signType: res.data.ret.signType,
+    //       paySign: res.data.ret.paySign,
+    //     })
+    //   } else {
+    //     util.showToast("支付错误 请联系管理员")
+    //     console.log("支付错误" + JSON.stringify(res.data))
+    //   }
+    // }, function(err) {
+    //   console.log("支付失败回掉" + JSON.stringify(err))
+    // })
+
 
   },
 
   //设置地址 By Acker
-  setAdds: function (adds) {
+  setAdds: function(adds) {
     console.log("返回的地址 ：" + JSON.stringify(adds))
-    vm.setData({ adds: adds, showAdds: adds.province })
-  },
-  //获取缓存数据  By Acker
-  getStorage: function () {
-    wx.getStorage({
-      key: 'to_pay_order',
-      success: function (res) {
-        console.log("11" + JSON.stringify(res))
-        vm.setData({
-          to_pay_order: res.data
-        })
-      }
-    })
-    wx.getStorage({
-      key: 'goods_details',
-      success: function (res) {
-        console.log("11" + JSON.stringify(res))
-        vm.setData({
-          goods_details: res.data
-        })
-      }
+    vm.setData({
+      adds: adds,
+      showAdds: adds.province
     })
   },
 
-  getDistrictId: function (obj, aaa) {
+
+  getDistrictId: function(obj, aaa) {
     if (!obj) {
       return "";
     }
@@ -218,7 +312,7 @@ Page(extend({}, Field, {
     return aaa;
   },
 
-  createOrder: function (e) {
+  createOrder: function(e) {
     wx.showLoading();
     var vm = this;
     var loginToken = app.globalData.token // 用户登录 token
@@ -295,18 +389,42 @@ Page(extend({}, Field, {
         }
         // 配置模板消息推送
         var postJsonString = {};
-        postJsonString.keyword1 = { value: res.data.data.dateAdd, color: '#173177' }
-        postJsonString.keyword2 = { value: res.data.data.amountReal + '元', color: '#173177' }
-        postJsonString.keyword3 = { value: res.data.data.orderNumber, color: '#173177' }
-        postJsonString.keyword4 = { value: '订单已关闭', color: '#173177' }
-        postJsonString.keyword5 = { value: '您可以重新下单，请在30分钟内完成支付', color: '#173177' }
+        postJsonString.keyword1 = {
+          value: res.data.data.dateAdd,
+          color: '#173177'
+        }
+        postJsonString.keyword2 = {
+          value: res.data.data.amountReal + '元',
+          color: '#173177'
+        }
+        postJsonString.keyword3 = {
+          value: res.data.data.orderNumber,
+          color: '#173177'
+        }
+        postJsonString.keyword4 = {
+          value: '订单已关闭',
+          color: '#173177'
+        }
+        postJsonString.keyword5 = {
+          value: '您可以重新下单，请在30分钟内完成支付',
+          color: '#173177'
+        }
         app.sendTempleMsg(res.data.data.id, -1,
           'uJQMNVoVnpjRm18Yc6HSchn_aIFfpBn1CZRntI685zY', e.detail.formId,
           'pages/index/index', JSON.stringify(postJsonString));
         postJsonString = {};
-        postJsonString.keyword1 = { value: '您的订单已发货，请注意查收', color: '#173177' }
-        postJsonString.keyword2 = { value: res.data.data.orderNumber, color: '#173177' }
-        postJsonString.keyword3 = { value: res.data.data.dateAdd, color: '#173177' }
+        postJsonString.keyword1 = {
+          value: '您的订单已发货，请注意查收',
+          color: '#173177'
+        }
+        postJsonString.keyword2 = {
+          value: res.data.data.orderNumber,
+          color: '#173177'
+        }
+        postJsonString.keyword3 = {
+          value: res.data.data.dateAdd,
+          color: '#173177'
+        }
         app.sendTempleMsg(res.data.data.id, 2,
           'GeZutJFGEWzavh69savy_KgtfGj4lHqlP7Zi1w8AOwo', e.detail.formId,
           'pages/order-details/index?id=' + res.data.data.id, JSON.stringify(postJsonString));
@@ -317,7 +435,7 @@ Page(extend({}, Field, {
       }
     })
   },
-  initShippingAddress: function () {
+  initShippingAddress: function() {
     var vm = this;
     wx.request({
       url: app.globalData.baseUrl + '/user/shipping-address/default',
@@ -338,7 +456,7 @@ Page(extend({}, Field, {
       }
     })
   },
-  processYunfei: function () {
+  processYunfei: function() {
     var vm = this;
     var goodsList = this.data.goodsList;
     var goodsJsonStr = "[";
@@ -378,24 +496,24 @@ Page(extend({}, Field, {
     });
     vm.createOrder();
   },
-  addAddress: function () {
+  addAddress: function() {
     wx.navigateTo({
       url: "/pages/my/address-add/index"
     })
   },
-  selectAddress: function () {
+  selectAddress: function() {
     wx.navigateTo({
       url: "/pages/my/select-address/index"
     })
   },
   // 选择发票
-  selectInvoice: function () {
+  selectInvoice: function() {
     wx.showToast({
       icon: "none",
       title: '未开发 敬请期待',
     })
   },
-  getMyCoupons: function () {
+  getMyCoupons: function() {
     var vm = this;
     wx.request({
       url: app.globalData.baseUrl + '/discounts/my',
@@ -403,7 +521,7 @@ Page(extend({}, Field, {
         token: app.globalData.token,
         status: 0
       },
-      success: function (res) {
+      success: function(res) {
         if (res.data.code == 0) {
           var coupons = res.data.data.filter(entity => {
             return entity.moneyHreshold <= vm.data.allGoodsAndYunPrice;
@@ -418,7 +536,7 @@ Page(extend({}, Field, {
       }
     })
   },
-  bindChangeCoupon: function (e) {
+  bindChangeCoupon: function(e) {
     const selIndex = e.detail.value[0] - 1;
     if (selIndex == -1) {
       this.setData({
@@ -432,5 +550,25 @@ Page(extend({}, Field, {
       youhuijine: this.data.coupons[selIndex].money,
       curCoupon: this.data.coupons[selIndex]
     });
-  }
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function() {
+    wx.removeStorage({
+      key: 'to_pay_order',
+      success: function(res) {
+        console.log(res.data)
+      }
+    })
+    wx.removeStorage({
+      key: 'goods_details',
+      success: function(res) {
+        console.log(res.data)
+      }
+    })
+  },
+
+
 }))

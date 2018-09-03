@@ -24,21 +24,27 @@
     <view class="goods-list">
       <view class="list-title">商品</view>
       <!-- <view class="a-goods" wx:for-items="{{goodsList}}" wx:key="{{index}}"> -->
-      <view class="a-goods">
-        <view class="img-box">
-          <image src="{{goods_details.image}}" class="img" />
-        </view>
-        <view class="text-box">
-          <view class="arow arow01">
-            <view class="goods-name">{{goods_details.title}}</view>
-            <view class="goods-price">¥ {{goods_details.price}}</view>
+
+      <block wx:for="{{goods_details}}">
+
+        <view class="a-goods">
+          <view class="img-box">
+            <image src="{{item.image}}" class="img" />
           </view>
-          <view class="arow">
-            <view class="goods-label">{{item.label}}</view>
-            <view class="goods-num">x {{to_pay_order.goods.count}}</view>
+          <view class="text-box">
+            <view class="arow arow01">
+              <view class="goods-name">{{item.title}}</view>
+              <view class="goods-price">¥ {{item.price}}</view>
+            </view>
+            <view class="arow">
+              <view class="goods-label">{{item.label}}</view>
+              <view class="goods-num">x {{to_pay_order.goods[index].count}}</view>
+            </view>
           </view>
         </view>
-      </view>
+
+      </block>
+
     </view>
     <view class="peisong-way">
       <!-- <view class="row-box" wx:if="{{isNeedLogistics > 0}}"> -->
@@ -70,18 +76,21 @@
       <template is="zan-field" data="{{componentId:'num',type: 'input', placeholder: '请在此填写纳税人识别号', value }}"></template>
     </view>
 
+    <view style='height:100rpx;'></view>
+
     <!-- <view class="address-box">
       <view class="add-address" hidden="{{showInvoice}}">
         <view class="title" bindtap="selectInvoice">请填写发票信息</view>
       </view>
     </view> -->
 
-    <view class="jiesuan-box">
-      <view class="left-price">
-        <view class="total">合计：¥ {{to_pay_order.total_fee}}</view>
-      </view>
-      <button class="to-pay-btn" bindtap='order'>提交订单</button>
-    </view>
+    <cover-view class="jiesuan-box">
+      <cover-view class="left-price">
+        <cover-view class="total">合计：¥ {{to_pay_order.total_fee}}</cover-view>
+      </cover-view>
+      <cover-view class='to-pay-btn' bindtap='order'>提交订单</cover-view>
+      <!-- <button class="to-pay-btn" bindtap='order'></button> -->
+    </cover-view>
 
   </form>
 </view>
