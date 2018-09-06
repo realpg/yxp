@@ -62,7 +62,7 @@ page {
 .goodsList {
   width: 100%;
   background-color: #fff;
-  padding-bottom: 100rpx;
+  /* padding-bottom: 100rpx; */
 }
 
 .a-gooods {
@@ -82,7 +82,7 @@ page {
 }
 
 .a-goods-conts.active {
-  background: url(https://cdn.it120.cc/images/weappshop/gou-red.png) no-repeat 30rpx center;
+  background: url(http://dsyy.isart.me/tmp/wx9b70c1acbcfda86b.o6zAJs3FFzas02nMmUHEIaQsPMXk.mYiQl4Izi0B3c57646008141d9c605f64d7987a29ecb.png) no-repeat 30rpx center;
   background-size: 40rpx auto;
 }
 
@@ -100,7 +100,7 @@ page {
   height: 160rpx;
   overflow: hidden;
   margin-right: 20rpx;
-  background-color: #d8d8d8;
+  /* background-color: #d8d8d8; */
 }
 
 .goods-info .text-box {
@@ -191,15 +191,16 @@ page {
 .goods-info .img-box .img {
   width: 160rpx;
   height: 160rpx;
+  border-radius: 10rpx;
 }
 
 .a-goods-conts .delete-btn {
   width: 120rpx;
   line-height: 220rpx;
   text-align: center;
-  background: #e64340;
+  background: #f4f4f4;
   font-size: 24rpx;
-  color: #fff;
+  color: #535353;
 }
 
 .jiesuan-box {
@@ -219,7 +220,7 @@ page {
   width: 240rpx;
   text-align: center;
   line-height: 100rpx;
-  background-color: #e64340;
+  background-color: #17bd88;
   font-size: 32rpx;
   color: #fff;
 }
@@ -246,7 +247,8 @@ page {
 }
 
 .jiesuan-box .all-selected.active {
-  background: url(https://cdn.it120.cc/images/weappshop/gou-red.png) no-repeat 30rpx center;
+  /* background: url(https://cdn.it120.cc/images/weappshop/gou-red.png) no-repeat 30rpx center; */
+  background: url("http://dsyy.isart.me/tmp/wx9b70c1acbcfda86b.o6zAJs3FFzas02nMmUHEIaQsPMXk.mYiQl4Izi0B3c57646008141d9c605f64d7987a29ecb.png") no-repeat 30rpx center;
   background-size: 40rpx auto;
 }
 

@@ -1,7 +1,7 @@
-<picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+<picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" style='background:#fff'>
   <view class="zan-cell">
     <view class="zan-cell__bd">
-      <view style='margin-left:35rpx; color:#FF5777'>{{array[index]}}</view>
+      <view style='margin-left:35rpx; color:#000'>{{array[index]}}</view>
       <view class="zan-arrow"></view>
     </view>
   </view>
@@ -45,7 +45,7 @@
         </view>
         <view hidden="{{activeIndex != 2}}">
 
-          <map id="map" longitude="{{farmList[index].lon}}" latitude="{{farmList[index].lat}}" scale="14" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" bindregionchange="regionchange" show-location style="width: 100%; height: 300px;"></map>
+          <map id="map" longitude="{{farmList[index].lon}}" latitude="{{farmList[index].lat}}" scale="14" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" bindregionchange="regionchange" show-location style="width: 100%; height: 500px;"></map>
 
         </view>
       </view>

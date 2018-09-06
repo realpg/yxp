@@ -22,7 +22,7 @@
 <swiper indicator-dots="true" indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#FFFFFF" autoplay="true" interval="4000" duration="600" style="height:184px">
   <block wx:for="{{ads}}">
     <swiper-item>
-      <image src="{{item.image}}" class="slide-image" width="750rpx" />
+      <image src="{{item.image}}" class="slide-image" width="750rpx"  />
     </swiper-item>
   </block>
 </swiper>
@@ -44,8 +44,8 @@
     <navigator url='/pages/classList/classList?type_id={{item.id}}&pointer={{index}}'>
       <view class='zan-col zan-col-6' style='margin:20rpx 0;'>
         <view class='align-items' style='text-align:center;'>
-          <image src='{{item.img}}' style='width:100rpx;height:100rpx;'></image>
-          <view>{{item.name}}</view>
+          <image src='{{item.img}}' style='width:100rpx;height:100rpx;border-radius:50rpx'></image>
+          <view style='margin:5px'>{{item.name}}</view>
         </view>
       </view>
     </navigator>
@@ -131,7 +131,7 @@
     <view class='zan-col zan-col-4'>
       <view class='flex-row align-items' bindtap='news' style='height:70rpx;'>
         <view class='zan-font-14' style='color:#00b781'>更多</view>
-        <image src='../../../images/green-right.png' style='width:30rpx;height:30rpx;'></image>
+        <image src='../../../images/green-right.png' style='width:30rpx;height:30rpx;border-radius:5rpx'></image>
       </view>
     </view>
   </view>
@@ -150,7 +150,7 @@
             <button class="zan-btn zan-btn--small zan-btn--primary" style='border-radius:6rpx;margin:30rpx;width:182rpx;' bindtap="getNewsByid" data-newsId='{{item.id}}'>去看看</button>
           </view>
           <view class='zan-col zan-col-12'>
-            <image src='{{item.img}}' style='width:350rpx;height:310rpx;  border-radius: 20rpx;'></image>
+            <image src='{{item.img}}' style='width:350rpx;height:310rpx;  border-radius: 5rpx;'></image>
           </view>
         </view>
 

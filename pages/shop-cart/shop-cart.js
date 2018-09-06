@@ -80,6 +80,12 @@ Page({
       for (var i = 0; i < shoppingCart.length; i++) {
         shoppingCart[i].active = true
       }
+      // if () {
+
+      // }
+      // else{
+
+      // }
       goodsList.list = shoppingCart
       vm.setData({
         goodsList: goodsList
@@ -421,11 +427,10 @@ Page({
 
 
   //支付成功之后跳转到订单页
-  navigateToPayOrder: function() {
-    wx.hideLoading();
-    wx.navigateTo({
-      url: "/pages/to-pay-order/index?orderType=shopCar"
-    })
-  }
-
+  // navigateToPayOrder: function() {
+  //   wx.hideLoading();
+  //   wx.navigateTo({
+  //     url: "/pages/to-pay-order/index?orderType=shopCar"
+  //   })
+  // }
 })

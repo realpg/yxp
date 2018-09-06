@@ -10,7 +10,6 @@ Page({
   },
   onLoad: function(options) {
     vm = this
-    vm.getAdds(); //根据user_id查询收货地址
 
     var pages = getCurrentPages();
     var prePage = pages[pages.length - 2]
@@ -24,6 +23,10 @@ Page({
 
   },
 
+onShow:function(){
+  vm.getAdds(); //根据user_id查询收货地址
+  
+},
 
   //用户选择收货地址
   chooseAddress: function() {

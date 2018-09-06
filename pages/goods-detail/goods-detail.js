@@ -48,8 +48,13 @@ Page({
     }
     util.getGoodsDetails(param, function(res) {
       console.log("商品详情信息 ： " + JSON.stringify(res.data.ret))
+      for (var i = 0; i < res.data.ret.length; i++) {
+        res.data.ret[i].image
+      }
       vm.setData({
-        goods_details: res.data.ret
+      
+        goods_details: res.data.ret,
+        
       })
     })
     WxParse.wxParse('datail', 'html', vm.data.content, vm, 5);

@@ -36,8 +36,8 @@
 }
 
 .tab-item.border-bottom {
-  border-bottom: 4rpx solid #59c836;
-  color: #59c836;
+  border-bottom: 4rpx solid #17bd88;
+  color: #17bd88;
 }
 
 .tab-item.active:after {

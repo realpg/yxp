@@ -745,7 +745,7 @@ icon {
 }
 
 .weui-grid {
-  position: relative;
+  /* position: relative; */
   float: left;
   padding: 20px 10px;
   width: 33.33333333%;
@@ -755,7 +755,7 @@ icon {
 }
 
 .weui-grid_active {
-  background-color: #ececec;
+  background-color: #fff;
 }
 
 .weui-grid__icon {
@@ -1085,7 +1085,7 @@ icon {
 }
 
 .weui-navbar__item.weui-bar__item_on {
-  color: #1aad19;
+  color: #17bd88;
 }
 
 .weui-navbar__slider {
@@ -1095,7 +1095,7 @@ icon {
   bottom: 0;
   width: 6em;
   height: 3px;
-  background-color: #1aad19;
+  background-color: #17bd88;
   -webkit-transition: -webkit-transform 0.3s;
   transition: -webkit-transform 0.3s;
   transition: transform 0.3s;

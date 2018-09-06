@@ -19,7 +19,7 @@
   font-size: 28rpx;
   color: #000;
   margin-left: 30rpx;
-  background: url(https://cdn.it120.cc/images/weappshop/ico-add-addr.png) no-repeat left center;
+  background: url(http://dsyy.isart.me/tmp/wx9b70c1acbcfda86b.o6zAJs3FFzas02nMmUHEIaQsPMXk.A0NPnYMoORcR4b01e4e4014c885632befffc86f10726.png) no-repeat left center;
   background-size: 60rpx auto;
   padding: 40rpx 0 40rpx 90rpx;
 }
@@ -81,6 +81,7 @@ form {
 .goods-list .img-box .img {
   width: 160rpx;
   height: 160rpx;
+  border-radius:5rpx;
 }
 
 .goods-list  .a-goods .text-box {
@@ -97,7 +98,7 @@ form {
 
 .a-goods .text-box .arow .goods-name {
   width: 360rpx;
-  font-size: 26rpx;
+  font-size: 28rpx;
   height: 74rpx;
   color: #000;
   line-height: 1.6;
@@ -197,7 +198,7 @@ form {
   text-align: center;
   height: 100%;
   line-height: 100rpx;
-  background-color: #e64340;
+  background-color: #17bd88;
   font-size: 32rpx;
   color: #fff;
   border-radius: 0;

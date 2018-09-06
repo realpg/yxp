@@ -59,6 +59,6 @@
 .bottom-box .add-btn {
   margin-left: 30rpx;
   padding-left: 70rpx;
-  background: url(https://cdn.it120.cc/images/weappshop/add-addr.png) no-repeat left center;
+  background: url(http://dsyy.isart.me/tmp/wx9b70c1acbcfda86b.o6zAJs3FFzas02nMmUHEIaQsPMXk.IJ3nk8WeNM2Rfc8479d7a1deeb7f8b6bc85dd84bd340.png) no-repeat left center;
   background-size: 40rpx auto;
 }
