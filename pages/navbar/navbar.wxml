@@ -1,7 +1,8 @@
-<picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" style='background:#fff'>
-  <view class="zan-cell">
+
+  <view class="zan-cell" >
     <view class="zan-cell__bd">
-      <view style='margin-left:35rpx; color:#000'>{{array[index]}}</view>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" >
+      <view style='margin-left:35rpx; color:#000'>{{array[index]}}</view></picker>
       <view class="zan-arrow"></view>
     </view>
   </view>
@@ -10,7 +11,7 @@
     <view style='margin-left:35rpx;'>{{farmList[index].city}}</view>
   </view>
   <view class='zan-cell' style='margin-left:35rpx;'>{{farmList[index].address}}</view>
-</picker>
+
 
 <view class="page">
   <view class="page__bd">

@@ -131,7 +131,7 @@
     <view class='zan-col zan-col-4'>
       <view class='flex-row align-items' bindtap='news' style='height:70rpx;'>
         <view class='zan-font-14' style='color:#00b781'>更多</view>
-        <image src='../../../images/green-right.png' style='width:30rpx;height:30rpx;border-radius:5rpx'></image>
+        <image src='../../../images/green-right.png' style='width:30rpx;height:30rpx;border-radius:10rpx'></image>
       </view>
     </view>
   </view>
@@ -150,7 +150,7 @@
             <button class="zan-btn zan-btn--small zan-btn--primary" style='border-radius:6rpx;margin:30rpx;width:182rpx;' bindtap="getNewsByid" data-newsId='{{item.id}}'>去看看</button>
           </view>
           <view class='zan-col zan-col-12'>
-            <image src='{{item.img}}' style='width:350rpx;height:310rpx;  border-radius: 5rpx;'></image>
+            <image src='{{item.img}}' style='width:350rpx;height:310rpx;  border-radius: 10rpx;'></image>
           </view>
         </view>
 

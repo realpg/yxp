@@ -14,7 +14,7 @@ list-style: none;
 }
 
 button{
-  line-height: 45rpx;
+  line-height: 46rpx;
   /* position: static; */
  
 

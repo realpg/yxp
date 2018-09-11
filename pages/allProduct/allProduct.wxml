@@ -1,38 +1,45 @@
 <!--pages/allProduct/allProduct.wxml-->
-<view class="line-text font-size-14" style='line-height:30rpx;'>
-  会员卡商品
-</view>
-<view style='margin-left:20rpx;margin-right:20rpx;'>
-  <searchGoods pList="{{memberCard}}"></searchGoods>
+
+<view class="swiper-tab">
+
+<view class="swiper-tab-list {{Tab==0 ? 'active' : ''}}" data-current="0" bindtap="swichNav">商品列表</view>
+
+<view class="swiper-tab-list {{Tab==1 ? 'active' : ''}}" data-current="1" bindtap="swichNav">礼品卡</view>
+
+<view class="swiper-tab-list {{Tab==2 ? 'active' : ''}}" data-current="2" bindtap="swichNav">会员卡</view>
+
+<view class="swiper-tab-list {{Tab==3 ? 'active' : ''}}" data-current="3" bindtap="swichNav">热卖</view>
+
+<view class="swiper-tab-list {{Tab==4 ? 'active' : ''}}" data-current="4" bindtap="swichNav">特卖</view>
+
+
 </view>
 
-<view class="line-text font-size-14" style='line-height:30rpx;'>
-  礼品卡商品
-</view>
-<view style='margin-left:20rpx;margin-right:20rpx;'>
-  <searchGoods pList="{{giftCard}}"></searchGoods>
+<view class="right">
+
+<view class="right-item {{Index=='0'? ' active ' : ''}}">
+<view class='goodsTitle'>商品列表</view>
+<recommendGoods pList="{{commonProduct}}"></recommendGoods>
 </view>
 
-<view class="line-text font-size-14" style='line-height:30rpx;'>
-  热卖商品
+<view class="right-item {{Index=='1' ? 'active' : ''}} ">
+<view class='goodsTitle'>礼品卡商品</view>
+<recommendGoods pList="{{giftCard}}"></recommendGoods>
 </view>
 
-<view style='margin-left:20rpx;margin-right:20rpx;'>
-  <searchGoods pList="{{hotProduct}}"></searchGoods>
+<view class="right-item {{Index=='2' ? 'active' : ''}} ">
+<view class='goodsTitle'>会员卡商品</view>
+<recommendGoods pList="{{memberCard}}"></recommendGoods>
 </view>
 
-<view class="line-text font-size-14" style='line-height:30rpx;'>
-  特卖商品
+<view class="right-item {{Index=='3' ? 'active' : ''}} ">
+<view class='goodsTitle'>热卖商品</view>
+<recommendGoods pList="{{hotProduct}}"></recommendGoods>
 </view>
 
-<view style='margin-left:20rpx;margin-right:20rpx;'>
-  <searchGoods pList="{{specialProduct}}"></searchGoods>
+<view class="right-item {{Index=='4' ? 'active' : ''}} ">
+<view class='goodsTitle'>特卖商品</view>
+<recommendGoods pList="{{specialProduct}}"></recommendGoods>
 </view>
 
-<view class="line-text font-size-14" style='line-height:30rpx;'>
-  商品列表
-</view>
-
-<view style='margin-left:20rpx;margin-right:20rpx;'>
-  <searchGoods pList="{{commonProduct}}"></searchGoods>
 </view>

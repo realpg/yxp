@@ -121,26 +121,27 @@ swiper-item image {
   position: relative;
   width: 150rpx;
   height: 100%;
-  line-height: 100rpx;
+  /* line-height: 100rpx; */
   text-align: center;
-  padding-top: 26rpx;
+  /* padding-top: 26rpx; */
   font-size:20rpx;
   color:#acacb7;
   box-sizing: border-box;
-  background:url("https://cdn.it120.cc/images/weappshop/kefu.png") no-repeat center 21rpx;
+  /* background:url("../../images/kefu.png") no-repeat center 21rpx;  */
+
   background-size: 55rpx auto;
 }
 .footer-box .shop-cart-btn{
   position: relative;
   width: 150rpx;
   height: 100%;
-  line-height: 100rpx;
+  /* line-height: 100rpx; */
   text-align: center;
-  padding-top: 26rpx;
+  /* padding-top: 26rpx; */
   font-size:20rpx;
   color:#acacb7;
   box-sizing: border-box;
-  background:url("https://cdn.it120.cc/images/weappshop/cart.png") no-repeat center 21rpx;
+  background:url("../../images/gwc.png") no-repeat center 21rpx;
   background-size: 44rpx auto;
 }
 .footer-box .shop-cart-btn .shop-num{
@@ -358,3 +359,5 @@ swiper-item image {
 .coupons_details .coupon_full,.coupons_details .coupon_time{
   font-size:24rpx;
 }
+
+

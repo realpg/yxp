@@ -1,7 +1,7 @@
 {
   "usingComponents": {
     "dialog": "/components/dialog/dialog",
-    "searchGoods": "/components/searchGoods/searchGoods"
+    "recommendGoods": "/components/recommendGoods/recommendGoods"
   }
 }
    

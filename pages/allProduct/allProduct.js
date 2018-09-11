@@ -3,6 +3,9 @@ var util = require('../../utils/util.js')
 var vm = null
 Page({
   data: {
+    Tab: 0,  //默认第一项显示为当前
+
+    Index: 0,
     product: [
       {
         "minPrice": 2323,
@@ -30,6 +33,35 @@ Page({
     specialProduct: [], //特别商品列表
     memberCard: [],     //会员卡商品
     giftCard: [],       //礼品卡商品
+  },
+  /**
+ 
+* 点击tab切换
+ 
+*/
+
+  swichNav: function (e) {
+
+    var that = this;
+
+    //让被点击的项的currentTab与data-current对应
+
+    if (that.data.Tab === e.target.dataset.current) {
+
+      return false;
+
+    } else {
+
+      that.setData({
+
+        Tab: e.target.dataset.current,
+
+        Index: e.target.dataset.current,
+
+      })
+
+    }
+
   },
   onLoad: function (options) {
     vm = this
@@ -133,4 +165,5 @@ Page({
   onShareAppMessage: function () {
 
   }
+  
 })

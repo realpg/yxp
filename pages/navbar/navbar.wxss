@@ -51,3 +51,8 @@ page, .page, .page__bd {
   width:94%;
   height: 400rpx;
 }
+
+.zan-cell{
+
+background: #fff;
+}

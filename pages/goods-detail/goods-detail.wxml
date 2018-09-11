@@ -28,7 +28,7 @@
           <view style='margin:10rpx 30rpx;'>{{item.content}}</view>
         </block>
         <block wx:if="{{item.type == 1}}">
-          <image src='{{item.content}}imageView2/1/w/650/h/250/interlace/1' style='width:100%;margin-bottom:20rpx;'></image>
+          <image src='{{item.content}}' style='width:100%;margin-bottom:20rpx;'></image>
         </block>
       </block>
     </view>
@@ -54,13 +54,20 @@
 
   <view class="footer-box">
     <view class="contact">
-      <contact-button style="opacity:0;position:absolute;" type="default-dark" session-from="weapp" size="27"></contact-button>
-      客服
+      <!-- <contact-button style="opacity:0;position:absolute;" type="default-dark" session-from="weapp" size="27">
+      </contact-button> -->
+ 
+     
+      <image style='width:30px;height:60%;' src='../../images/kefu.png'></image>
+      <view style='height35%'>客服</view>
+      
+      
     </view>
     <view class="shop-cart-btn" bindtap="goShopCar">
       <!-- <view class="shop-num">(1)</view> -->
       <view class="shop-num"></view>
-      购物车
+      <image style='width:30px;height:60%;'  src='../../images/gwc.png'></image>
+     <view style='height:35%'>购物车</view> 
     </view>
     <view class="join-shop-cart" bindtap="toAddShopCar">加入购物车</view>
     <view class="now-buy" bindtap="tobuy">立即购买</view>
@@ -109,3 +116,9 @@
     </view>
   </view>
 </view>
+
+
+
+
+      <button style="opacity:0;position:fixed;left:10rpx;bottom:4rpx;width:150rpx;height:100rpx;" type="default-dark" session-from="weapp" size="27" open-type="contact">
+      </button>
