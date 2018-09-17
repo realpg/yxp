@@ -12,7 +12,6 @@
 
 <view class="swiper-tab-list {{Tab==4 ? 'active' : ''}}" data-current="4" bindtap="swichNav">特卖</view>
 
-
 </view>
 
 <view class="right">

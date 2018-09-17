@@ -21,11 +21,11 @@
   width: 330rpx;
   height: 350rpx;
   overflow: hidden;
-  border-radius:10rpx;
+  border-radius:20rpx;
 }
 
 .goods-box .img-box image {
-  width: 350rpx;
+  width: 330rpx;
   height: 350rpx;
 }
 
