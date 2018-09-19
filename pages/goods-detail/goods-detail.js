@@ -20,9 +20,9 @@ Page({
     shopNum: 0,
     hideShopPopup: true,
     hideCouponPopup: true,
-    buyNumber: 0, //规格数量
+    buyNumber: 1, //规格数量
     buyNumMin: 1,
-    buyNumMax: 0,
+    buyNumMax: 100000,
     propertyChildIds: "",
 
     goods_details: [], //商品详情
@@ -274,6 +274,12 @@ Page({
       this.setData({
         buyNumber: currentNum
       })
+      if (this.data.buyNumber > this.data.goods_details.count) {
+        var currentNum = this.data.goods_details.count;
+        this.setData({
+          buyNumber: currentNum
+        })
+      }
     }
   },
   /**
