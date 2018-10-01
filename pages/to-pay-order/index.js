@@ -195,13 +195,13 @@ Page(extend({}, Field, {
         return
       }
       var param = {
-        // type:0,
+        type:0,
         cu_name: vm.data.company,
         tax_code: vm.data.num
       }
       util.addInvoices(param, function(res) {
         console.log("添加发票 ：" + JSON.stringify(res))
-        // vm.payOrder()
+        vm.payOrder()
       })
       return
     }

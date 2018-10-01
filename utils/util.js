@@ -99,6 +99,7 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
       // console.log("user_id" + getApp().globalData.userInfo.id);
     }
     param.token = getApp().globalData.userInfo.token;
+    
   }
   console.log("param：" + JSON.stringify(param))
   wx.request({

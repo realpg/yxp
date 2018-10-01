@@ -424,7 +424,7 @@ Page({
       key: 'to_pay_order',
       data: to_pay_order,
     })
-    商品详情
+    //商品详情
     wx.setStorage({
       key: 'goods_details',
       data: [vm.data.goods_details],
