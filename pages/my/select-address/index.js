@@ -103,16 +103,10 @@ onShow:function(){
   addAddess: function() {
     wx.navigateTo({
       url: ""
-      // url: "/pages/my/address-add/index"
     })
     vm.chooseAddress()
   },
-  // //跳转到编辑地址页
-  // editAddess: function(e) {
-  //   wx.navigateTo({
-  //     url: "/pages/address-add/index?id=" + e.currentTarget.dataset.id
-  //   })
-  // },
+
   //设置默认地址
   setAddsDefFlag: function(e) {
     var param = {
@@ -153,42 +147,5 @@ onShow:function(){
       }
     })
   },
-  // selectTap: function (e) {
-  //   var id = e.currentTarget.dataset.id;
-  //   wx.request({
-  //     url: app.globalData.baseUrl + '/user/shipping-address/update',
-  //     data: {
-  //       token: app.globalData.token,
-  //       id: id,
-  //       isDefault: 'true'
-  //     },
-  //     success: (res) => {
-  //       wx.navigateBack({})
-  //     }
-  //   })
-  // },
 
-  // onShow : function () {
-  //   this.initShippingAddress();
-  // },
-  // initShippingAddress: function () {
-  //   var that = this;
-  //   wx.request({
-  //     url: app.globalData.baseUrl +'/user/shipping-address/list',
-  //     data: {
-  //       token:app.globalData.token
-  //     },
-  //     success: (res) =>{
-  //       if (res.data.code == 0) {
-  //         that.setData({
-  //           addressList:res.data.data
-  //         });
-  //       } else if (res.data.code == 700){
-  //         that.setData({
-  //           addressList: null
-  //         });
-  //       }
-  //     }
-  //   })
-  // }
 })

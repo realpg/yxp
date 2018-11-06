@@ -304,6 +304,11 @@ Page({
         this.setData({
           buyNumber: currentNum
         })
+        wx.showModal({
+          title: '提示',
+          content: '数量不足哦~',
+          showCancel: false
+        })
       }
     }
   },
@@ -376,6 +381,14 @@ Page({
    * 加入购物车
    */
   addShopCar: function () {
+    if (vm.data.goods_details.count == 0) {
+      wx.showModal({
+        title: '库存不足',
+        content: '抱歉,剩余数量不足',
+        showCancel: false
+      })
+      return
+    }
     var param = {
       good_id: vm.data.goods_details.id,
       number: vm.data.buyNumber

@@ -273,12 +273,12 @@ Page({
     // })
   },
 
-
+  //点击加号
   jiaBtnTap: function(e) {
     var index = e.currentTarget.dataset.index;
     var list = this.data.goodsList.list;
     if (index !== "" && index != null) {
-      if (list[parseInt(index)].number < 10) {
+      if (list[parseInt(index)].number < 10000) {
         list[parseInt(index)].number++;
         this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
       }
@@ -398,7 +398,7 @@ Page({
 
 
 
-    vm.navigateToPayOrder()
+    // vm.navigateToPayOrder()
 
     // var param = {
     //   total_fee: Alltotal_fee,

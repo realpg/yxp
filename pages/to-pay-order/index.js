@@ -144,11 +144,13 @@ Page(extend({}, Field, {
   },
   //添加发票信息
   addInvoice: function(e) {
+
     var param = {
       type: 0,
       cu_name: ""
     }
     util.addInvoice(param, function(res) {
+      
       console.log("添加发票" + JSON.stringify(res))
     })
   },
@@ -177,7 +179,7 @@ Page(extend({}, Field, {
   },
 
   order: function() {
-    if (vm.data.adds.isNall) {
+    if (util.isNall(vm.data.adds)) {
       console.log("2222")
       wx.showModal({
         title: '错误',
@@ -265,7 +267,11 @@ Page(extend({}, Field, {
           fail: function(res) {}
         })
       } else {
-        util.showToast("支付错误 请联系管理员")
+        wx.showModal({
+          title: '错误',
+          content: '购买数量超过库存，请重新添加数量！',
+          showCancel: false
+        })
         console.log("支付错误" + JSON.stringify(res.data))
       }
 

@@ -76,7 +76,7 @@
       <template is="zan-field" data="{{componentId:'num',type: 'input', placeholder: '请在此填写纳税人识别号', value }}"></template>
     </view>
 
-    <view style='height:100rpx;'></view>
+    <view style='height:350rpx;'></view>
 
     <!-- <view class="address-box">
       <view class="add-address" hidden="{{showInvoice}}">

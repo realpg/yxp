@@ -1,9 +1,33 @@
 <!--pages/my/logistics/logistics.wxml-->
 <view>
-  <block wx:if="{{showNan == true}}">
+  <block wx:if="{{showNan == true || result == 'null'}}">
     <wxc-abnor type="REQUEST_ERROR" image="{{image}}" title="{{title}}" tip="{{tip}}" button="{{button}}" bind:abnortap="onAbnorTap"></wxc-abnor>
   </block>
   <block wx:else>
-    <view>物流信息</view>
+  <view>
+  <!-- 图片与物流信息 -->
+  <view style='background:#fff;width:100%;height:330rpx;'>
+  <!-- 商品图片 -->
+    <view style='float:left;'>
+    <image src='{{goods.image}}' style="width:280rpx;height:280rpx; margin:30rpx"></image>
+    </view>
+    <!-- 物流信息 -->
+    <view style="float:right;font-size:34rpx;width:52%;line-height:70rpx;margin-top:40rpx;margin-right:20rpx;">
+    <view wx:if="{{wl_status=='0'}}">物流状态：运输中</view>
+    <view wx:if="{{wl_status=='1'}}">物流状态：已收货</view>
+    <view>物流公司：{{company}}</view>
+    <view>运单编号：{{wl_np}}</view>
+    </view>
+    </view>
+    <!-- 查看物流 -->
+    <block wx:for="{{list}}">
+    <view style='float:left;width:100%;font-size:30rpx;background:#fff;line-height:60rpx;margin-top:10rpx;'>
+    <view style='color:#999;margin-left:10%;width:80%;'>{{item.datetime}}</view>
+    <view style='color:#999;margin-left:10%;width:80%;'>{{item.remark}}</view>
+    <view style='color:#999;margin-left:10%;width:80%;'>{{item.zone}}</view>
+    <view style='width:80%;height:2rpx;background:#999;margin-left:10%;'></view>
+    </view>
+    </block>
+    </view>
   </block>
 </view>

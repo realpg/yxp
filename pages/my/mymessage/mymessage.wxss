@@ -16,6 +16,14 @@ icon {
   align-items: center;
   background-color: #fff;
 }
+delete-btn {
+  width: 120rpx;
+  line-height: 220rpx;
+  text-align: center;
+  background: #f4f4f4;
+  font-size: 24rpx;
+  color: #535353;
+}
 
 .icon-box__ctn {
   flex-shrink: 100;

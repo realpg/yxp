@@ -121,6 +121,11 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
   });
 }
 
+//确认收货
+function confirmReceipt(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/order/confirmReceipt', param, "GET", successCallback, errorCallback);
+}
+
 //根据user_id获取会员信息
 function getMember(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/member/getMember', param, "GET", successCallback, errorCallback);
@@ -134,6 +139,11 @@ function defaultAdds(param, successCallback, errorCallback) {
 //删除地址
 function delAdds(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/adds/delAdds', param, "GET", successCallback, errorCallback);
+}
+
+//删除订单
+function deleteOrder(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/order/del', param, "GET", successCallback, errorCallback);
 }
 
 //根据user_id查询收货地址
@@ -611,7 +621,9 @@ module.exports = {
   getAdds: getAdds, //查询地址
   setAddsDefFlag: setAddsDefFlag, //设置默认收货地址
   delAdds: delAdds, //删除地址
+  deleteOrder: deleteOrder,//删除订单
   isNall: isNall, //判断是否为空
   defaultAdds: defaultAdds, //根据user_id获取默认地址
   showToast: showToast, //弹出toast
+  confirmReceipt: confirmReceipt,//确认收货
 }

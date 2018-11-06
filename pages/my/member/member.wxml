@@ -32,9 +32,8 @@
               <view wx:if="{{item.goods_term == 1}}">半年</view>
               <view wx:if="{{item.goods_term == 2}}">一年</view>
             </view>
-            <button style='line-height:19px;font-size:25rpx;border-radius:26rpx;border:2rpx solid #eb6100;color:#eb6100;' bindtap='getToIndex' type="primary" plain="true">去使用</button>
+            <button style='line-height:19px;font-size:25rpx;border-radius:26rpx;border:2rpx solid #eb6100;color:#eb6100;' type="default-dark" session-from="weapp" size="27" open-type="contact">去使用</button>
           </view>
-
         </view>
       </view>
     </view>
